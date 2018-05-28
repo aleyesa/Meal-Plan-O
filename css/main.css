@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+h2 {
+    color: blue;
+}
+.delete-prompt, .search-add-section, .meal-section{
+    border: 2px solid grey;
+}
+
+fieldset {
+    border: none;
+}
+
+.search-results li {
+    display: inline;
+    list-style-type: none;
+    border: 2px solid grey;
+    background-color: beige;
+}
+
+section {
+    width: 750px;
+}
