@@ -20,32 +20,37 @@
     </header>
     <main role="main">
       <section class="start-section" role="region">
-            <button class="startPlanBtn">Lets Start Planning!</button>
-      </section>
-      <section class="create-meal-table-section" role="region">
-            <form action="#" method="get">
-                  <fieldset>
-                        <legend>Q: How many meals do you eat in a day?</legend>
-                        <input type="text" class="js-meals" placeholder="Input a number for how many meals you are planning to eat in  a day."/>
-                        <input type="submit" value="Create Meal Table"/>
-                  </fieldset>
-            </form>
+            <video src="#">[Instruction Video]</video>
+            <button class="startPlanBtn">Lets Get Started!</button>
       </section>
       <section class="meal-table-section" role="region">
             <h2>Meal Plan</h2>
             <div class="meal-section">
                   <table>
-                        <tr>
-                              <th>Meal 1</th>
-                              <td>Bananas</td>
-                        </tr>
+                              <tr>
+                                    <th>Sunday<button>+</button></th>
+                                    <th>Monday<button>+</button></th>
+                                    <th>Tuesday<button>+</button></th>
+                                    <th>Wednesday<button>+</button></th>
+                                    <th>Thursday<button>+</button></th>
+                                    <th>Friday<button>+</button></th>
+                                    <th>Saturday<button>+</button></th>
+                              </tr>
+                              <tr>
+                                    <td>Meal 1<button>x</button><button>+</button></td>
+                                    <td>Meal 1<button>x</button><button>+</button></td>
+                              </tr>
+                              <tr>
+                                    <td>Bananas<button>x</button></td>
+                                    <td>Cereal<button>x</button></td>
+                              </tr>
+                              <tr>
+                                    <td>Chicken Sandwich<button>x</button></td>
+                              </tr>
                   </table>
-                  <button>Remove</button>
-                  <button>add</button>
             </div>
-            <button>Delete</button>
             <button>Create New Meal Table</button>
-            <button>Save as PDF</button>
+            <a href=""><button class='pdfBtn'>Save as PDF</button></a>
             <section class="delete-prompt" role="region">
                   <button>x</button>
                   <p>You are about to delete the current meal table, please save as pdf before deleting!</p>
@@ -81,5 +86,5 @@
     </main>
     <footer role="contentinfo"></footer>
 </body>
-<script src="index.js"></script>
+<script src="./js/index.js"></script>
 </html>
