@@ -20,5 +20,19 @@ fieldset {
 }
 
 section {
-    width: 750px;
+    width: 1000px;
 }
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+
+th, td {
+    border: 2px solid black;
+}
+
+table button {
+    float: right;
+}
+
