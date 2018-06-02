@@ -1,37 +1,36 @@
-const htmlUrlToPdfApiEndpoint = 'https://api.pdflayer.com/api/convert';
-
-const handleRequest = (endpoint, url) => {
+//A search request sends keyword queries and returns lists of foods which contain one or 
+//more of the keywords in the food description, scientific name, or commerical name fields.
+const handleFoodSearchRequest = (nameOfFood) => {
+    const ndbSearchEndpoint = 'https://api.nal.usda.gov/ndb/search';
     const requestParam = {
-        access_key: '6f976b9baaede103c03c9763adf6e9fd',
-        document_url: url
-    }
-    $.getJSON(endpoint, requestParam);
+        api_key: 'API-Key',
+        q: nameOfFood,
+    };
+    $.getJSON(ndbSearchEndpoint, requestParam, (data) => {
+        let foodSearchResults = data.list.item.map((foodName) => 
+        console.log('name: ' + foodName.name + '\n' + 'dbno: ' +  foodName.ndbno));
+        handleFoodReportRequest(data.list.item[0].ndbno);
+    });
+};
+//A Food Report is a list of nutrients and their values in various portions for a specific food.
+const handleFoodReportRequest = (ndbno) => {
+    const foodReportEndpoint = 'https://api.nal.usda.gov/ndb/V2/reports';
+    const requestParam = {
+        api_key: 'API-Key',
+        ndbno: ndbno
+    };
+    $.getJSON(foodReportEndpoint, requestParam, (data) => {
+        // let macros = data.foods.food.map((macro) => 
+        // macro);
+        for(let i = 1; i < 5; i++)
+        {
+        console.log(data.foods[0].food.nutrients[i]);
+        }
+    });
 };
 
-const convertUrlHtmlToPdf = (data) => {
-    $('.pdfBtn').on('click', () => {
-    $('.meal-table-section a').attr('href', 'https://api.pdflayer.com/api/convert?access_key=6f976b9baaede103c03c9763adf6e9fd&document_url=https://aleyesa.github.io/Meal-Plan-O/');
-    }); 
-};
+handleFoodSearchRequest('Burger King');
 
-convertUrlHtmlToPdf();
-
-
-
-// const convertApiEndpoint = 'https://api.cloudmersive.com';
-// $.ajax({
-//     url: 'https://api.cloudmersive.com/convert/web/url/to/pdf',
-//     type: 'post',
-//     headers: {
-//         Apikey: 'abe9fe54-29ff-466f-83d9-f884a2d36890'
-//     },
-//     'Url': 'https://aleyesa.github.io/Meal-Plan-O/',
-//     "ExtraLoadingWait": 0,
-//     dataType: 'json',
-//     success: function (data) {
-//         console.info(data);
-//     }
-// });
 
 
 
