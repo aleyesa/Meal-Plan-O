@@ -40,7 +40,7 @@ $('.meal-table-section nav').on('click', 'a', function(event) {
         $(this).text('Show All(-)');
     }else {
         $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').addClass('hide');
-        $(this).text('Show All(+)')
+        $(this).text('Show All(+)');
     }
 });
 };
