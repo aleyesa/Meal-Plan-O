@@ -1,26 +1,23 @@
 * {
     box-sizing: border-box;
 }
+body {
+    text-align: center;
+}
 h2 {
     color: blue;
 }
 .delete-prompt, .search-add-section, .meal-section{
     border: 2px solid grey;
 }
-
 fieldset {
     border: none;
 }
-
 .search-results li {
     display: inline;
     list-style-type: none;
     border: 2px solid grey;
     background-color: beige;
-}
-
-section {
-    width: 1000px;
 }
 
 table {
@@ -40,17 +37,58 @@ table button {
     position: relative;
     display: inline-block;
 }
-
-.dropdown-content {
-    display: none;
+/* .dropdown-content{
+    display: block;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
     z-index: 1;
+} */
+
+/* Flex Properties */
+.flex-direction > div {
+    background-color: #f1f1f1;
+    margin: 10px;
+    padding: 20px;
+    font-size: 30px;
+}
+.flex-direction {
+    display: flex;
+    flex-direction: column;
+    background-color: dodgerblue;
+    text-align: center;
+}
+.addMealSecBtn {
+    margin: 0 auto;
+    font-size: 250px;
+    width: 75%;
+    opacity: 0.5;
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
+.addFoodBtn {
+    font-size: 125px;
+    width: 25%;
+    opacity: 0.5;
+}
+
+.deleteMealSecBtn, .removeFoodItem {
+    font-size: 25px;
+    opacity: 0.5;
+    color: red;
+    float: right;
+}
+/* section displaly properties */
+.search-add-section, .delete-prompt {
+    display: none;
+}
+nav h2 {
+    display: inline-block;
+}
+.hide {
+    display: none;
+}
+.highlight {
+    background-color: lightgray;
 }

@@ -19,68 +19,128 @@
           <h2>Plan and organize your meals!</h2>
     </header>
     <main role="main">
-      <section class="start-section" role="region">
-            <video src="#">[Instruction Video]</video>
-            <button class="startPlanBtn">Lets Get Started!</button>
-      </section>
-      <section class="meal-table-section" role="region">
-            <h2>Meal Plan</h2>
-            <div class="meal-section">
-                  <table>
-                              <tr>
-                                    <th>Sunday<button>+</button></th>
-                                    <th>Monday<button>+</button></th>
-                                    <th>Tuesday<button>+</button></th>
-                                    <th>Wednesday<button>+</button></th>
-                                    <th>Thursday<button>+</button></th>
-                                    <th>Friday<button>+</button></th>
-                                    <th>Saturday<button>+</button></th>
-                              </tr>
-                              <tr>
-                                    <td>Meal 1<button>x</button><button>+</button></td>
-                                    <td>Meal 1<button>x</button><button>+</button></td>
-                              </tr>
-                              <tr>
-                                    <td>Bananas<button>x</button></td>
-                                    <td>Cereal<button>x</button></td>
-                              </tr>
-                              <tr>
-                                    <td>Chicken Sandwich<button>x</button></td>
-                              </tr>
-                  </table>
+      <!-- Meal Planner Section -->
+      <section class="meal-table-section" role="region"> 
+            <button class="resetTableBtn">Reset Meal Planner</button>
+            <a href="https://api.pdflayer.com/api/convert?access_key=[API-Key]&document_url=https://aleyesa.github.io/Meal-Plan-O/&document_name=Meal Plan.pdf"><button class='pdfBtn'>Save as PDF</button></a>                 
+            <!-- day tab navigation -->
+            <nav role="navigation">
+                  <div class="flex-direction"> 
+                  <div>
+                        <a href="#">Sun</a>
+                        <a href="#">Mon</a>
+                        <a href="#">Tue</a>
+                        <a href="#">Wed</a>
+                        <a href="#">Thu</a>
+                        <a href="#">Fri</a>
+                        <a href="#">Sat</a>
+                        <a href="#">Show All(+)</a>
+                  </div>
             </div>
-            <button>Create New Meal Table</button>
-            <a href="https://api.pdflayer.com/api/convert?access_key=[API-Key]&document_url=https://aleyesa.github.io/Meal-Plan-O/&document_name=Meal Plan.pdf"><button class='pdfBtn'>Save as PDF</button></a>
+            </nav>
+            <!-- Sunday -->
+            <section class="sunday-section" id="sunday-section" role="region">
+            <div class="flex-direction">                   
+                  <div><h2>Sunday</h2></div>
+            </div>
+                  <div class="flex-direction">
+                        <div>
+                              <button class="addMealSecBtn">+</button>
+                        </div>
+                  </div>
+            </section>
+            <!-- Monday -->
+            <section class="monday-section" id="monday-section" role="region">
+            <div class="flex-direction">                   
+                  <div><h2>Monday</h2></div>
+            </div>
+                  <div class="flex-direction">
+                        <div>
+                              <button class="addMealSecBtn">+</button>
+                        </div>
+                  </div>
+            </section>
+            <!-- Tuesday -->
+            <section class="tuesday-section" id="tuesday-section" role="region">
+            <div class="flex-direction">                   
+                  <div><h2>Tuesday</h2></div>
+            </div>
+                  <div class="flex-direction">
+                        <div>
+                              <button class="addMealSecBtn">+</button>
+                        </div>
+                  </div>
+            </section>
+            <!-- Wednesday -->
+            <section class="wednesday-section" id="wednesday-section" role="region">
+            <div class="flex-direction">                   
+                  <div><h2>Wednesday</h2></div>
+            </div>
+                  <div class="flex-direction">
+                        <div>
+                              <button class="addMealSecBtn">+</button>
+                        </div>
+                  </div>
+            </section>
+            <!-- Thursday -->
+            <section class="thursday-section" id="thursday-section" role="region">
+            <div class="flex-direction">                   
+                  <div><h2>Thursday</h2></div>
+            </div>
+                  <div class="flex-direction">
+                        <div>
+                              <button class="addMealSecBtn">+</button>
+                        </div>
+                  </div>
+            </section>
+            <!-- Friday -->
+            <section class="friday-section" id="friday-section" role="region">
+            <div class="flex-direction">                   
+                  <div><h2>Friday</h2></div>
+            </div>
+                  <div class="flex-direction">
+                        <div>
+                              <button class="addMealSecBtn">+</button>
+                        </div>
+                  </div>
+            </section>
+            <!-- Saturday -->
+            <section class="saturday-section" id="saturday-section" role="region">
+            <div class="flex-direction">                   
+                  <div><h2>Saturday</h2></div>
+            </div>
+                  <div class="flex-direction">
+                        <div>
+                              <button class="addMealSecBtn">+</button>
+                        </div>
+                  </div>
+            </section>
+
             <section class="delete-prompt" role="region">
-                  <button>x</button>
+                  <button class="exitBtn">x</button>
                   <p>You are about to delete the current meal table, please save as pdf before deleting!</p>
                   <p>Do you still want to delete?</p>
-                  <button>Proceed</button>
+                  <button class="proceedBtn">Proceed</button>
             </section>
       </section>
+      <!-- Search section -->
       <section class="search-add-section" role="region">
+            <!-- Search food item form -->
             <h2>Search for a food item</h2>
             <form class="search-form">
                   <fieldset>
                         <input type="text" name="search-text-field" class="js-query" 
-                        placeholder="Type in a food name" autofocus/>
+                        placeholder="Type in a food name" autofocus required/>
                         <input type="submit" value="Search">
                   </fieldset>
             </form>
-            <section class="search-results" role="region">
-                  <button>Add</button>
-            </section>
-            <button>Back to Table</button>
+            <!-- Area that shows total food item results -->
+            <p class="totalResults"></p>
+            <!-- Search result section -->
+            <section class="search-results" role="region"></section>
+            <button class="loadBtn">Load More Results</button>
+            <button class="tableBtn">Back to Table</button>
       </section>
-
-      <!-- Get started section, possibly a form that gets how many meals they want to consume a day, calorie intake.
-      Type of food(ingredients).  -->
-      <!-- Once submitted we can get a list of possible meals the user might want, using a recipe search api. -->
-      <!-- If the user has found a meal they want to use in there planner, they can add it -->
-      <!-- <Using the submitted data on how many meals they consume a day, 
-      we somehow populate the data in a table or use another api for planning,
-      let user choose which meal section of the day they want. -->
-      <!-- use a pdf api if want to save it locally -->
     </main>
     <footer role="contentinfo"></footer>
 </body>
