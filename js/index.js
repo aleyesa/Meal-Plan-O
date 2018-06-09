@@ -12,36 +12,66 @@ let totalResults = 0;
 //Highlights the day tab that user selected and shows the specified meal section
 const specifyTabAndShowSection = () => {
 $('.meal-table-section nav').on('click', 'a', function(event) {
-    $(this).addClass('highlight');
-    $(this).siblings('a').removeClass('highlight');
-    if($(this).text() === 'Sun'){
-        $('.sunday-section').removeClass('hide');
-        $('.sunday-section').siblings('section').addClass('hide');
-    }else if($(this).text() === 'Mon'){
-        $('.monday-section').removeClass('hide');
-        $('.monday-section').siblings('section').addClass('hide');
-    }else if($(this).text() === 'Tue'){
-        $('.tuesday-section').removeClass('hide');
-        $('.tuesday-section').siblings('section').addClass('hide');
-    }else if($(this).text() === 'Wed'){
-        $('.wednesday-section').removeClass('hide');
-        $('.wednesday-section').siblings('section').addClass('hide');
-    }else if($(this).text() === 'Thu'){
-        $('.thursday-section').removeClass('hide');
-        $('.thursday-section').siblings('section').addClass('hide');
-    }else if($(this).text() === 'Fri'){
-        $('.friday-section').removeClass('hide');
-        $('.friday-section').siblings('section').addClass('hide');
-    }else if($(this).text() === 'Sat'){
-        $('.saturday-section').removeClass('hide');
-        $('.saturday-section').siblings('section').addClass('hide');
-    }else if($(this).text() === 'Show All(+)'){
-        $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').removeClass('hide');
-        $(this).text('Show All(-)');
-    }else {
-        $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').addClass('hide');
-        $(this).text('Show All(+)');
-    }
+    const that = $(this);
+    that.addClass('highlight');
+    that.siblings('a').removeClass('highlight');
+    const text = that.text().toLowerCase();
+    const defaultDays = 'Show All(+)';
+    const mapDaysToSelectors = { 
+        sun: '.sunday-section', 
+        mon: '.monday-section',                         
+        tue: '.tuesday-section', 
+        wed: '.wednesday-section', 
+        thu: '.thursday-section', 
+        fri: '.friday-section', 
+        sat: '.saturday-section', 
+        defaultDays: '.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section' 
+    };
+
+    const showCurDay = selector => $(selector).removeClass('hide');
+    const hideOtherDays = selector => $(selector).siblings('section').addClass('hide');
+
+    for (let key in mapDaysToSelectors) {
+        const selector = mapDaysToSelectors[key];
+
+        if (key === text) {
+            showCurDay(selector);
+            hideOtherDays(selector);
+            break;
+        } else {
+            showCurDay(mapDaysToSelectors.defaultDays);
+        }
+    };
+
+
+//     if($(this).text() === 'Sun'){
+//         $('.sunday-section').removeClass('hide');
+//         $('.sunday-section').siblings('section').addClass('hide');
+//     }else if($(this).text() === 'Mon'){
+//         $('.monday-section').removeClass('hide');
+//         $('.monday-section').siblings('section').addClass('hide');
+//     }else if($(this).text() === 'Tue'){
+//         $('.tuesday-section').removeClass('hide');
+//         $('.tuesday-section').siblings('section').addClass('hide');
+//     }else if($(this).text() === 'Wed'){
+//         $('.wednesday-section').removeClass('hide');
+//         $('.wednesday-section').siblings('section').addClass('hide');
+//     }else if($(this).text() === 'Thu'){
+//         $('.thursday-section').removeClass('hide');
+//         $('.thursday-section').siblings('section').addClass('hide');
+//     }else if($(this).text() === 'Fri'){
+//         $('.friday-section').removeClass('hide');
+//         $('.friday-section').siblings('section').addClass('hide');
+//     }else if($(this).text() === 'Sat'){
+//         $('.saturday-section').removeClass('hide');
+//         $('.saturday-section').siblings('section').addClass('hide');
+//     }else if($(this).text() === 'Show All(+)'){
+//         $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').removeClass('hide');
+//         $(this).text('Show All(-)');
+//     }else {
+//         $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').addClass('hide');
+//         $(this).text('Show All(+)');
+//     }
 });
 };
 //The html used to add a meal section, followed by an add meal section button
