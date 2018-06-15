@@ -11,12 +11,16 @@ let totalResults = 0;
 /*                                 Meal Table Manipulation                                     */
 //Highlights the day tab that user selected and shows the specified meal section
 const specifyTabAndShowSection = () => {
-$('.meal-table-section nav').on('click', 'a', function(event) {
+$('.meal-table-section nav').on('click', '.weekDay', function(event) {
     const that = $(this);
-    that.addClass('highlight');
-    that.siblings('a').removeClass('highlight');
+    that.addClass('redCircle');
+    that.parent().addClass('focus');
+    that.parent().removeClass('unfocus');
+    that.parent().siblings('div').children('.weekDay').removeClass('redCircle');
+    that.parent().siblings('div').removeClass('focus');
+    that.parent().siblings('div').addClass('unfocus');
     const text = that.text().toLowerCase();
-    const defaultDays = 'Show All(+)';
+
     const mapDaysToSelectors = { 
         sun: '.sunday-section', 
         mon: '.monday-section',                         
@@ -25,11 +29,16 @@ $('.meal-table-section nav').on('click', 'a', function(event) {
         thu: '.thursday-section', 
         fri: '.friday-section', 
         sat: '.saturday-section', 
-        defaultDays: '.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section' 
     };
 
-    const showCurDay = selector => $(selector).removeClass('hide');
-    const hideOtherDays = selector => $(selector).siblings('section').addClass('hide');
+    const showCurDay = selector => {
+        $(selector).removeClass('hide');
+        $(selector).addClass('showMealSection');
+    };
+    const hideOtherDays = selector => {
+        $(selector).siblings('section').addClass('hide');
+        $(selector).siblings('section').removeClass('showMealSection');
+    };
 
     for (let key in mapDaysToSelectors) {
         const selector = mapDaysToSelectors[key];
@@ -37,85 +46,74 @@ $('.meal-table-section nav').on('click', 'a', function(event) {
         if (key === text) {
             showCurDay(selector);
             hideOtherDays(selector);
-            break;
+            // break;
         } else {
-            showCurDay(mapDaysToSelectors.defaultDays);
+            // showCurDay(mapDaysToSelectors.defaultDays);
         }
     };
-
-
-//     if($(this).text() === 'Sun'){
-//         $('.sunday-section').removeClass('hide');
-//         $('.sunday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Mon'){
-//         $('.monday-section').removeClass('hide');
-//         $('.monday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Tue'){
-//         $('.tuesday-section').removeClass('hide');
-//         $('.tuesday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Wed'){
-//         $('.wednesday-section').removeClass('hide');
-//         $('.wednesday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Thu'){
-//         $('.thursday-section').removeClass('hide');
-//         $('.thursday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Fri'){
-//         $('.friday-section').removeClass('hide');
-//         $('.friday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Sat'){
-//         $('.saturday-section').removeClass('hide');
-//         $('.saturday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Show All(+)'){
-//         $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').removeClass('hide');
-//         $(this).text('Show All(-)');
-//     }else {
-//         $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').addClass('hide');
-//         $(this).text('Show All(+)');
-//     }
 });
 };
 //The html used to add a meal section, followed by an add meal section button
-const mealSectionTemplate = () =>
+const mealSectionTemplate = (mealSecName) =>
  `
-        <div>
-            <h2>Meal<button class="deleteMealSecBtn">x</button></h2>
-            <section>
-                <button class="addFoodBtn">+</button>
+        <div class="${mealSecName}">
+            <a href="#">${mealSecName}</a>
+            <button class="deleteMealSecBtn far fa-trash-alt"></button>
+            <button class="editMealSecBtn far fa-edit"></button>
+        </div>
+`;
+const mealSectionInfoTemplate = (mealSecName) =>
+`        <section class="${mealSecName} meal-section-info">
+            <section class="foodItemSection">
+                <h2>${mealSecName}</h2>
             </section>
-        </div>
-        <div>
-                <button class="addMealSecBtn">+</button>
-        </div>
+            <section class="macroSection"></section>
+        </section>
 `;
 //adds a meal section on specified day                                   
 const addMealSection = () => {              
-$('.meal-table-section').on('click', '.addMealSecBtn', function (event) {
-    // console.log($(this).parent().closest('div').html());
-    $(this).parent().closest('div').replaceWith(mealSectionTemplate());
+$('.meal-name-form').on('submit', function (event) {
+    event.preventDefault();
+    const mealSecName = $(this).find('.js-meal-name').val();
+    $('.meal-names-section div').removeClass('mealSectionFocus');
+    //hide other meal section info
+    console.log($('.meal-section-menu').siblings('.section').css('display', 'hidden'));
+    $(this).siblings('.meal-names-section').append(mealSectionTemplate(mealSecName));
+    $(this).siblings('.meal-names-section').children(`.${mealSecName}`).addClass('mealSectionFocus');
+    $(this).parent().after(mealSectionInfoTemplate(mealSecName));
+    
+
+    $('.js-meal-name').val("");
 });
 };
 //remove a specified meal section on the specified day                              
 const removeMealSection = () => {
 $('.meal-table-section').on('click', '.deleteMealSecBtn', function (event) {
-    $(this).closest('div').remove().html();
+    console.log($(this).closest('div').find('a').text());
+    console.log($(this).parent().parent().parent().parent().children(`.${$(this).closest('div').find('a').text()}`).remove());
+    console.log($(this).closest('div').remove().html());
 });
 };
 //adds food item on specified meal section
-const addFoodItem = () => {
-$('.meal-table-section').on('click', '.addFoodBtn', function(event) {
+const editMealSection = () => {
+let mealSection = '';
+let mealSecName = '';
+let foodItemToAdd = '';
+$('.meal-table-section').on('click', '.editMealSecBtn', function(event) {
     //holds current clicked button
-    let mealSection = this;
+    event.stopPropagation();
+    mealSection = this;
+    mealSecName = $(this).siblings('a').text();
     //we go to the search- section
     $('.meal-table-section').css('display', 'none');
     $('.search-add-section').css('display', 'block');
-    //search for the item
+    //search for the item            
     $('.search-results').on('click', '.addBtn', function(event) {
-        let foodItemToAdd = $(this).parent().siblings('.foodName').text();
-
-            $(mealSection).parent().closest('section').replaceWith(`<p>${foodItemToAdd}<button class="removeFoodItem">x</button> </p>
-            <section><button class="addFoodBtn">+</button></section>`);
+        foodItemToAdd = $(this).parent().siblings('.foodName').text();
+        $(mealSection).parent().parent().parent().siblings(`.${mealSecName}`).find('.foodItemSection').append(`<p>${foodItemToAdd}<button class="removeFoodItem">x</button></p>`);
             $('.search-add-section').css('display', 'none');
             $('.search-results').empty();
+            mealSecName = '';
             add = '';
             $('.meal-table-section').css('display', 'block');
     });    
@@ -171,11 +169,17 @@ const handleFoodReportRequest = (foodName, ndbno) => {
         ndbno: ndbno,
     };
     $.getJSON(foodReportEndpoint, requestParam, (data) => {
-        for(let i = 1; i < 5; i++)
+        for(let i = 0; i < data.foods[0].food.nutrients.length; i++)
         {
-            addP += ('<p>' + data.foods[0].food.nutrients[i].name + ': ' + 
-                     data.foods[0].food.nutrients[i].value + ' ' +
-                     data.foods[0].food.nutrients[i].unit + '</p>');
+            if( data.foods[0].food.nutrients[i].nutrient_id === '208' || 
+                data.foods[0].food.nutrients[i].nutrient_id === '205' || 
+                data.foods[0].food.nutrients[i].nutrient_id === '204' ||
+                data.foods[0].food.nutrients[i].nutrient_id === '203' ){
+            
+                    addP += ('<p>' + data.foods[0].food.nutrients[i].name + ': ' + 
+                    data.foods[0].food.nutrients[i].value + ' ' +
+                    data.foods[0].food.nutrients[i].unit + '</p>');
+            }
         }
         add += renderResult(foodName, addP);
         $('.search-results').html(add);
@@ -230,7 +234,7 @@ const runApplication = () => {
     specifyTabAndShowSection();
     addMealSection();
     removeMealSection();
-    addFoodItem();
+    editMealSection();
     removeFoodItem();
     goBackToTable();
     resetMealPlan();
@@ -249,3 +253,24 @@ runApplication();
 
 //************************************************create a way to set the name of the meal section
 
+localStorage.setItem('test', 1);
+localStorage.removeItem('test');
+/**/
+const days = {
+    sunday: {
+        breakfast: {
+            banana: {
+                qty: 1,
+                calories: 70,
+                proteins: 20,
+                fats: 10,
+                carbs: 12
+            }
+        }
+    },
+    monday: {
+
+    }  
+};
+
+//gets and sets to manipulate the object days
