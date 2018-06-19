@@ -179,22 +179,11 @@ const handleFoodReportRequest = (foodName, ndbno) => {
       }
     }
 
-    combineResultsHtml += displayResultHtml(foodName, addPElem);
+    combineResultsHtml += getResultHTML(foodName, macros);
     $('.search-results').html(combineResultsHtml);
   });
 };
 
-const displayResultHtml = (foodName, macros) => 
-`
-  <div class="dropdown">
-  <a href="#" class="foodName">${foodName}</a>
-    <div class="dropdown-content">
-    <strong><u>Macros</u></strong>
-    ${macros}
-    <button class="addBtn">Add</button>
-    </div>
-  </div>
-`;
 
 const handleSearch = () => {
   $('.search-form').on('submit', function(event) {
