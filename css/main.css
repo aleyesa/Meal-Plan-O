@@ -2,21 +2,56 @@
   box-sizing: border-box;
 }
 
+html, 
+body,
+main {
+  height: 100%;
+  min-height: 100%;
+}
+
 body {
   text-align: center;
 }
 
+header {
+  margin: 0;
+  padding: 20px;
+  background: #cacaca;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 10px;
+}
+
+.weekDay:visited {
+  color: black;
+}, 
+
+
 h1, 
-.weekDay, 
 .meal-names-section a {
   color: dodgerblue;
 }
+
+h2 {
+  text-transform: uppercase;
+}
+
+/*main {
+  background: #FFEED9;
+}*/
 
 /* section display properties */
 .search-add-section, 
 .delete-prompt, 
 .hide {
   display: none;
+}
+
+.meal-table-section{
+  height: 100%;
+  background: #FFEED9;
 }
 
 .showMealSection,
@@ -27,14 +62,10 @@ h1,
 }
 
 .showMealSection {
-  border-top: 2px solid black; 
-  min-height: 500px;
+  /*border-top: 2px solid black; */
+  height: 100%;
 }
 
-.showMealSection, 
-.meal-table-section {
-  background-color: white;
-}
 
 .meal-table-section, 
 .meal-section-menu, 
@@ -44,14 +75,14 @@ h1,
 
 /* New CSS */
 .meal-table-section {
-  border: 2px solid black;
+  /*border: 2px solid black;*/
   margin: 0px auto;
-  max-width: 1000px;
+  /*max-width: 1000px;*/
 }
 
 nav {
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
+  background: #9c8867;
+  border: 1px solid #b59e7a;
 }
 
 nav div, 
@@ -66,25 +97,33 @@ nav div,
   text-decoration-line: none;
 }
 
+.weekDay {
+  padding: 10px 20px;
+  font-size: 20px;
+}
+
 .focus{
-  border-right: 1px solid darkgrey;
-  border-left: 1px solid darkgrey;
+ /* border-right: 1px solid darkgrey;
+  border-left: 1px solid darkgrey;*/
 }
 
 .focus, 
 .mealSectionFocus {
-  background-color: lightgrey;
+  padding: 5px;
+  /*background-color: lightgrey;*/
 }
 
 .unfocus {
-  border-right: 1px solid white;
-  border-left: 1px solid white;
+ /* border-right: 1px solid white;
+  border-left: 1px solid white;*/
 }
 
 .meal-section-menu {
-  border-right: 2px solid black;
   position: relative;
   width: 25%;
+  padding: 10px;
+  background: #dac6a7;
+  border-right: 1px solid #b59e7a;
 }
 
 .meal-section-features {
@@ -98,9 +137,13 @@ nav div,
   float: right;
 }
 
-.meal-name-form {
-  border-bottom: 2px solid black;
+.addMealSecBtn {
+  padding: 10px;
 }
+
+/*.meal-name-form {
+  border-bottom: 2px solid black;
+}*/
 
 .meal-name-form fieldset {
   border: none;
@@ -108,7 +151,11 @@ nav div,
 
 .meal-name-form .js-meal-name,
 .meal-section-info {
-  width: 75%;
+  width: 85%;
+  padding: 8px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: none;
 }
 
 .meal-names-section div{
@@ -120,5 +167,5 @@ nav div,
 .foodItemSection, 
 .macroSection {
   width: 100%;
-  border: 2px solid lightgrey;
+  /*border: 2px solid lightgrey;*/
 }
