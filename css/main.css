@@ -1,148 +1,124 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
+
 body {
-    text-align: center;
+  text-align: center;
 }
 
-h1 {
-    color: dodgerblue;
+h1, 
+.weekDay, 
+.meal-names-section a {
+  color: dodgerblue;
 }
 
-/* section displaly properties */
-.search-add-section, .delete-prompt {
-    display: none;
-}
-
+/* section display properties */
+.search-add-section, 
+.delete-prompt, 
 .hide {
-    display: none;
+  display: none;
+}
+
+.showMealSection,
+.meal-table-section,
+.meal-section-menu,
+.meal-section-info {
+  display: flex;
 }
 
 .showMealSection {
-    display: flex;
-    border-top: 2px solid black; 
-    background-color: white;
-    min-height: 500px;
+  border-top: 2px solid black; 
+  min-height: 500px;
+}
+
+.showMealSection, 
+.meal-table-section {
+  background-color: white;
+}
+
+.meal-table-section, 
+.meal-section-menu, 
+.meal-section-info {
+  flex-direction: column;
 }
 
 /* New CSS */
 .meal-table-section {
-    display: flex;
-    flex-direction: column;
-    max-width: 1000px;
-    border: 2px solid black;
-    margin: 0px auto;
-    background-color: white;
+  border: 2px solid black;
+  margin: 0px auto;
+  max-width: 1000px;
 }
 
 nav {
-    padding-top: 2.5px;
-    padding-bottom: 2.5px;
-  }
-
-nav div {
-display: inline-block;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
 }
 
-/* remove anchor tag underline */
-.weekDay {
-    display: inline-block;
-    text-decoration-line: none;
-    color: dodgerblue;
-    margin: 2.5px;
-    padding: 5px;
-    border: 2px solid white;
-    border-radius: 50%;
+nav div, 
+.weekDay, 
+.meal-names-section a  {
+  display: inline-block;
 }
 
-.redCircle {
-    display: inline-block;
-    padding: 5px;
-    border: 2px solid red;
-    border-radius: 50%;
+.weekDay, 
+.meal-names-section a {
+  margin: 2.5px;
+  text-decoration-line: none;
 }
 
 .focus{
-    border-right: 1px solid lightgrey;
-    border-left: 1px solid lightgrey;
+  border-right: 1px solid darkgrey;
+  border-left: 1px solid darkgrey;
+}
+
+.focus, 
+.mealSectionFocus {
+  background-color: lightgrey;
 }
 
 .unfocus {
-    border-right: 1px solid white;
-    border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-left: 1px solid white;
 }
 
 .meal-section-menu {
-    display: flex;
-    flex-direction: column;
-    border-right: 2px solid black;
-    width: 25%;
-    /* height: 500px; */
-    position: relative;
-}
-
-.mealSectionFocus {
-    background-color: lightgrey;
-}
-
-.meal-section-info {
-    display: flex;
-    flex-direction: column;
-    width: 75%;
-    /* height: 500px; */
+  border-right: 2px solid black;
+  position: relative;
+  width: 25%;
 }
 
 .meal-section-features {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
 }
 
-.meal-names-section a {
-    display: inline-block;
-    color: dodgerblue;
-    text-decoration-line: none;
-}
-
-.deleteMealSecBtn, .editMealSecBtn{
-    float: right;
+.deleteMealSecBtn, 
+.addFoodItemBtn {
+  float: right;
 }
 
 .meal-name-form {
-    border-bottom: 2px solid black;
+  border-bottom: 2px solid black;
 }
 
 .meal-name-form fieldset {
-    border: none;
+  border: none;
 }
 
-.meal-name-form .js-meal-name {
-    width: 75%;
+.meal-name-form .js-meal-name,
+.meal-section-info {
+  width: 75%;
 }
 
 .meal-names-section div{
-    margin-top: 5px;
-    border-top: 1px solid lightgrey;
-    border-bottom: 1px solid lightgrey;
+  margin-top: 5px;
+  border-top: 1px solid darkgrey;
+  border-bottom: 1px solid darkgrey;
 }
 
-.foodItemSection {
-    width: 100%;
-    /* height: 500px; */
-    border: 2px solid lightgrey;
-}
-
+.foodItemSection, 
 .macroSection {
-    width: 100%;
-    /* height: 500px; */
-    border: 2px solid lightgrey;
+  width: 100%;
+  border: 2px solid lightgrey;
 }
-
-/* button {
-    width: 100%;
-} */
-
-/* hiding sections to focus on styling. */
-/* .sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section, button {
-    display: none;
-} */
