@@ -64,9 +64,10 @@ const mealSectionInfoTemplate = mealSecName =>
   </section>
 `;
 
+
 const addMealSection = () => {              
-  $('.meal-name-form').on('submit', function(event) {
-    event.preventDefault();
+  $('.meal-name-form').on('submit', function(e) {
+    e.preventDefault();
     const mealSecName = $(this).find('.js-meal-name').val();
 
     $('.meal-names-section div').removeClass('mealSectionFocus');
@@ -166,12 +167,11 @@ const handleFoodReportRequest = (foodName, ndbno) => {
 
   $.getJSON(foodReportEndpoint, requestParam, (data) => {
     for (let i = 0; i < data.foods[0].food.nutrients.length; i++) {
-    
-      if (data.foods[0].food.nutrients[i].nutrient_id === '208' || 
-          data.foods[0].food.nutrients[i].nutrient_id === '205' || 
-          data.foods[0].food.nutrients[i].nutrient_id === '204' ||
-          data.foods[0].food.nutrients[i].nutrient_id === '203' ) {
+        
+        const acceptedFoodIds = ['208', '205', '204', '203'];
+        let thisFoodId = data.foods[0].food.nutrients[i].nutrient_id;
 
+      if (acceptedFoodIds.includes(thisFoodId)) {
         addPElem += ('<p>' + 
           data.foods[0].food.nutrients[i].name + ': ' + 
           data.foods[0].food.nutrients[i].value + ' ' +
