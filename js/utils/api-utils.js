@@ -8,24 +8,25 @@ const handleFoodReportRequest = (foodName, ndbno) => {
   };
 
   $.getJSON(foodReportEndpoint, requestParam, (data) => {
-      const nutrients = { cals: '208', pros: '205', fats: '204', carbs: '203' };
-      const nutrientType = ['calories', 'proteins', 'fats', 'carbohydrates'];
-      let index = 0;
+      const includeIds = ['203', '204', '205', '208'];
       
-      for (let i = 0; i < data.foods[0].food.nutrients.length; i++) {
-        const foodItemNutrients = data.foods[0].food.nutrients[i].nutrient_id;
+      const includeMacros = {calories: '203', proteins: '204', fats: '205', carbs: '208'};
 
-        for (let nutrientId in nutrients) {
-          if (foodItemNutrients === nutrients[nutrientId]) {
-            addMacroInfo += (macroInfoTemplate(data, i, nutrientType[index]));
-            index++;
-          }
-        };
-    }
+      const foodName = data.foods[0].food.desc.name;
+      const nutrients = data.foods[0].food.nutrients;
+      const filteredNutrients = nutrients.filter(nutrient => includeIds.includes(nutrient.nutrient_id));
+      const { name, value, unit } = filteredNutrients[0]; 
 
-    combineResultsHtml += displayResultHtml(foodName, addMacroInfo);
+      console.log('================\n');
+      console.log('foodName: ', foodName);
+      console.log('name: ', name);
+      console.log('value: ', value);
+      console.log('unit: ', unit);
 
-    $('.search-results').html(combineResultsHtml);
+
+      combineResultsHtml += displayResultHtml(foodName, addMacroInfo);
+
+      $('.search-results').html(combineResultsHtml);
   });
 };
 
