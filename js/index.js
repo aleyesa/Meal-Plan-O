@@ -49,8 +49,8 @@ const specifyTabAndShowSection = () => {
 };
 
 const addMealSection = () => {              
-  $('.meal-name-form').on('submit', function(event) {
-    event.preventDefault();
+  $('.meal-name-form').on('submit', function(e) {
+    e.preventDefault();
     const mealSecName = $(this).find('.js-meal-name').val();
 
     $('.meal-names-section div').removeClass('mealSectionFocus');

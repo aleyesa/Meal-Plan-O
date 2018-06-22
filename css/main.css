@@ -39,6 +39,14 @@ h2 {
   text-transform: uppercase;
 }
 
+h2 {
+  text-transform: uppercase;
+}
+
+/*main {
+  background: #FFEED9;
+}*/
+
 /* section display properties */
 .search-add-section, 
 .delete-prompt, 
@@ -142,6 +150,10 @@ nav div,
 .addMealSecBtn {
   padding: 6px;
 }
+
+/*.meal-name-form {
+  border-bottom: 2px solid black;
+}*/
 
 .meal-name-form fieldset {
   border: none;
