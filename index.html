@@ -6,6 +6,7 @@
         content="width=device-width, initial-scale=1.0"/>
   <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
   <title>Meal Plan-O</title>
+  <link rel="stylesheet" type="text/css" href="./css/reset.css"/>
   <link rel="stylesheet" type="text/css" href="./css/main.css"/>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" 
         integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" 
@@ -15,6 +16,7 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"/>
   </script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
   <section class="delete-prompt" role="region">
@@ -29,28 +31,36 @@
   </header>
   <main role="main">
     <!-- Meal Planner Section -->
-    <section class="meal-table-section" role="region"> 
+    <section class="meal-table-section" role="region">  
       <!-- day tab navigation -->
       <nav role="navigation">
-        <div class="focus"><a   class="weekDay" href="#">Sun</a></div>
-        <div class="unfocus"><a class="weekDay" href="#">Mon</a></div>
-        <div class="unfocus"><a class="weekDay" href="#">Tue</a></div>
-        <div class="unfocus"><a class="weekDay" href="#">Wed</a></div>
-        <div class="unfocus"><a class="weekDay" href="#">Thu</a></div>
-        <div class="unfocus"><a class="weekDay" href="#">Fri</a></div>
-        <div class="unfocus"><a class="weekDay" href="#">Sat</a></div>
+        <div class="focus">  <a class="weekDay" href="#">Sun</a></div>
+        <div><a class="weekDay" href="#">Mon</a></div>
+        <div><a class="weekDay" href="#">Tue</a></div>
+        <div><a class="weekDay" href="#">Wed</a></div>
+        <div><a class="weekDay" href="#">Thu</a></div>
+        <div><a class="weekDay" href="#">Fri</a></div>
+        <div><a class="weekDay" href="#">Sat</a></div>
       </nav>
       <!-- Sunday -->
       <section class="sunday-section showMealSection" id="sunday-section" role="region">
         <section class="meal-section-menu">
           <form class="meal-name-form">
             <fieldset>
+              <legend class="legend">Start and create a New Meal Section</legend>
               <input type="text" name="meal-name" class="js-meal-name" 
                      placeholder="New Meal Section: Lunch" autofocus required/>
               <input type="submit" class="addMealSecBtn" value="+"/>
             </fieldset>
           </form>
-          <section class="meal-names-section"></section>
+          <section class="meal-names-section">
+            <section class="meal-section-features">
+              <button class="resetTableBtn">Reset Meal Planner</button>
+              <a href="#">
+                <button class='pdfBtn'>Save as PDF</button>
+              </a>            
+            </section>
+          </section>
         </section>
       </section>
       <!-- Monday -->
@@ -63,7 +73,14 @@
               <input type="submit" class="addMealSecBtn" value="+">
             </fieldset>
           </form>
-          <section class="meal-names-section"></section>
+          <section class="meal-names-section">
+            <section class="meal-section-features">
+              <button class="resetTableBtn">Reset Meal Planner</button>
+              <a href="#">
+                <button class='pdfBtn'>Save as PDF</button>
+              </a>            
+            </section>
+          </section>
       </section>
       </section>
       <!-- Tuesday -->
@@ -76,7 +93,14 @@
                 <input type="submit" class="addMealSecBtn" value="+"/>
             </fieldset>
           </form>
-          <section class="meal-names-section"></section>
+          <section class="meal-names-section">
+            <section class="meal-section-features">
+              <button class="resetTableBtn">Reset Meal Planner</button>
+              <a href="#">
+                <button class='pdfBtn'>Save as PDF</button>
+              </a>            
+            </section>
+          </section>
         </section>
       </section>
       <!-- Wednesday -->
@@ -89,7 +113,14 @@
               <input type="submit" class="addMealSecBtn" value="+"/>
             </fieldset>
           </form>
-          <section class="meal-names-section"></section>
+          <section class="meal-names-section">
+            <section class="meal-section-features">
+              <button class="resetTableBtn">Reset Meal Planner</button>
+              <a href="#">
+                <button class='pdfBtn'>Save as PDF</button>
+              </a>            
+            </section>
+          </section>
         </section>
       </section>
       <!-- Thursday -->
@@ -102,7 +133,14 @@
               <input type="submit" class="addMealSecBtn" value="+"/>
             </fieldset>
           </form>
-          <section class="meal-names-section"></section>
+          <section class="meal-names-section">
+            <section class="meal-section-features">
+              <button class="resetTableBtn">Reset Meal Planner</button>
+              <a href="#">
+                <button class='pdfBtn'>Save as PDF</button>
+              </a>            
+            </section>
+          </section>
         </section>
       </section>
       <!-- Friday -->
@@ -115,7 +153,14 @@
               <input type="submit" class="addMealSecBtn" value="+"/>
             </fieldset>
           </form>
-          <section class="meal-names-section"></section>
+          <section class="meal-names-section">
+            <section class="meal-section-features">
+              <button class="resetTableBtn">Reset Meal Planner</button>
+              <a href="#">
+                <button class='pdfBtn'>Save as PDF</button>
+              </a>            
+            </section>
+          </section>
         </section>
       </section>
       <!-- Saturday -->
@@ -128,14 +173,15 @@
             <input type="submit" class="addMealSecBtn" value="+"/>
           </fieldset>
         </form>
-        <section class="meal-names-section"></section>
+        <section class="meal-names-section">
+          <section class="meal-section-features">
+            <button class="resetTableBtn">Reset Meal Planner</button>
+            <a href="#">
+              <button class='pdfBtn'>Save as PDF</button>
+            </a>            
+          </section>
+        </section>
       </section>
-      </section>
-      <section class="meal-section-features">
-        <button class="resetTableBtn">Reset Meal Planner</button>
-        <a href="https://api.pdflayer.com/api/convert?access_key=6f976b9baaede103c03c9763adf6e9fd&document_url=https://aleyesa.github.io/Meal-Plan-O/#">
-          <button class='pdfBtn'>Save as PDF</button>
-        </a>            
       </section>
     </section>
     <!-- Search section -->
@@ -152,12 +198,17 @@
       <!-- Area that shows total food item results -->
       <p class="totalResults"></p>
       <!-- Search result section -->
-      <section class="search-results" role="region"></section>
+    <section class="search-results" role="region"></section>
       <button class="loadBtn">Load More Results</button>
       <button class="tableBtn">Back to Table</button>
     </section>
-    </main>
     <footer role="contentinfo"></footer>
+    </main>
+
 </body>
+<script type="text/javascript" src="./js/api/nutrientChart.js"></script>
+<script src="./js/templates.js"></script>
+<script src="./js/api/foodSearchApi.js"></script>
+<script src="./js/api/foodReportApi.js"></script>
 <script src="./js/index.js"></script>
 </html>

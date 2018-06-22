@@ -2,14 +2,41 @@
   box-sizing: border-box;
 }
 
+html, 
+body,
+main {
+  height: 100%;
+  min-height: 100%;
+  background-color: #FFEED9;
+}
+
 body {
   text-align: center;
 }
 
+header {
+  margin: 0;
+  padding: 20px;
+  background: #F0782E;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 10px;
+}
+
+.weekDay:visited {
+  color: white;
+}
+
+
 h1, 
-.weekDay, 
 .meal-names-section a {
-  color: dodgerblue;
+  color: black;
+}
+
+h2 {
+  text-transform: uppercase;
 }
 
 /* section display properties */
@@ -17,6 +44,20 @@ h1,
 .delete-prompt, 
 .hide {
   display: none;
+}
+
+.search-add-section {
+  background-color: #FFEED9;
+}
+
+.search-form {
+  background-color: #4B631C;
+}
+
+.meal-table-section{
+  height: 100%;
+  background: #FFEED9;
+  border-left: 1px solid #918073;
 }
 
 .showMealSection,
@@ -27,31 +68,32 @@ h1,
 }
 
 .showMealSection {
-  border-top: 2px solid black; 
-  min-height: 500px;
+  height: 100%;
 }
 
-.showMealSection, 
-.meal-table-section {
-  background-color: white;
+.meal-section-info{
+  width: 75%;
+}
+
+.meal-section-info h2 {
+  padding: 10px;
 }
 
 .meal-table-section, 
-.meal-section-menu, 
+.meal-section-menu,
 .meal-section-info {
   flex-direction: column;
 }
 
 /* New CSS */
 .meal-table-section {
-  border: 2px solid black;
   margin: 0px auto;
-  max-width: 1000px;
 }
 
 nav {
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
+  background: #4B631C;
+  border-top: 1px solid #918073;
+  border-bottom: 1px solid #918073;
 }
 
 nav div, 
@@ -60,37 +102,36 @@ nav div,
   display: inline-block;
 }
 
+.meal-names-section div {
+  margin: 8px;
+}
+
 .weekDay, 
 .meal-names-section a {
-  margin: 2.5px;
   text-decoration-line: none;
 }
 
-.focus{
-  border-right: 1px solid darkgrey;
-  border-left: 1px solid darkgrey;
+.weekDay {
+  padding: 10px 20px;
+  font-size: 20px;
 }
 
 .focus, 
 .mealSectionFocus {
-  background-color: lightgrey;
-}
-
-.unfocus {
-  border-right: 1px solid white;
-  border-left: 1px solid white;
+  background-color: #4F2C1E;
+  opacity: 0.9;
 }
 
 .meal-section-menu {
-  border-right: 2px solid black;
   position: relative;
   width: 25%;
+  padding: 10px;
+  background: #4F2C1E;
+  border-right: 1px solid #918073;
 }
 
-.meal-section-features {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
+.meal-names-section {
+  height: 100%;
 }
 
 .deleteMealSecBtn, 
@@ -98,27 +139,50 @@ nav div,
   float: right;
 }
 
-.meal-name-form {
-  border-bottom: 2px solid black;
+.addMealSecBtn {
+  padding: 6px;
 }
 
 .meal-name-form fieldset {
   border: none;
 }
 
-.meal-name-form .js-meal-name,
-.meal-section-info {
-  width: 75%;
-}
-
-.meal-names-section div{
-  margin-top: 5px;
-  border-top: 1px solid darkgrey;
-  border-bottom: 1px solid darkgrey;
-}
-
 .foodItemSection, 
 .macroSection {
   width: 100%;
-  border: 2px solid lightgrey;
+  height: 50%;
+  border: 1px solid black;
+}
+.meal-name-form .js-meal-name {
+  width: 85%;
+  padding: 8px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: none;
+}
+
+.meal-names-section div{
+  padding: 8px;
+  background-color: #DEDEDE;
+  border:1px solid lightgray;
+}
+
+.meal-names-section a {
+  text-transform: capitalize;
+}
+
+.nutritionType p {
+  display: inline-block;
+}
+
+.nutritionInfo div p {
+  display: inline-block;
+}
+
+.nutritionInfo div {
+  padding: 5px;
+}
+
+.legend {
+  background-color: white;
 }
