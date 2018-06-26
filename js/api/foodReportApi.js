@@ -11,12 +11,13 @@ const handleFoodReportRequest = (foodName, ndbno) => {
     const nutrients = { cals: '208', pros: '205', fats: '204', carbs: '203' };
     const nutrientType = ['calories', 'proteins', 'fats', 'carbohydrates'];
     let index = 0;
+
     for (let i = 0; i < data.foods[0].food.nutrients.length; i++) {
       const foodItemNutrients = data.foods[0].food.nutrients[i].nutrient_id;
 
       for (let nutrientId in nutrients) {
         if (foodItemNutrients === nutrients[nutrientId]) {
-          addMacroInfo += (macroInfoTemplate(data, i, nutrientType[index]));
+          addMacroInfo += (macroInfoTemplateForResults(data, i, nutrientType[index]));
           index++;
         }
       };

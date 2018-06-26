@@ -44,148 +44,29 @@
       </nav>
       <!-- Sunday -->
       <section class="sunday-section showMealSection" id="sunday-section" role="region">
-        <section class="meal-section-menu">
-          <form class="meal-name-form">
-            <fieldset>
-              <legend class="legend">Start and create a New Meal Section</legend>
-              <input type="text" name="meal-name" class="js-meal-name" 
-                     placeholder="New Meal Section: Lunch" autofocus required/>
-              <input type="submit" class="addMealSecBtn" value="+"/>
-            </fieldset>
-          </form>
-          <section class="meal-names-section">
-            <section class="meal-section-features">
-              <button class="resetTableBtn">Reset Meal Planner</button>
-              <a href="#">
-                <button class='pdfBtn'>Save as PDF</button>
-              </a>            
-            </section>
-          </section>
-        </section>
       </section>
       <!-- Monday -->
       <section class="monday-section hide" id="monday-section" role="region">
-        <section class="meal-section-menu">
-          <form class="meal-name-form">
-            <fieldset>
-              <input type="text" name="meal-name" class="js-meal-name" 
-                     placeholder="Meal section name" autofocus required/>
-              <input type="submit" class="addMealSecBtn" value="+">
-            </fieldset>
-          </form>
-          <section class="meal-names-section">
-            <section class="meal-section-features">
-              <button class="resetTableBtn">Reset Meal Planner</button>
-              <a href="#">
-                <button class='pdfBtn'>Save as PDF</button>
-              </a>            
-            </section>
-          </section>
-      </section>
       </section>
       <!-- Tuesday -->
       <section class="tuesday-section hide" id="tuesday-section" role="region">
-        <section class="meal-section-menu">
-          <form class="meal-name-form">
-            <fieldset>
-                <input type="text" name="meal-name" class="js-meal-name" 
-                       placeholder="Meal section name" autofocus required/>
-                <input type="submit" class="addMealSecBtn" value="+"/>
-            </fieldset>
-          </form>
-          <section class="meal-names-section">
-            <section class="meal-section-features">
-              <button class="resetTableBtn">Reset Meal Planner</button>
-              <a href="#">
-                <button class='pdfBtn'>Save as PDF</button>
-              </a>            
-            </section>
-          </section>
-        </section>
       </section>
       <!-- Wednesday -->
       <section class="wednesday-section hide" id="wednesday-section" role="region">
-        <section class="meal-section-menu">
-          <form class="meal-name-form">
-            <fieldset>
-              <input type="text" name="meal-name" class="js-meal-name" 
-                     placeholder="Meal section name" autofocus required/>
-              <input type="submit" class="addMealSecBtn" value="+"/>
-            </fieldset>
-          </form>
-          <section class="meal-names-section">
-            <section class="meal-section-features">
-              <button class="resetTableBtn">Reset Meal Planner</button>
-              <a href="#">
-                <button class='pdfBtn'>Save as PDF</button>
-              </a>            
-            </section>
-          </section>
-        </section>
       </section>
       <!-- Thursday -->
       <section class="thursday-section hide" id="thursday-section" role="region">
-        <section class="meal-section-menu">
-          <form class="meal-name-form">
-            <fieldset>
-              <input type="text" name="meal-name" class="js-meal-name" 
-                     placeholder="Meal section name" autofocus required/>
-              <input type="submit" class="addMealSecBtn" value="+"/>
-            </fieldset>
-          </form>
-          <section class="meal-names-section">
-            <section class="meal-section-features">
-              <button class="resetTableBtn">Reset Meal Planner</button>
-              <a href="#">
-                <button class='pdfBtn'>Save as PDF</button>
-              </a>            
-            </section>
-          </section>
-        </section>
       </section>
       <!-- Friday -->
       <section class="friday-section hide" id="friday-section" role="region">
-        <section class="meal-section-menu">
-          <form class="meal-name-form">
-            <fieldset>
-              <input type="text" name="meal-name" class="js-meal-name" 
-                     placeholder="Meal section name" autofocus required/>
-              <input type="submit" class="addMealSecBtn" value="+"/>
-            </fieldset>
-          </form>
-          <section class="meal-names-section">
-            <section class="meal-section-features">
-              <button class="resetTableBtn">Reset Meal Planner</button>
-              <a href="#">
-                <button class='pdfBtn'>Save as PDF</button>
-              </a>            
-            </section>
-          </section>
-        </section>
       </section>
       <!-- Saturday -->
       <section class="saturday-section hide" id="saturday-section" role="region">
-      <section class="meal-section-menu">
-        <form class="meal-name-form">
-          <fieldset>
-            <input type="text" name="meal-name" class="js-meal-name" 
-                   placeholder="Meal section name" autofocus required/>
-            <input type="submit" class="addMealSecBtn" value="+"/>
-          </fieldset>
-        </form>
-        <section class="meal-names-section">
-          <section class="meal-section-features">
-            <button class="resetTableBtn">Reset Meal Planner</button>
-            <a href="#">
-              <button class='pdfBtn'>Save as PDF</button>
-            </a>            
-          </section>
-        </section>
-      </section>
       </section>
     </section>
     <!-- Search section -->
     <section class="search-add-section" role="region">
+      <button class="tableBtn fas fa-arrow-left">Back to Table</button>
       <!-- Search food item form -->
       <h2>Search for a food item</h2>
       <form class="search-form">
@@ -198,23 +79,15 @@
       <!-- Area that shows total food item results -->
       <p class="totalResults"></p>
       <!-- Search result section -->
-    <section class="search-results" role="region"></section>
+      <section class="search-results" role="region"></section>
       <button class="loadBtn">Load More Results</button>
-      <button class="tableBtn">Back to Table</button>
     </section>
     <footer role="contentinfo"></footer>
     </main>
-
+  <script type="text/javascript" src="./js/api/nutrientChart.js"></script>
+  <script src="./js/templates.js"></script>
+  <script src="./js/api/foodSearchApi.js"></script>
+  <script src="./js/api/foodReportApi.js"></script>
+  <script src="./js/index.js"></script>
 </body>
-<<<<<<< HEAD
-<script type="text/javascript" src="./js/api/nutrientChart.js"></script>
-<script src="./js/templates.js"></script>
-<script src="./js/api/foodSearchApi.js"></script>
-<script src="./js/api/foodReportApi.js"></script>
-=======
-
-<script src="./js/utils.js"></script>
-<script src="./js/templates.js"></script>
->>>>>>> 2e64713ca39806e1346e77edfeb50eb28427365e
-<script src="./js/index.js"></script>
 </html>
