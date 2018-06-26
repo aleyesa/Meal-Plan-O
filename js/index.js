@@ -128,7 +128,7 @@ const getMacroInfoToSec = (currMealSec, targetMealSecName, foodItemToAdd, macroI
   currMealSec.closest('.meal-section-menu')
   .siblings(`.${targetMealSecName}`)
   .find('.macroSection')
-  .replaceWith(macroInfoTemplateForPlanner(cals, pros, fats, carbs));
+  .html(macroInfoTemplateForPlanner(cals, pros, fats, carbs));
 };
 
 const addFoodItemInfoToSection = () => {
@@ -224,11 +224,11 @@ const saveAsPdf = () => {
     $('.meal-section-info').css('display', 'block');
     const mealPlanReplacement = weekDaysArray =>  
       ` 
-        ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').html(`
-          <h2>${weekDaysArray}</h2>
-          ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').html()}
-        `)}
-        ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').wrapAll(`<div class="pdfFriendly" />`).html()}
+      ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').html(`
+        <h2>${weekDaysArray}</h2>
+        ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').html()}
+      `)}
+      ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').wrapAll(`<div class="pdfFriendly" />`).html()}
       `
       ;
 
