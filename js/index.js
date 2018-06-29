@@ -6,10 +6,13 @@ let mealNameSecIdentifier = 0;
 let currMealSec = '';
 let targetMealSecName = '';
 
-let totalCals = 0;
-let totalPros = 0;
-let totalFats = 0;
-let totalCarbs = 0;
+const macros = {
+  totalCals: 0,
+  totalPros: 0,
+  totalFats: 0,
+  totalCarbs: 0
+};
+
 
 const specifyTabAndShowSection = () => {
   $('.meal-table-section nav').on('click', '.weekDay', function(event) {
@@ -85,11 +88,9 @@ const removeMealSection = () => {
   });
 };
 
-const sumTotalMacros = (cals, pros, fats, carbs) => {
-  totalCals  = 0;
-  totalPros  = 0;
-  totalFats  = 0;
-  totalCarbs = 0;
+const getTotalMacrosSum = (cals, pros, fats, carbs) => {
+  const macroClasses = ['.calcCals', '.calcPros', '.calcFats', '.calcCarbs'];
+
 
   const getToTotalMacroSec = currMealSec.closest('.meal-section-menu').siblings(`.${targetMealSecName}`);
   let prevTotalCals  = Number(getToTotalMacroSec.find('.macroSection p .calcCals').text());
@@ -101,18 +102,42 @@ const sumTotalMacros = (cals, pros, fats, carbs) => {
   totalPros  = prevTotalPros  + pros;
   totalFats  = prevTotalFats  + fats;
   totalCarbs = prevTotalCarbs + carbs;
+
+
+  return {
+    totalCals,
+    totalPros,
+    totalFats,
+    totalCarbs
+  };
+
 };
 
-const getMacroInfo = (macroInfo) => {
+const getMacroInfo = macroInfo => {
+  
+
+
   const cals =  Number(macroInfo.find('.calories .value').text());
   const pros =  Number(macroInfo.find('.proteins .value').text());
   const fats =  Number(macroInfo.find('.fats .value').text());
   const carbs = Number(macroInfo.find('.carbohydrates .value').text());
 
-  sumTotalMacros(cals, pros, fats, carbs);
-  getTotalMacrosToSec();
-  return macroInfoTemplateForPlanner(cals, pros, fats, carbs);
+  return {
+    cals, 
+    pros, 
+    fats, 
+    carbs
+  };
 
+  // let macros = getTotalMacrosSum(cals, pros, fats, carbs);
+  // getTotalMacrosToSec();
+  // return macroInfoTemplateForPlanner(cals, pros, fats, carbs);
+
+};
+
+
+const setMacrosInfo = macrosInfo => {
+  macros = macrosInfo;
 };
 
 const getFoodItemToSec = (foodItemToAdd, macroInfo) => {
@@ -125,11 +150,6 @@ const getFoodItemToSec = (foodItemToAdd, macroInfo) => {
 
 const deductMacrosFromTotal = (selectedFoodItem) => {
   const getToTotalMacroSec = selectedFoodItem.closest('.foodItemSection').siblings('.macroSection');
-  totalCals  = 0;
-  totalPros  = 0;
-  totalFats  = 0;
-  totalCarbs = 0;
-
   let prevTotalCals  = Number(getToTotalMacroSec.find('p .calcCals').text());
   let prevTotalPros  = Number(getToTotalMacroSec.find('p .calcPros').text());
   let prevTotalFats  = Number(getToTotalMacroSec.find('p .calcFats').text());
@@ -144,28 +164,29 @@ const deductMacrosFromTotal = (selectedFoodItem) => {
 }
 
 const getTotalMacrosToSec = () => {
-
-  // create bar graph with mac nutrients
-  // let cals =  Number(macroInfo.find('.calories .value').text());
-  // let pros =  Number(macroInfo.find('.proteins .value').text());
-  // let fats =  Number(macroInfo.find('.fats .value').text());
-  // let carbs = Number(macroInfo.find('.carbohydrates .value').text());
-  // google.charts.setOnLoadCallback(nutrientChart(foodItemToAdd, cals, pros, fats, carbs));
-  // normal text of macro nutrients
-
-  // storeFoodItemInfo(foodItemToAdd, cals, pros, fats, carbs);
-
   currMealSec.closest('.meal-section-menu')
-  .siblings(`.${targetMealSecName}`)
-  .find('.macroSection')
-  .html(macroInfoTemplateForPlanner(totalCals, totalPros, totalFats, totalCarbs));
+    .siblings(`.${targetMealSecName}`)
+    .find('.macroSection')
+    .html(macroInfoTemplateForPlanner(totalCals, totalPros, totalFats, totalCarbs));
 };
 
 const addedFoodItemFromList = () => {
   $('.search-results').on('click', '.addBtn', function(event) {
     let foodItemToAdd = $(this).parent().find('.foodName').html();
-    let macroInfo = $(this).siblings('div');
-    getFoodItemToSec(foodItemToAdd, getMacroInfo(macroInfo));
+    let macroInfoDiv = $(this).siblings('div');
+    
+    const {
+      cals, 
+      pros, 
+      fats, 
+      carbs
+    } = getMacroInfo(macroInfoDiv);
+
+    getTotalMacrosSum(cals, pros, fats, carbs);
+
+    const template = macroInfoTemplateForPlanner(cals, pros, fats, carbs);
+
+    getFoodItemToSec(foodItemToAdd, template);
   
     $('.search-add-section').css('display', 'none');
     $('.search-results').empty();
