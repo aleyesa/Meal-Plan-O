@@ -44,9 +44,11 @@ const handleFoodReportRequest = (foodName, ndbno) => {
     const nutrientType = ['calories', 'proteins', 'fats', 'carbohydrates'];
     let index = 0;
 
+    console.log(data);
+
     for (let i = 0; i < data.foods[0].food.nutrients.length; i++) {
       const foodItemNutrients = data.foods[0].food.nutrients[i].nutrient_id;
-
+      
       for (let nutrientId in nutrients) {
         if (foodItemNutrients === nutrients[nutrientId]) {
           addMacroInfo += (macroInfoTemplateForResults(data, i, nutrientType[index]));

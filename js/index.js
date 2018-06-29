@@ -1,15 +1,15 @@
-const mealTableHtml = $('.meal-table-section').html();
 let combineResultsHtml = '';
 let currentFoodSearch = '';
 let pageOffset = 0;
 let totalResults = 0;
 let mealNameSecIdentifier = 0;
+let currMealSec = '';
+let targetMealSecName = '';
 
-let cals = 0;
-let pros = 0;
-let fats = 0;
-let carbs = 0;
-const foodInfoArray = [];
+let totalCals = 0;
+let totalPros = 0;
+let totalFats = 0;
+let totalCarbs = 0;
 
 const specifyTabAndShowSection = () => {
   $('.meal-table-section nav').on('click', '.weekDay', function(event) {
@@ -37,6 +37,7 @@ const specifyTabAndShowSection = () => {
     const hideOtherDays = selector => {
       $(selector).siblings('section').addClass('hide');
       $(selector).siblings('section').removeClass('showMealSection');
+      // $('.meal-section-menu').siblings('.meal-section-info').css('display', 'none');
     };
 
     for (let key in mapDayTabToItsSection) {
@@ -55,14 +56,13 @@ const addMealSection = () => {
     e.preventDefault();
     const mealSecName = $(this).find('.js-meal-name').val();
     const thisDaysMealNameSec = $(this).siblings('.meal-names-section');
-
     $('.meal-section-menu').siblings(`.meal-section-info`).css('display', 'none');
     thisDaysMealNameSec.append(mealSectionNameTemplate(mealSecName));
     $(this).parent().after(mealSectionInfoTemplate(mealSecName));
+
     $('.js-meal-name').val("");
     mealNameSecIdentifier++;
     foodItemToAdd = '';
-    currMealSec = '';
   });
 };
 
@@ -71,7 +71,8 @@ const selectMealSection = () => {
     const targetMealSecName = $(this).attr('class');
     const selectedDaysMealSecMenu = $(this).closest('.meal-section-menu');
 
-    selectedDaysMealSecMenu.siblings().css('display', 'none');
+    $('.meal-section-menu').siblings(`.meal-section-info`).css('display', 'none');
+    // selectedDaysMealSecMenu.siblings().css('display', 'none');
     selectedDaysMealSecMenu.siblings(`.${targetMealSecName}`).css('display', 'flex');
   });
 };
@@ -81,88 +82,117 @@ const removeMealSection = () => {
     const selectedMealSecName = $(this).closest('div').attr('class');
     $(this).closest('.meal-section-menu').siblings(`.${selectedMealSecName}`).remove();
     $(this).closest('div').remove();
-    cals  = 0;
-    pros  = 0;
-    fats  = 0;
-    carbs = 0;
-
-    //*Will most likely have to reset food item object with its nutrition values.
   });
 };
 
-const getFoodItemNameToSec = (currMealSec, targetMealSecName, foodItemToAdd) => {
-  currMealSec.closest('.meal-section-menu')
+const sumTotalMacros = (cals, pros, fats, carbs) => {
+  totalCals  = 0;
+  totalPros  = 0;
+  totalFats  = 0;
+  totalCarbs = 0;
+
+  const getToTotalMacroSec = currMealSec.closest('.meal-section-menu').siblings(`.${targetMealSecName}`);
+  let prevTotalCals  = Number(getToTotalMacroSec.find('.macroSection p .calcCals').text());
+  let prevTotalPros  = Number(getToTotalMacroSec.find('.macroSection p .calcPros').text());
+  let prevTotalFats  = Number(getToTotalMacroSec.find('.macroSection p .calcFats').text());
+  let prevTotalCarbs = Number(getToTotalMacroSec.find('.macroSection p .calcCarbs').text());
+
+  totalCals  = prevTotalCals  + cals;
+  totalPros  = prevTotalPros  + pros;
+  totalFats  = prevTotalFats  + fats;
+  totalCarbs = prevTotalCarbs + carbs;
+};
+
+const getMacroInfo = (macroInfo) => {
+  const cals =  Number(macroInfo.find('.calories .value').text());
+  const pros =  Number(macroInfo.find('.proteins .value').text());
+  const fats =  Number(macroInfo.find('.fats .value').text());
+  const carbs = Number(macroInfo.find('.carbohydrates .value').text());
+
+  sumTotalMacros(cals, pros, fats, carbs);
+  getTotalMacrosToSec();
+  return macroInfoTemplateForPlanner(cals, pros, fats, carbs);
+
+};
+
+const getFoodItemToSec = (foodItemToAdd, macroInfo) => {
+  const selectedMealFoodItemSec = currMealSec.closest('.meal-section-menu')
   .siblings(`.${targetMealSecName}`)
-  .find('.foodItemSection')
-  .append(`<p class="addedFoodName">${foodItemToAdd}<button class="removeFoodItem">x</button></p>`);
+  .find('.foodItemSection');
+
+  selectedMealFoodItemSec.append(addedFoodItemTemplate(foodItemToAdd) + macroInfo);
 };
 
-const storeFoodItemInfo = (foodName, cals, pros, fats, carbs) => {
-  foodInfoArray.push([
-    [foodName], 
-    [cals], 
-    [pros], 
-    [fats], 
-    [carbs]
-  ]
-  );
-};
+const deductMacrosFromTotal = (selectedFoodItem) => {
+  const getToTotalMacroSec = selectedFoodItem.closest('.foodItemSection').siblings('.macroSection');
+  totalCals  = 0;
+  totalPros  = 0;
+  totalFats  = 0;
+  totalCarbs = 0;
 
-const getMacroInfoToSec = (currMealSec, targetMealSecName, foodItemToAdd, macroInfo) => {
+  let prevTotalCals  = Number(getToTotalMacroSec.find('p .calcCals').text());
+  let prevTotalPros  = Number(getToTotalMacroSec.find('p .calcPros').text());
+  let prevTotalFats  = Number(getToTotalMacroSec.find('p .calcFats').text());
+  let prevTotalCarbs = Number(getToTotalMacroSec.find('p .calcCarbs').text());
+
+  totalCals  = prevTotalCals  - selectedFoodItem.next('.singleFoodMacros').find('.calcCals').text();
+  totalPros  = prevTotalPros  - selectedFoodItem.next('.singleFoodMacros').find('.calcPros').text();
+  totalFats  = prevTotalFats  - selectedFoodItem.next('.singleFoodMacros').find('.calcFats').text();
+  totalCarbs = prevTotalCarbs - selectedFoodItem.next('.singleFoodMacros').find('.calcCarbs').text();
+
+  getToTotalMacroSec.html(macroInfoTemplateForPlanner(totalCals, totalPros, totalFats, totalCarbs));
+}
+
+const getTotalMacrosToSec = () => {
+
   // create bar graph with mac nutrients
   // let cals =  Number(macroInfo.find('.calories .value').text());
   // let pros =  Number(macroInfo.find('.proteins .value').text());
   // let fats =  Number(macroInfo.find('.fats .value').text());
   // let carbs = Number(macroInfo.find('.carbohydrates .value').text());
   // google.charts.setOnLoadCallback(nutrientChart(foodItemToAdd, cals, pros, fats, carbs));
-  //normal text of macro nutrients
-  cals =  Number(macroInfo.find('.calories .value').text());
-  pros =  Number(macroInfo.find('.proteins .value').text());
-  fats =  Number(macroInfo.find('.fats .value').text());
-  carbs = Number(macroInfo.find('.carbohydrates .value').text());
+  // normal text of macro nutrients
 
-  storeFoodItemInfo(foodItemToAdd, cals, pros, fats, carbs);
-
-  console.log(foodInfoArray);
+  // storeFoodItemInfo(foodItemToAdd, cals, pros, fats, carbs);
 
   currMealSec.closest('.meal-section-menu')
   .siblings(`.${targetMealSecName}`)
   .find('.macroSection')
-  .html(macroInfoTemplateForPlanner(cals, pros, fats, carbs));
+  .html(macroInfoTemplateForPlanner(totalCals, totalPros, totalFats, totalCarbs));
+};
+
+const addedFoodItemFromList = () => {
+  $('.search-results').on('click', '.addBtn', function(event) {
+    let foodItemToAdd = $(this).parent().find('.foodName').html();
+    let macroInfo = $(this).siblings('div');
+    getFoodItemToSec(foodItemToAdd, getMacroInfo(macroInfo));
+  
+    $('.search-add-section').css('display', 'none');
+    $('.search-results').empty();
+    $('.meal-table-section').css('display', 'block');
+  });    
 };
 
 const addFoodItemInfoToSection = () => {
-  $('.meal-table-section').on('click', '.addFoodItemBtn', function(event) {
-    const currMealSec = $(this);
-    const targetMealSecName = currMealSec.parent().attr('class');
+
+  $('.meal-table-section').on('click', '.addFoodItemBtn', function() {
+    currMealSec = $(this);
+    targetMealSecName = currMealSec.parent().attr('class');
 
     $('.meal-table-section').css('display', 'none');
     $('.search-add-section').css('display', 'block');
-
-    $('.search-results').on('click', '.addBtn', function(event) {
-
-      let  foodItemToAdd = $(this).parent().find('.foodName').text().replace(/\u002C UPC: [0-9]+/g, '');
-      let macroInfo = $(this).siblings('div');
-
-      console.log(foodItemToAdd);
-      
-      getFoodItemNameToSec(currMealSec, targetMealSecName, foodItemToAdd);
-
-      console.log(foodItemToAdd);
-      getMacroInfoToSec(currMealSec, targetMealSecName, foodItemToAdd, macroInfo);
-
-      console.log(foodItemToAdd);
-
-      $('.search-add-section').css('display', 'none');
-      $('.search-results').empty();
-      $('.meal-table-section').css('display', 'block');
-    });    
+ 
   });
+
+  addedFoodItemFromList();
 };
 
 const removeFoodItem = () => {
   $('.meal-table-section').on('click', '.removeFoodItem', function(event) {
-    $(this).parent().remove();
+    const selectedFoodItem = $(this).parent();
+    deductMacrosFromTotal(selectedFoodItem);
+    selectedFoodItem.next('.singleFoodMacros').remove();
+    selectedFoodItem.remove();
   });
 };
 
@@ -181,8 +211,8 @@ const resetMealPlan = () => {
     $('.delete-prompt').css('display', 'block');
     $('.delete-prompt').on('click', '.exitBtn', () => $('.delete-prompt').css('display', 'none'));
     $('.delete-prompt').on('click', '.proceedBtn', () => {
-      $('.meal-table-section').html(mealTableHtml);
-      createDayInfoTemplate();
+      $('.delete-prompt').css('display', 'none');
+      runApplication();
   });
   });
 };
@@ -217,12 +247,13 @@ const loadMoreResults = () => {
 };
 
 const saveAsPdf = () => {
+  const mealTableHtml = $('meal-table-section').html();
   $('.meal-section-features').on('click', '.pdfBtn', function(event) {
     let pdfFriendlyHtml = '';
     const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
     $('.meal-section-info').css('display', 'block');
-    const mealPlanReplacement = weekDaysArray =>  
+    const mealPlanReplacement = weekDaysArray =>  {
+      $('.meal-table-section').css('display', 'none');
       ` 
       ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').html(`
         <h2>${weekDaysArray}</h2>
@@ -230,7 +261,7 @@ const saveAsPdf = () => {
       `)}
       ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').wrapAll(`<div class="pdfFriendly" />`).html()}
       `
-      ;
+    };
 
       $('.meal-section-info').css('width', '100%');
 
@@ -243,42 +274,13 @@ const saveAsPdf = () => {
     );
 
     showPdfFriendlyHtml();
-
-
-    // $('.sunday-section').removeClass();
-    // $('.meal-section-info').removeClass();
-
-
-    // window.print();
+    window.print();
+    $('.meal-table-section').css('display', 'block');
   });
 };
 
-//Problem 3: windows.print
-//we can simply create an html and show the data we want to show.
-//example:
-//Monday
-//meal section 1
-//food items in that meal section
-//meal section 2
-//food items in that meal section
-
-//Tuesday
-//...
-
-//Problem 4:
-//bar graph duplicate items
-
-//Problem 5: macro total miscalculation
-//
-
-// Task: modifying quantity.
-// a form with text input
-// the text input is a number
-// once submitted we mutliply the macros
-
-
-
 const runApplication = () => {
+  resetMealPlan();
   createDayInfoTemplate();
   specifyTabAndShowSection();
   addMealSection();
@@ -287,7 +289,6 @@ const runApplication = () => {
   addFoodItemInfoToSection();
   removeFoodItem();
   goBackToTable();
-  resetMealPlan();
   handleSearch();
   loadMoreResults();
   saveAsPdf();

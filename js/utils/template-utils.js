@@ -33,12 +33,22 @@ const mealSectionNameTemplate = mealSecName =>
 
 const macroInfoTemplateForPlanner = (cals, pros, fats, carbs) => 
   `
-    <p>Calories: ${cals} kcals</p>
-    <p>Proteins: ${pros} g</p>
-    <p>Fats: ${fats} g</p>
-    <p>Carbohydrates: ${carbs} g</p>
+  <div class="singleFoodMacros">
+    <p>Calories: <span class="calcCals">${cals}</span> kcals</p>
+    <p>Proteins: <span class="calcPros">${pros}</span> g</p>
+    <p>Fats: <span class="calcFats">${fats}</span> g</p>
+    <p>Carbohydrates: <span class="calcCarbs">${carbs}</span> g</p>
+  </div>
   `
   ;
+
+const addedFoodItemTemplate = (foodItemToAdd) => 
+`
+  <p class="addedFoodName">${foodItemToAdd}
+    <button class="removeFoodItem">x</button>
+  </p> 
+`
+
 
 const mealSectionInfoTemplate = mealSecName =>
 `   
@@ -48,7 +58,7 @@ const mealSectionInfoTemplate = mealSecName =>
     </section>
     <h2>${mealSecName} macros are...</h2>
     <section class="macroSection">
-      ${macroInfoTemplateForPlanner(0, 0, 0, 0)}  
+
       <div id="chart_div"></div>
     </section>
   </section>
@@ -57,9 +67,9 @@ const mealSectionInfoTemplate = mealSecName =>
 const displayResultHtml = (foodName, macros) => 
 `
   <div class="foodItem">
-  <a href="#" class="foodName">${foodName}</a>
+  <a href="#" class="foodName">${foodName.replace(/\u002C UPC: [0-9]+/g, '')}</a>
     <div class="nutritionInfo">
-    <strong><u>Macros</u></strong>
+    <h2>Macros</h2>
     ${macros}
     </div>
   <button class="addBtn">Add</button>
@@ -70,7 +80,7 @@ const macroInfoTemplateForResults = (data, i, nutritionType) => (
 `
   <div class="${nutritionType}">
   <p>${nutritionType}: </p>
-  <p class="value">${data.foods[0].food.nutrients[i].value}</p>
+  <p class="value">${Math.round(data.foods[0].food.nutrients[i].value)}</p>
   <p class="unit">${data.foods[0].food.nutrients[i].unit}</p>
   </div>
 `

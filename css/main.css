@@ -7,17 +7,12 @@ body,
 main {
   height: 100%;
   min-height: 100%;
-  background: rgb(230, 240, 249);
-}
-
-body {
-  text-align: center;
 }
 
 header {
   margin: 0;
   padding: 20px;
-  background: rgb(230, 240, 249);
+  background: #FFF9F1;
 }
 
 h1 {
@@ -28,7 +23,6 @@ h1 {
 .weekDay:visited {
   color: black;
 }
-
 
 h1, 
 .meal-names-section a {
@@ -42,12 +36,6 @@ legend,
   text-transform: capitalize;
 }
 
-.meal-section-info h2,
-.legend,
-.meal-names-section h2 {
-  text-decoration-line: underline;
-}
-
 .search-add-section, 
 .delete-prompt, 
 .hide {
@@ -55,11 +43,18 @@ legend,
 }
 
 .search-add-section {
+  height: 100%;
   position: relative;
   padding: 20px 8px;
-  background: rgb(120, 152, 184);
+  background: #7898B8;
   border-top: 1px solid rgb(107, 142, 177);
   border-bottom: 1px solid rgb(107, 142, 177);
+}
+
+.search-add-section h2,
+.search-add-section .search-form,
+.search-add-section .totalResults {
+  text-align: center;
 }
 
 .search-form {
@@ -88,6 +83,7 @@ legend,
 
 .meal-section-info h2 {
   padding: 10px;
+  background-color: #7898B8;
 }
 
 .meal-table-section, 
@@ -101,7 +97,7 @@ legend,
 }
 
 nav {
-  background: rgb(120, 152, 184);
+  background: #7898B8;
   border-top: 1px solid rgb(107, 142, 177);
   border-bottom: 1px solid rgb(107, 142, 177);
 }
@@ -113,7 +109,9 @@ nav div,
 }
 
 .meal-names-section div {
-  margin: 8px;
+  margin: 0px 18px;
+  padding: 10px;
+  background-color: #FFF9F1;
 }
 
 .weekDay, 
@@ -135,6 +133,18 @@ nav div,
   width: 25%;
   padding: 10px;
   border-right: 1px solid rgb(162, 196, 230);
+  text-align: center;
+}
+
+.addFoodItemBtn {
+  background-color: #2E7CF0;
+  border: none;
+  margin: 0px 5px;
+}
+
+.deleteMealSecBtn {
+  background-color: rgb(249, 95, 126);
+  border: none;
 }
 
 .deleteMealSecBtn, 
@@ -143,7 +153,10 @@ nav div,
 }
 
 .addMealSecBtn {
-  padding: 6px;
+  padding: 10px;
+  color: white;
+  background-color: #00A50E;
+  border: none;
 }
 
 .meal-name-form fieldset {
@@ -154,7 +167,7 @@ nav div,
 .macroSection {
   width: 100%;
   height: 50%;
-  background-color: rgb(239, 244, 248);
+  background-color: #FFF9F1;
   border-top: 1px solid rgb(162, 196, 230);
   border-bottom: 1px solid rgb(162, 196, 230);
   padding: 10px;
@@ -162,7 +175,7 @@ nav div,
 
 .meal-name-form .js-meal-name {
   width: 85%;
-  padding: 8px;
+  padding: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
   border: none;
@@ -170,13 +183,7 @@ nav div,
 
 .meal-names-section {
   height: 100%;
-  background-color: rgb(239, 244, 248);
   margin: 20px 0px;
-}
-.meal-names-section div{
-  padding: 8px;
-  background-color: rgb(220, 227, 232);;
-  border:1px solid lightgray;
 }
 
 .meal-names-section a {
@@ -202,7 +209,7 @@ nav div,
 }
 
 .search-results {
-  background-color: rgb(239, 244, 248);
+  background-color: #FFF9F1;
   margin: 20px 0px;
 }
 
@@ -214,8 +221,7 @@ nav div,
 }
 
 .foodItem div {
-  background-color: rgb(239, 244, 248);
-  
+  background-color: #FFF9F1;
 }
 
 main .pdfFriendly {
@@ -235,6 +241,46 @@ main .pdfFriendly {
   margin: 10px;
 }
 
+.foodName {
+  text-decoration-line: none;
+  text-transform: uppercase;
+}
+
 .foodName:visited {
   color: black;
+
+}
+
+.singleFoodMacros p {
+  display: inline-block;
+}
+
+.resetTableBtn {
+  background-color: rgb(249, 95, 126);
+  color: white;
+  border: none;
+  padding: 10px;
+}
+
+.pdfBtn {
+  color: white;
+  background-color: #2E7CF0;
+  border: none;
+  padding: 10px;
+}
+
+.legend {
+  text-transform: uppercase;
+}
+
+.tableBtn {
+  background-color: rgb(249, 95, 126);
+  border: none;
+  padding: 10px;
+}
+
+.addBtn {
+  background-color: #2E7CF0;
+  border: none;
+  padding: 10px;
 }
