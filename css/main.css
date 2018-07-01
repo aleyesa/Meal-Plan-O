@@ -112,6 +112,7 @@ nav div,
   margin: 0px 18px;
   padding: 10px;
   background-color: #FFF9F1;
+  border: 1px solid rgb(228, 222, 215);
 }
 
 .weekDay, 
@@ -249,10 +250,6 @@ main .pdfFriendly {
 .foodName:visited {
   color: black;
 
-}
-
-.singleFoodMacros p {
-  display: inline-block;
 }
 
 .resetTableBtn {
