@@ -146,7 +146,7 @@ nav div:hover,
   flex-direction: column;
   position: relative;
   width: 25%;
-  padding: 20px 10px;
+  padding: 20px;
   border-right: 1px solid rgb(250, 224, 141);
   text-align: center;
   background-color: #FFF9F1;
@@ -185,21 +185,21 @@ nav div:hover,
 
 /* meal-section-features styling */
 .meal-section-features {
-  display: inline-block;
+  display: flex;
+  margin-top: 20px;
 }
 .meal-section-features button {
+  width: 50%;
   background-color: rgb(250, 224, 141);
-  padding: 10px;
+  padding: 10px 5px;
   border: none;
   color: black;
+  font-size: 13px;
+  cursor: pointer;
 }
 
 .resetTableBtn {
-  width: 55%;
-}
-
-.pdfBtn {
-  width: 40%;
+  margin-right: 15px;
 }
 
 .meal-names-section {
@@ -224,10 +224,18 @@ nav div:hover,
   width: 60%;
 }
 
-.addFoodItemBtn, .deleteMealSecBtn {
+.addFoodItemBtn, 
+.deleteMealSecBtn {
   display: relative;
   flex-direction: row;
   width: 20%;
+  border: none;
+  padding: 7px;
+  color: white;
+}
+
+.deleteMealSecBtn {
+  margin-right: 5px;
 }
 
 /* search-add-section  */
@@ -389,10 +397,6 @@ main .pdfFriendly {
   background-color: #2E7CF0;
   border: none;
   padding: 10px;
-}
-
-.meal-section-features button {
-  width: 45%;
 }
 
 .addedFoodName {
