@@ -4,17 +4,14 @@ const createDayInfoTemplate = () => {
     <section class="meal-section-menu">
       <form class="meal-name-form">
         <fieldset>
-          <legend class="legend">Create a new meal section</legend>
-          <input type="text" name="meal-name" class="js-meal-name" 
-            placeholder="New Meal Section: Lunch" autofocus required/>
-          <input type="submit" class="addMealSecBtn" value="+"/>
+          <legend>Create a new meal section</legend>
+          <input type="text" name="meal-name" class="js-meal-name-input" 
+            placeholder="i.e. Lunch" autofocus required/><input type="submit" class="addMealSecBtn" value="+"/>
         </fieldset>
       </form>
       <section class="meal-section-features">
-      <button class="resetTableBtn">Reset Meal Planner</button>
-      <a href="#">
-        <button class='pdfBtn'>Save as PDF</button>
-      </a>            
+          <button class="resetTableBtn">Reset Meal Planner</button>
+          <button class='pdfBtn'>Save as PDF</button>   
       </section>
       <section class="meal-names-section">
       </section>

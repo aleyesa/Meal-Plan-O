@@ -64,13 +64,13 @@ const selectMealSection = () => {
 const addMealSection = () => {              
   $('.meal-name-form').on('submit', function(event) {
     event.preventDefault();
-    const mealSecName = $(this).find('.js-meal-name').val();
+    const mealSecName = $(this).find('.js-meal-name-input').val();
     const thisDaysMealNameSec = $(this).siblings('.meal-names-section');
     $('.meal-section-menu').siblings(`.meal-section-info`).css('display', 'none');
     thisDaysMealNameSec.append(mealSectionNameTemplate(mealSecName));
     $(this).parent().after(mealSectionInfoTemplate(mealSecName));
 
-    $('.js-meal-name').val("");
+    $('.js-meal-name-input').val("");
     mealNameSecIdentifier++;
     foodItemToAdd = '';
   });
@@ -152,7 +152,6 @@ const addFoodItemInfoToSection = () => {
   $('.meal-table-section').on('click', '.addFoodItemBtn', function() {
     currMealSec = $(this);
     targetMealSecName = currMealSec.parent().attr('class');
-    // console.log(document.getElementsByClassName('currMealSec').toString());
     $('.meal-table-section, .totalResults').css('display', 'none');
     $('.search-add-section').css('display', 'block');
     $('.search-results').empty();
