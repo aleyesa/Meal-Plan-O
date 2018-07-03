@@ -9,66 +9,267 @@ main {
   min-height: 100%;
 }
 
-header {
-  margin: 0;
-  padding: 20px;
-  background: #FFF9F1;
+body {
+  font-family: 'Josefin Sans', sans-serif;
 }
 
-h1 {
-  font-size: 36px;
+/* delete-prompt styling */
+.delete-prompt {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 200px 0;
+  background-color: rgba(170, 169, 169, 0.4);
+  text-align: center;
+  z-index: 1;
+
+}
+
+.delete-prompt div {
+  display: inline-block;
+  position: relative;
+  padding: 10px;
+  margin: 0 10px;
+  background-color: #FFF9F1;
+}
+
+.delete-prompt p,
+.delete-prompt span {
   margin: 10px;
 }
 
-.weekDay:visited {
+.delete-prompt span {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.delete-prompt button {
+  margin: 5px 0px 10px 0px;
+}
+
+.delete-prompt button:focus,
+.delete-prompt button:hover {
+  opacity: 0.7;
+}
+
+.proceedBtn, .addFoodItemBtn {
+  padding: 5px 20px;
+  color: white;
+  background-color: rgb(18, 196, 18);
+  border: none;
+}
+
+.exitBtn, .deleteMealSecBtn {
+  padding: 5px 20px;
+  color: white;
+  background-color: rgb(255, 11, 11);
+  border: none;
+}
+
+/* header styling */
+header {
+  flex-direction: row;
+  padding: 10px 0px;
+  background: #FFF9F1;
+  text-align: center;
+}
+
+header h1 {
+  margin: 10px;
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+header h2 {
+  margin: 10px;
+  font-size: 16px;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+/* nav styling */
+nav {
+  padding: 0px 10px;
+  background: #FFE79B;
+  border-top: 1px solid rgb(250, 224, 141);
+  border-bottom: 1px solid rgb(250, 224, 141);
+  text-align: center;
+}
+
+nav div {
+  display: inline-block;
+  padding: 10px 5px;
+}
+
+.weekDay {
+  font-weight: bold;
+  text-decoration-line: none;
+}
+
+a:visited {
   color: black;
 }
 
-h1, 
-.meal-names-section a {
-  color: black;
+nav div:hover,
+.meal-section-features .resetTableBtn:hover,
+.focus {
+  background-color: rgb(250, 224, 141);
 }
 
-.meal-section-info h2,
-header h2, 
-legend,
-.meal-names-section h2 {
-  text-transform: capitalize;
-}
-
-.search-add-section, 
-.delete-prompt, 
 .hide {
   display: none;
 }
 
-.search-add-section {
-  height: 100%;
+/* meal section menu */
+.meal-section-menu {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  padding: 20px 8px;
-  background: #7898B8;
-  border-top: 1px solid rgb(107, 142, 177);
-  border-bottom: 1px solid rgb(107, 142, 177);
+  width: 25%;
+  padding: 20px 10px;
+  border-right: 1px solid rgb(250, 224, 141);
+  text-align: center;
+  background-color: #FFF9F1;
+}
+
+/* meal-name form styling */
+.meal-name-form fieldset {
+  padding: 10px 0px;
+}
+
+.meal-name-form legend {
+  font-weight: 100;
+  padding: 10px 0px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.js-meal-name-input {
+  width: 85%;
+  padding: 10px;
+  border: 1px solid rgb(184, 203, 235);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; 
+  outline: none;
+}
+
+.addMealSecBtn {
+  width: 15%;
+  padding: 11px;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: white;
+  background-color: #4589FA;
+}
+
+/* meal-section-features styling */
+.meal-section-features {
+  display: inline-block;
+}
+.meal-section-features button {
+  background-color: rgb(250, 224, 141);
+  padding: 10px;
+  border: none;
+  color: black;
+}
+
+.resetTableBtn {
+  width: 55%;
+}
+
+.pdfBtn {
+  width: 40%;
+}
+
+.meal-names-section {
+  margin: 10px 0px;
+}
+
+.meal-names-section div {
+  margin: 0px 5px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid rgb(226, 226, 226);
+}
+
+.meal-names-section div {
+  display: flex;
+  flex-direction: row;
+}
+
+.meal-names-section a {
+  text-transform: capitalize;
+  text-decoration-line: none;
+  width: 60%;
+}
+
+.addFoodItemBtn, .deleteMealSecBtn {
+  display: relative;
+  flex-direction: row;
+  width: 20%;
+}
+
+/* search-add-section  */
+.search-add-section {
+  border: 1px solid black;
+  height: 100%;
+}
+
+.tableBtn {
+  padding: 5px 20px;
+  color: white;
+  background-color: rgb(255, 11, 11);
+  border: none;
 }
 
 .search-add-section h2,
-.search-add-section .search-form,
-.search-add-section .totalResults {
+.search-form,
+.totalResults,
+.foodItem {
   text-align: center;
 }
 
-.search-form {
-  margin: 20px 0px;
+.search-form fieldset {
+  padding: 10px 0px;
 }
 
-.meal-table-section{
-  height: 100%;
-  background: rgb(181, 205, 230);
+.js-query {
+  padding: 10px;
+  border: 1px solid rgb(184, 203, 235);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; 
+  outline: none;
+}
+
+.js-search {
+  padding: 10px;
+  border: 1px solid rgb(184, 203, 235);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px; 
+  color: white;
+  background-color: #4589FA;
+}
+
+.foodName {
+  text-decoration-line: none;
+  font-weight: bold;
+  padding: 10px 0px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.totalResults {
+  font-style: italic;
+}
+
+.foodItem p {
+  display: inline;
 }
 
 .showMealSection,
-.meal-table-section,
-.meal-section-menu,
 .meal-section-info {
   display: flex;
 }
@@ -83,41 +284,11 @@ legend,
 
 .meal-section-info h2 {
   padding: 10px;
-  background-color: #7898B8;
+  background-color: #FFE79B;
 }
 
-.meal-table-section, 
-.meal-section-menu,
 .meal-section-info {
   flex-direction: column;
-}
-
-.meal-table-section {
-  margin: 0px auto;
-}
-
-nav {
-  background: #7898B8;
-  border-top: 1px solid rgb(107, 142, 177);
-  border-bottom: 1px solid rgb(107, 142, 177);
-}
-
-nav div, 
-.weekDay, 
-.meal-names-section a  {
-  display: inline-block;
-}
-
-.meal-names-section div {
-  margin: 0px 18px;
-  padding: 10px;
-  background-color: #FFF9F1;
-  border: 1px solid rgb(228, 222, 215);
-}
-
-.weekDay, 
-.meal-names-section a {
-  text-decoration-line: none;
 }
 
 .weekDay {
@@ -125,70 +296,14 @@ nav div,
   font-size: 20px;
 }
 
-.focus {
-  background-color: rgb(137, 170, 204);
-}
-
-.meal-section-menu {
-  position: relative;
-  width: 25%;
-  padding: 10px;
-  border-right: 1px solid rgb(162, 196, 230);
-  text-align: center;
-}
-
-.addFoodItemBtn {
-  background-color: #2E7CF0;
-  border: none;
-  margin: 0px 5px;
-}
-
-.deleteMealSecBtn {
-  background-color: rgb(249, 95, 126);
-  border: none;
-}
-
-.deleteMealSecBtn, 
-.addFoodItemBtn {
-  float: right;
-}
-
-.addMealSecBtn {
-  padding: 10px;
-  color: white;
-  background-color: #00A50E;
-  border: none;
-}
-
-.meal-name-form fieldset {
-  border: none;
-}
-
 .foodItemSection, 
 .macroSection {
   width: 100%;
   height: 50%;
   background-color: #FFF9F1;
-  border-top: 1px solid rgb(162, 196, 230);
-  border-bottom: 1px solid rgb(162, 196, 230);
+  border-top: 1px solid rgb(250, 224, 141);
+  border-bottom: 1px solid rgb(250, 224, 141);
   padding: 10px;
-}
-
-.meal-name-form .js-meal-name {
-  width: 85%;
-  padding: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: none;
-}
-
-.meal-names-section {
-  height: 100%;
-  margin: 20px 0px;
-}
-
-.meal-names-section a {
-  text-transform: capitalize;
 }
 
 .nutritionType p {
@@ -216,9 +331,9 @@ nav div,
 
 .foodItem {
   padding: 10px 8px;
-  background: rgb(181, 205, 230);
-  border-top: 1px solid rgb(162, 196, 230);
-  border-bottom: 1px solid rgb(162, 196, 230);
+  background: #FFE79B;
+  border-top: 1px solid rgb(250, 224, 141);
+  border-bottom: 1px solid rgb(250, 224, 141);
 }
 
 .foodItem div {
@@ -242,23 +357,6 @@ main .pdfFriendly {
   margin: 10px;
 }
 
-.foodName {
-  text-decoration-line: none;
-  text-transform: uppercase;
-}
-
-.foodName:visited {
-  color: black;
-
-}
-
-.resetTableBtn {
-  background-color: rgb(249, 95, 126);
-  color: white;
-  border: none;
-  padding: 10px;
-}
-
 .pdfBtn {
   color: white;
   background-color: #2E7CF0;
@@ -269,15 +367,16 @@ main .pdfFriendly {
 .legend {
   text-transform: uppercase;
 }
-
-.tableBtn {
-  background-color: rgb(249, 95, 126);
-  border: none;
-  padding: 10px;
-}
-
 .addBtn {
   background-color: #2E7CF0;
   border: none;
   padding: 10px;
+}
+
+.meal-section-features button {
+  width: 45%;
+}
+
+.addedFoodName {
+  font-weight: bold;
 }
