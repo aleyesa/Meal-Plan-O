@@ -20,15 +20,17 @@ body {
   height: 100%;
   width: 100%;
   padding: 200px 0;
-  background-color: rgba(170, 169, 169, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
   text-align: center;
   z-index: 1;
 
 }
 
 .delete-prompt div {
-  display: inline-block;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translateY(-50%);
   padding: 10px;
   margin: 0 10px;
   background-color: #FFF9F1;
@@ -49,24 +51,39 @@ body {
   margin: 5px 0px 10px 0px;
 }
 
-.delete-prompt button:focus,
+/*.delete-prompt button:focus,
 .delete-prompt button:hover {
   opacity: 0.7;
+}*/
+
+.modalBtn {
+  padding: 10px 40px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
 }
 
-.proceedBtn, .addFoodItemBtn {
-  padding: 5px 20px;
-  color: white;
+.proceedBtn, 
+.addFoodItemBtn {
   background-color: rgb(18, 196, 18);
-  border: none;
 }
 
-.exitBtn, .deleteMealSecBtn {
-  padding: 5px 20px;
-  color: white;
-  background-color: rgb(255, 11, 11);
-  border: none;
+.proceedBtn:hover, 
+.addFoodItemBtn:hover {
+  background-color: rgb(16, 180, 15);
 }
+
+.exitBtn, 
+.deleteMealSecBtn {
+  background-color: rgb(255, 11, 11);
+}
+
+.exitBtn:hover, 
+.deleteMealSecBtn:hover {
+  background-color: rgb(240, 8, 8);
+}
+
 
 /* header styling */
 header {
@@ -108,6 +125,7 @@ nav div {
   text-decoration-line: none;
 }
 
+a,
 a:visited {
   color: black;
 }
