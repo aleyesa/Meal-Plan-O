@@ -11,6 +11,20 @@ main {
 
 body {
   font-family: 'Josefin Sans', sans-serif;
+  /* background-image: url(../img/food-background.jpg); */
+  background-repeat: repeat;
+  background-size: cover;
+}
+
+main {
+  background-color: #FFF9F1
+}
+
+button,
+a,
+.addMealSecBtn,
+.js-search {
+  cursor: pointer;
 }
 
 /* delete-prompt styling */
@@ -20,10 +34,9 @@ body {
   height: 100%;
   width: 100%;
   padding: 200px 0;
-  background-color: rgba(170, 169, 169, 0.4);
+  background-color: rgba(0, 0, 0, 0.9);
   text-align: center;
   z-index: 1;
-
 }
 
 .delete-prompt div {
@@ -54,23 +67,42 @@ body {
   opacity: 0.7;
 }
 
-.proceedBtn, .addFoodItemBtn {
+.proceedBtn, 
+.addFoodItemBtn, 
+.addBtn {
   padding: 5px 20px;
   color: white;
-  background-color: rgb(18, 196, 18);
+  background-color: rgb(108, 209, 108);
   border: none;
 }
 
-.exitBtn, .deleteMealSecBtn {
+.proceedBtn:hover,
+.addFoodItemBtn:hover,
+.addBtn:hover {
+  background-color: rgb(98, 189, 98);
+}
+
+.addFoodItemBtn {
+  margin-right: 10px;
+}
+
+.exitBtn, 
+.deleteMealSecBtn,
+.removeFoodItem {
   padding: 5px 20px;
   color: white;
-  background-color: rgb(255, 11, 11);
+  background-color: rgb(248, 66, 66);
   border: none;
+}
+
+.exitBtn:hover,
+.deleteMealSecBtn:hover,
+.removeFoodItem:hover {
+  background-color: rgb(231, 62, 62);
 }
 
 /* header styling */
 header {
-  flex-direction: row;
   padding: 10px 0px;
   background: #FFF9F1;
   text-align: center;
@@ -89,23 +121,35 @@ header h2 {
   text-transform: uppercase;
 }
 
+.meal-table-section {
+  height: 75%;
+  width: 100%;
+}
+.showMealSection {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
 /* nav styling */
 nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   padding: 0px 10px;
   background: #FFE79B;
   border-top: 1px solid rgb(250, 224, 141);
   border-bottom: 1px solid rgb(250, 224, 141);
-  text-align: center;
 }
 
-nav div {
-  display: inline-block;
+nav div { 
   padding: 10px 5px;
 }
 
 .weekDay {
   font-weight: bold;
   text-decoration-line: none;
+  
 }
 
 a:visited {
@@ -113,7 +157,6 @@ a:visited {
 }
 
 nav div:hover,
-.meal-section-features .resetTableBtn:hover,
 .focus {
   background-color: rgb(250, 224, 141);
 }
@@ -124,19 +167,19 @@ nav div:hover,
 
 /* meal section menu */
 .meal-section-menu {
-  display: flex;
-  flex-direction: column;
   position: relative;
+  height: 100%;
   width: 25%;
   padding: 20px 10px;
   border-right: 1px solid rgb(250, 224, 141);
+  border-bottom: 1px solid rgb(250, 224, 141);
   text-align: center;
   background-color: #FFF9F1;
 }
 
 /* meal-name form styling */
 .meal-name-form fieldset {
-  padding: 10px 0px;
+  padding: 10px 0px 20px 0px;
 }
 
 .meal-name-form legend {
@@ -168,36 +211,45 @@ nav div:hover,
 /* meal-section-features styling */
 .meal-section-features {
   display: inline-block;
+  /* height: 100%; */
 }
-.meal-section-features button {
-  background-color: rgb(250, 224, 141);
+.meal-section-features button,
+.loadBtn {
+  background-color: #4589FA;
   padding: 10px;
   border: none;
-  color: black;
+  color: white;
+}
+
+.addMealSecBtn:hover,
+.resetTableBtn:hover,
+.pdfBtn:hover,
+.js-search:hover {
+  background-color: rgb(70, 134, 236);
 }
 
 .resetTableBtn {
-  width: 55%;
+  margin-right: 5px;
 }
 
 .pdfBtn {
-  width: 40%;
+  margin-left: 5px;
 }
 
 .meal-names-section {
+  height: 100%;
   margin: 10px 0px;
-}
-
-.meal-names-section div {
-  margin: 0px 5px;
-  padding: 10px;
-  background-color: white;
-  border: 1px solid rgb(226, 226, 226);
+  overflow-x: none;
+  overflow-y: auto;
 }
 
 .meal-names-section div {
   display: flex;
-  flex-direction: row;
+  text-align: left;
+  margin: 10px 5px;
+  padding: 10px;
+  background-color: rgba(226, 226, 226, 0.308);;
+  border: 1px solid rgb(226, 226, 226);
 }
 
 .meal-names-section a {
@@ -207,22 +259,24 @@ nav div:hover,
 }
 
 .addFoodItemBtn, .deleteMealSecBtn {
-  display: relative;
-  flex-direction: row;
+  position: relative;
   width: 20%;
 }
 
 /* search-add-section  */
 .search-add-section {
-  border: 1px solid black;
+  border-top: 1px solid black;
   height: 100%;
 }
 
-.tableBtn {
-  padding: 5px 20px;
-  color: white;
-  background-color: rgb(255, 11, 11);
+.backToTable {
+  padding: 5px 0;
+  color: black;
   border: none;
+}
+
+.backToTable:hover {
+  color: #4589FA;
 }
 
 .search-add-section h2,
@@ -233,10 +287,11 @@ nav div:hover,
 }
 
 .search-form fieldset {
-  padding: 10px 0px;
+  padding: 20px 0px;
 }
 
 .js-query {
+  width: 50%;
   padding: 10px;
   border: 1px solid rgb(184, 203, 235);
   border-top-left-radius: 5px;
@@ -269,26 +324,16 @@ nav div:hover,
   display: inline;
 }
 
-.showMealSection,
 .meal-section-info {
   display: flex;
-}
-
-.showMealSection {
-  height: 100%;
-}
-
-.meal-section-info{
+  flex-direction: column;
   width: 75%;
 }
 
 .meal-section-info h2 {
   padding: 10px;
-  background-color: #FFE79B;
-}
-
-.meal-section-info {
-  flex-direction: column;
+  background-color: rgb(255, 241, 194);
+  text-transform: uppercase;
 }
 
 .weekDay {
@@ -296,18 +341,56 @@ nav div:hover,
   font-size: 20px;
 }
 
+.foodItemSection {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow-x: none;
+  overflow-y: auto;
+}
+
 .foodItemSection, 
 .macroSection {
-  width: 100%;
-  height: 50%;
   background-color: #FFF9F1;
   border-top: 1px solid rgb(250, 224, 141);
   border-bottom: 1px solid rgb(250, 224, 141);
-  padding: 10px;
+}
+
+.foodItemSection img {
+  width: 24px;
+}
+
+.foodItemSection h2 {
+  position: relative;
+  background-color: rgba(226, 226, 226, 0.308);
+  width: 100%;
+}
+
+.foodItemSection div {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 10px 10px 10px;
+}
+
+.foodItemSection p {
+  display: inline-block;
+}
+
+.foodItemSection p::after {
+  content: ' | ';
+}
+
+.foodItemSection p:last-child::after {
+  content: '';
 }
 
 .nutritionType p {
   display: inline-block;
+}
+
+.nutritionInfo h2 {
+  margin-bottom: 10px;
 }
 
 .nutritionInfo div p {
@@ -318,7 +401,12 @@ nav div:hover,
   padding: 5px;
 }
 
-.search-add-section .tableBtn {
+.search-add-section {
+  padding: 20px 10px;
+  height: 100%;
+}
+
+.search-add-section .backToTable {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -331,9 +419,7 @@ nav div:hover,
 
 .foodItem {
   padding: 10px 8px;
-  background: #FFE79B;
-  border-top: 1px solid rgb(250, 224, 141);
-  border-bottom: 1px solid rgb(250, 224, 141);
+  margin: 10px;
 }
 
 .foodItem div {
@@ -344,12 +430,34 @@ main .pdfFriendly {
   text-align: right;
 }
 
-.macroSection  p{
-  padding: 10px;
+.macroSection h2 {
+  background-color: #FFF9F1;
+}
+
+.macroSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px 0px;
+  text-align: center;
+  width: 100%;
+  height: 40%;
+}
+
+.macroSection div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+  padding-bottom: 10px;
+  width: 25%;
+
 }
 
 .removeFoodItem {
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .nutritionInfo {
@@ -357,26 +465,11 @@ main .pdfFriendly {
   margin: 10px;
 }
 
-.pdfBtn {
-  color: white;
-  background-color: #2E7CF0;
-  border: none;
-  padding: 10px;
-}
-
 .legend {
   text-transform: uppercase;
-}
-.addBtn {
-  background-color: #2E7CF0;
-  border: none;
-  padding: 10px;
-}
-
-.meal-section-features button {
-  width: 45%;
 }
 
 .addedFoodName {
   font-weight: bold;
 }
+

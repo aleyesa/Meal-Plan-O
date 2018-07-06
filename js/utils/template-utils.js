@@ -10,7 +10,7 @@ const createDayInfoTemplate = () => {
         </fieldset>
       </form>
       <section class="meal-section-features">
-          <button class="resetTableBtn">Reset Meal Planner</button>
+          <button class="resetTableBtn">Reset Planner</button>
           <button class='pdfBtn'>Save as PDF</button>   
       </section>
       <section class="meal-names-section">
@@ -23,8 +23,8 @@ const mealSectionNameTemplate = mealSecName =>
 `  
   <div class="meal${mealNameSecIdentifier}">
     <a href="#">${mealSecName}</a>
-    <button class="deleteMealSecBtn far fa-trash-alt"></button>
     <button class="addFoodItemBtn far fa-edit"></button>
+    <button class="deleteMealSecBtn far fa-trash-alt"></button>
   </div>
 `;
 
@@ -39,11 +39,34 @@ const macroInfoTemplateForPlanner = (macroInfo) =>
   `
   ;
 
+const macroInfoTotalTemplate = (macroInfo) =>
+  `
+    <div>
+      <h2 class="calories">${macroInfo.cals}</h2>
+      <p>Calories(kcals)</p>
+    </div>
+    <div>
+      <h2 class="proteins">${macroInfo.pros}</h2>
+      <p>Proteins(g)</p>
+    </div>
+    <div>
+      <h2 class="fats">${macroInfo.fats}</h2>
+      <p>Fats(g)</p>
+    </div>
+    <div>
+      <h2 class="carbohydrates">${macroInfo.carbs}</h2>
+      <p>Carbohydrates(g)</p>
+    </div>
+  `
+  ;
+
 const addedFoodItemTemplate = (foodItemToAdd) => 
 `
-  <p class="addedFoodName">${foodItemToAdd}
+  <h2 class="addedFoodName">
+  <img src="./img/dish.png"/>
+  ${foodItemToAdd}
     <button class="removeFoodItem">x</button>
-  </p> 
+  </h2>
 `
 
 const mealSectionInfoTemplate = mealSecName =>
