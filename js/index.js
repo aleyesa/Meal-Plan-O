@@ -6,6 +6,7 @@ let mealNameSecIdentifier = 0;
 let currMealSec = '';
 let targetMealSecName = ''; 
 
+
 const totalMacros = {
   cals:  0,
   pros:  0,
@@ -117,6 +118,7 @@ const getFoodItemToSec = (foodItemToAdd, macroInfo) => {
   selectedMealFoodItemSec.append(addedFoodItemTemplate(foodItemToAdd) + macroInfo);
 };
 
+
 const updateTotalMacrosToSec = () => {
   // create bar graph with mac nutrients
   // let cals =  Number(macroInfo.find('.calories .value').text());
@@ -137,6 +139,7 @@ const updateTotalMacrosToSec = () => {
 const addedFoodItemFromList = () => {
   $('.search-results').on('click', '.addBtn', function() {
     let foodItemToAdd = $(this).parent().find('.foodName').html();
+
     let macroInfo = $(this).siblings('div');
     getFoodItemToSec(foodItemToAdd, macroInfoTemplateForPlanner(getMacroInfo(macroInfo)));
     calcTotalMacros('+', getMacroInfo(macroInfo));
