@@ -23,8 +23,8 @@ const mealSectionNameTemplate = mealSecName =>
 `  
   <div class="meal${mealNameSecIdentifier}">
     <a href="#">${mealSecName}</a>
-    <button class="addFoodItemBtn far fa-edit"></button>
-    <button class="deleteMealSecBtn far fa-trash-alt"></button>
+    <button class="addFoodItemBtn"><i class="far fa-edit"></i></button>
+    <button class="deleteMealSecBtn"><i class="far fa-trash-alt"></i></button>
   </div>
 `;
 
@@ -42,40 +42,42 @@ const macroInfoTemplateForPlanner = (macroInfo) =>
 const macroInfoTotalTemplate = (macroInfo) =>
   `
     <div>
-      <h2 class="calories">${macroInfo.cals}</h2>
       <p>Calories(kcals)</p>
+      <h2 class="calories">${macroInfo.cals}</h2>
     </div>
     <div>
-      <h2 class="proteins">${macroInfo.pros}</h2>
       <p>Proteins(g)</p>
+      <h2 class="proteins">${macroInfo.pros}</h2>
     </div>
     <div>
-      <h2 class="fats">${macroInfo.fats}</h2>
       <p>Fats(g)</p>
+      <h2 class="fats">${macroInfo.fats}</h2>
     </div>
     <div>
-      <h2 class="carbohydrates">${macroInfo.carbs}</h2>
       <p>Carbohydrates(g)</p>
+      <h2 class="carbohydrates">${macroInfo.carbs}</h2>
     </div>
   `
   ;
 
 const addedFoodItemTemplate = (foodItemToAdd) => 
 `
-  <h2 class="addedFoodName">
-  <img src="./img/dish.png"/>
-  ${foodItemToAdd}
-    <button class="removeFoodItem">x</button>
-  </h2>
+  <div class="addedFoodItem">
+    <h2 class="addedFoodName">
+      <i class="fas fa-utensils"></i>
+      ${foodItemToAdd}
+    </h2>
+    <button class="removeFoodItem"><i class="far fa-trash-alt"></i></button>
+  </div>
 `
 
 const mealSectionInfoTemplate = mealSecName =>
 `   
   <section class="meal${mealNameSecIdentifier} meal-section-info">
-  <h2>${mealSecName} consists of...</h2>
+  <h2>${mealSecName}</h2>
     <section class="foodItemSection">
     </section>
-    <h2>${mealSecName} macros are...</h2>
+    <h2>Total Macros</h2>
     <section class="macroSection">
       <div id="chart_div"></div>
     </section>
