@@ -1,34 +1,498 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
+
+html, 
 body {
-    text-align: center;
-}
-h2 {
-    color: blue;
-}
-.delete-prompt, .search-add-section, .meal-section{
-    border: 2px solid grey;
-}
-fieldset {
-    border: none;
-}
-.search-results li {
-    display: inline;
-    list-style-type: none;
-    border: 2px solid grey;
-    background-color: beige;
+  height: 100%;
+  min-height: 100%;
 }
 
-table {
-    border-collapse: collapse;
-    border-spacing: 0px;
+body {
+  /* background-color: #FFF9F1; */
+  font-family: 'Josefin Sans', sans-serif;
+  /* background-image: url(../img/food-background.jpg); */
 }
 
-th, td {
-    border: 2px solid black;
+button,
+a,
+.addMealSecBtn,
+.js-search {
+  cursor: pointer;
 }
 
-table button {
-    float: right;
+/* delete-prompt styling */
+.delete-prompt {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 200px 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  text-align: center;
+  z-index: 1;
+}
+
+.delete-prompt div {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translateY(-50%);
+  padding: 10px;
+  margin: 0 10px;
+  background-color: #FFF9F1;
+}
+
+.delete-prompt p,
+.delete-prompt span {
+  margin: 10px;
+}
+
+.delete-prompt span {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.delete-prompt button {
+  margin: 5px 0px 10px 0px;
+}
+
+.proceedBtn, 
+.addFoodItemBtn, 
+.addBtn {
+  padding: 5px 20px;
+  color: white;
+  background-color: rgb(108, 209, 108);
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.proceedBtn:hover,
+.addFoodItemBtn:hover,
+.addBtn:hover {
+  background-color: rgb(98, 189, 98);
+}
+
+.addFoodItemBtn {
+  margin-right: 10px;
+}
+
+.exitBtn, 
+.deleteMealSecBtn,
+.removeFoodItem {
+  padding: 5px 20px;
+  color: white;
+  background-color: rgb(248, 66, 66);
+  border: none;
+}
+
+.exitBtn:hover,
+.deleteMealSecBtn:hover,
+.removeFoodItem:hover {
+  background-color: rgb(231, 62, 62);
+}
+
+/* header styling */
+header {
+  height: 25%;
+  padding: 10px 0px;
+  background: #FFF9F1;
+  text-align: center;
+}
+
+header h1 {
+  margin: 10px;
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+header h2 {
+  margin: 10px;
+  font-size: 16px;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+main {
+  /* height: 75%; */
+  /* border: 1px solid blue; */
+  /* background: blue; */
+}
+.meal-table-section {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  width: 100%;
+  /* background: red; */
+}
+.showMealSection {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* nav styling */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0px 10px;
+  background: #FFE79B;
+  border-top: 1px solid rgb(250, 224, 141);
+  border-bottom: 1px solid rgb(250, 224, 141);
+}
+
+nav div { 
+  padding: 10px 5px;
+}
+
+.weekDay {
+  font-weight: bold;
+  text-decoration-line: none;
+  
+}
+
+a,
+a:visited {
+  color: black;
+}
+
+nav div:hover,
+.focus {
+  background-color: rgb(250, 224, 141);
+}
+
+.hide {
+  display: none;
+}
+
+/* meal section menu */
+.meal-section-menu {
+  display: flex;
+  flex-direction: column;
+  /* width: 25%; */
+  width: 100%;
+  padding: 20px;
+  border-right: 1px solid rgb(250, 224, 141);
+  text-align: center;
+  background-color: #FFF9F1;
+}
+
+/* meal-name form styling */
+.meal-name-form fieldset {
+  padding: 10px 0px 20px 0px;
+}
+
+.meal-name-form legend {
+  font-weight: 100;
+  padding: 10px 0px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.js-meal-name-input {
+  width: 85%;
+  padding: 10px;
+  border: 1px solid rgb(184, 203, 235);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; 
+  outline: none;
+}
+
+.addMealSecBtn {
+  width: 15%;
+  padding: 11px;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: white;
+  background-color: #4589FA;
+}
+
+/* meal-section-features styling */
+.meal-section-features {
+  display: flex;
+  /* text-align: left; */
+  /* height: 100%; */
+}
+.meal-section-features button,
+.loadBtn {
+  background-color: #4589FA;
+  padding: 10px;
+  border: none;
+  color: white;
+  width: 50%;
+}
+
+.centerLoadBtn {
+  text-align: center;
+}
+
+.addMealSecBtn:hover,
+.resetTableBtn:hover,
+.pdfBtn:hover,
+.js-search:hover {
+  background-color: rgb(70, 134, 236);
+}
+
+.resetTableBtn {
+  margin-right: 5px;
+}
+
+.pdfBtn {
+  margin-left: 5px;
+}
+
+.meal-names-section {
+  /* display: flex;
+  flex-direction: column; */
+  /* height: 50%; */
+  margin: 10px 0px;
+  overflow-x: none;
+  overflow-y: auto;
+}
+
+.meal-names-section div {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: rgba(226, 226, 226, 0.308);;
+  border: 1px solid rgb(226, 226, 226);
+}
+
+.meal-names-section a {
+  text-align: left;
+  text-transform: capitalize;
+  text-decoration-line: none;
+  width: 50%;
+}
+
+.addFoodItemBtn, .deleteMealSecBtn {
+  width: 20%;
+  border: none;
+  padding: 7px;
+  color: white;
+}
+
+/* search-add-section  */
+.search-add-section {
+  border-top: 1px solid rgb(250, 224, 141);
+  height: 100%;
+}
+
+.backToTable {
+  padding: 10px;
+  color: black;
+  border: none;
+}
+
+.backToTable:hover {
+  color: #4589FA;
+}
+
+.search-add-section h2,
+.search-form,
+.totalResults,
+.foodItem {
+  text-align: center;
+}
+
+.search-form fieldset {
+  padding: 20px 0px;
+}
+
+.js-query {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid rgb(184, 203, 235);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; 
+  outline: none;
+}
+
+.js-search {
+  padding: 10px;
+  border: 1px solid rgb(184, 203, 235);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px; 
+  color: white;
+  background-color: #4589FA;
+}
+
+.foodName {
+  text-decoration-line: none;
+  font-weight: bold;
+  padding: 10px 0px;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.totalResults {
+  font-style: italic;
+}
+
+.foodItem p {
+  display: inline;
+}
+
+.meal-section-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.meal-section-info h2 {
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+.weekDay {
+  padding: 10px 20px;
+  font-size: 20px;
+}
+
+.foodItemSection {
+  display: flex;
+  /* height: 40%; */
+  flex-direction: column;
+  overflow-x: none;
+  overflow-y: auto;
+}
+
+.foodItemSection, 
+.macroSection {
+  background-color: #FFF9F1;
+}
+
+.foodItemSection img {
+  width: 24px;
+}
+
+.foodItemSection h2 {
+  position: relative;
+  width: 100%;
+}
+
+.foodItemSection div {
+  text-align: center;
+  /* margin-top: 10px; */
+  /* margin-bottom: 10px; */
+  /* padding: 10px 10px 10px 10px; */
+}
+
+.foodItemSection p {
+  display: inline-block;
+}
+
+.foodItemSection p::after {
+  content: ' | ';
+}
+
+.foodItemSection p:last-child::after {
+  content: '';
+}
+
+.nutritionType p {
+  display: inline-block;
+}
+
+.nutritionInfo h2 {
+  margin-bottom: 10px;
+}
+
+.nutritionInfo div p {
+  display: inline-block;
+}
+
+.nutritionInfo div {
+  padding: 5px;
+}
+
+.search-add-section {
+  padding: 20px 10px;
+  height: 100%;
+}
+
+.search-add-section .backToTable {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.search-results {
+  background-color: #FFF9F1;
+  margin: 20px 0px;
+}
+
+.foodItem {
+  padding: 10px 8px;
+  margin: 10px;
+}
+
+.foodItem div {
+  background-color: #FFF9F1;
+}
+
+main .pdfFriendly {
+  text-align: right;
+}
+
+.macroSection p {
+  font-size: 14px;
+}
+
+.macroSection h2 {
+  background-color: #FFF9F1;
+  font-size: 20px;
+  padding: 20px 20px 0px 20px;
+}
+
+.macroSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px 0px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.macroSection div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+  width: 40%;
+}
+
+.addedFoodItem {
+  display: flex;
+  padding: 20px 10px;
+}
+
+.addedFoodName {
+  font-weight: bold;
+  text-align: left; 
+}
+
+.addedFoodItem h2 {
+  padding: 0;
+}
+
+.removeFoodItem {
+  height: 25px;
+}
+
+.nutritionInfo {
+  padding: 10px;
+  margin: 10px;
+}
+
+.legend {
+  text-transform: uppercase;
 }

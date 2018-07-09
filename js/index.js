@@ -1,198 +1,286 @@
+let combineResultsHtml = '';
+let currentFoodSearch = '';
+let pageOffset = 0;
+let totalResults = 0;
+let mealNameSecIdentifier = 0;
+let currMealSec = '';
+let targetMealSecName = ''; 
 
-    // https://api.pdflayer.com/api/convert?access_key=6f976b9baaede103c03c9763adf6e9fd&document_html=<p>Hello</p>>&test=1
 
-const createMealPlanOnlyPdf = () => {
-    // $.getJSON(
-    //     `https://api.pdflayer.com/api/convert?access_key=6f976b9baaede103c03c9763adf6e9fd&document_url=downloadUrl,
-    //     {
-    //         access_key: access_key='6f976b9baaede103c03c9763adf6e9fd',
-    //         test: 1,
-    //         document_url: 'https://github.com/aleyesa/Meal-Plan-O/blob/master/index.html',
-    //     }, (data) => console.log(data)
-    //     );
+const totalMacros = {
+  cals:  0,
+  pros:  0,
+  fats:  0,
+  carbs: 0
+};
 
-    //     $('.meal-table-section').on('click', '.pdfBtn', () => {
-        
+const specifyTabAndShowSection = () => {
+  $('.meal-table-section nav').on('click', '.weekDay', function() {
+    const that = $(this);
+    const text = that.text().toLowerCase();
 
-    // }   
-    // $('.meal-table-section').on('click', '.pdfBtn', () => {
-        $.ajax(
-            {
-            method: 'POST',
-            url: 'https://api.pdflayer.com/api/convert?access_key=6f976b9baaede103c03c9763adf6e9fd&test=1',
-            data: {
-                document_html: '<!DOCTYPE html><html><head><title>Meal Plan</title></head><body><p>Hello</p></body></html>',
-            },
-            success: (data, a ,xhr) => {
-                let downloadLink      = document.createElement('a');
-                downloadLink.target   = '_blank';
-                downloadLink.download = 'name_to_give_saved_file.pdf';
-              
-                // convert downloaded data to a Blob
-                let blob = new Blob([data], { type: 'application/pdf' });
-              
-                // create an object URL from the Blob
-                let URL = window.URL || window.webkitURL;
-                let downloadUrl = URL.createObjectURL(blob);
-                console.log(blob);
-                $('meal-table-section a').attr('href', `https://api.pdflayer.com/api/convert?access_key=6f976b9baaede103c03c9763adf6e9fd&document_url=http://localhost:8080/69d0476a-8b71-4e77-af84-28066a79c5ca`);
-                // set object URL as the anchor's href
-                // downloadLink.href = downloadUrl;
-              
-                // // append the anchor to document body
-                // document.body.append(downloadLink);
-              
-                // // fire a click event on the anchor
-                // downloadLink.click();
-              
-                // // cleanup: remove element and revoke object URL
-                // document.body.removeChild(downloadLink);
-                // URL.revokeObjectURL(downloadUrl);
+    that.parent().addClass('focus');
+    that.parent().siblings('div').removeClass('focus');
 
-            }
-        });
+    const mapDayTabToItsSection = { 
+      sun: '.sunday-section', 
+      mon: '.monday-section',                         
+      tue: '.tuesday-section', 
+      wed: '.wednesday-section', 
+      thu: '.thursday-section', 
+      fri: '.friday-section', 
+      sat: '.saturday-section', 
     };
 
-            $(mealSection).parent().closest('section').replaceWith(`<p>${foodItemToAdd}<button class="removeFoodItem">x</button> </p>
-            <section><button class="addFoodBtn">+</button></section>`);
-            $('.search-add-section').css('display', 'none');
-            $('.search-results').empty();
-            add = '';
-            $('.meal-table-section').css('display', 'block');
-    });    
-});
+    const showCurDay = selector => {
+      $(selector).removeClass('hide');
+      $(selector).addClass('showMealSection');
+    };
+
+    const hideOtherDays = selector => {
+      $(selector).siblings('section').addClass('hide');
+      $(selector).siblings('section').removeClass('showMealSection');
+    };
+
+    for (let key in mapDayTabToItsSection) {
+      const selector = mapDayTabToItsSection[key];
+
+      if (key === text) {
+        showCurDay(selector);
+        hideOtherDays(selector);
+      }
+    }
+  });
 };
-//remove food item
-const removeFoodItem = () => {
-$('.meal-table-section').on('click', '.removeFoodItem', function(event) {
-    console.log($(this).parent().remove());
-});
+
+const selectMealSection = () => {
+  $('.meal-names-section').on('click', 'div', function() {
+    const targetMealSecName = $(this).attr('class');
+    const selectedDaysMealSecMenu = $(this).closest('.meal-section-menu');
+    $('.meal-section-menu').siblings(`.meal-section-info`).css('display', 'none');
+    selectedDaysMealSecMenu.siblings(`.${targetMealSecName}`).css('display', 'flex');
+  });
 };
-//Navigate back to table
-const goBackToTable = () => {
-$('.search-add-section').on('click', '.tableBtn', () => {    
+
+const addMealSection = () => {              
+  $('.meal-name-form').on('submit', function(event) {
+    event.preventDefault();
+    const mealSecName = $(this).find('.js-meal-name-input').val();
+    const thisDaysMealNameSec = $(this).siblings('.meal-names-section');
+    $('.meal-section-menu').siblings(`.meal-section-info`).css('display', 'none');
+    thisDaysMealNameSec.append(mealSectionNameTemplate(mealSecName));
+    $(this).parent().after(mealSectionInfoTemplate(mealSecName));
+
+    $('.js-meal-name-input').val("");
+    mealNameSecIdentifier++;
+    foodItemToAdd = '';
+  });
+};
+                          
+const removeMealSection = () => {
+  $('.meal-table-section').on('click', '.deleteMealSecBtn', function() {
+    const selectedMealSecName = $(this).closest('div').attr('class');
+
+    $(this).closest('.meal-section-menu').siblings(`.${selectedMealSecName}`).remove();
+    $(this).closest('div').remove();
+  });
+};
+
+const getMacroInfo = (macroInfo) => {
+  const macroValues = {
+    cals:  Number(macroInfo.find('.calories').text()),
+    pros:  Number(macroInfo.find('.proteins').text()),
+    fats:  Number(macroInfo.find('.fats').text()),
+    carbs: Number(macroInfo.find('.carbohydrates').text())
+  };
+
+  return macroValues;
+};
+
+const calcTotalMacros = (operation, macroValues) => {
+  const getToTotalMacroSec = currMealSec.closest('.meal-section-menu').siblings(`.${targetMealSecName}`);
+  let prevTotalCals  = Number(getToTotalMacroSec.find('.macroSection .calories').text());
+  let prevTotalPros  = Number(getToTotalMacroSec.find('.macroSection .proteins').text());
+  let prevTotalFats  = Number(getToTotalMacroSec.find('.macroSection .fats').text());
+  let prevTotalCarbs = Number(getToTotalMacroSec.find('.macroSection .carbohydrates').text());
+
+  totalMacros.cals  = eval(prevTotalCals  + operation + macroValues.cals);
+  totalMacros.pros  = eval(prevTotalPros  + operation + macroValues.pros);
+  totalMacros.fats  = eval(prevTotalFats  + operation + macroValues.fats);
+  totalMacros.carbs = eval(prevTotalCarbs + operation + macroValues.carbs);
+};
+
+const getFoodItemToSec = (foodItemToAdd, macroInfo) => {
+  const selectedMealFoodItemSec = currMealSec.closest('.meal-section-menu')
+  .siblings(`.${targetMealSecName}`)
+  .find('.foodItemSection');
+
+  selectedMealFoodItemSec.append(addedFoodItemTemplate(foodItemToAdd) + macroInfo);
+};
+
+
+const updateTotalMacrosToSec = () => {
+  // create bar graph with mac nutrients
+  // let cals =  Number(macroInfo.find('.calories .value').text());
+  // let pros =  Number(macroInfo.find('.proteins .value').text());
+  // let fats =  Number(macroInfo.find('.fats .value').text());
+  // let carbs = Number(macroInfo.find('.carbohydrates .value').text());
+  // google.charts.setOnLoadCallback(nutrientChart('a', totalMacros));
+  // normal text of macro nutrients
+
+  // storeFoodItemInfo(foodItemToAdd, cals, pros, fats, carbs);
+
+  currMealSec.closest('.meal-section-menu')
+  .siblings(`.${targetMealSecName}`)
+  .find('.macroSection')
+  .html(macroInfoTotalTemplate(totalMacros));
+};
+
+const addedFoodItemFromList = () => {
+  $('.search-results').on('click', '.addBtn', function() {
+    let foodItemToAdd = $(this).parent().find('.foodName').html();
+
+    let macroInfo = $(this).siblings('div');
+    getFoodItemToSec(foodItemToAdd, macroInfoTemplateForPlanner(getMacroInfo(macroInfo)));
+    calcTotalMacros('+', getMacroInfo(macroInfo));
+    updateTotalMacrosToSec();
+
     $('.search-add-section').css('display', 'none');
     $('.search-results').empty();
-    add = '';
     $('.meal-table-section').css('display', 'block');
-});
+  });    
 };
-//resets meal plan
+
+const addFoodItemInfoToSection = () => {
+  $('.meal-table-section').on('click', '.addFoodItemBtn', function() {
+    currMealSec = $(this);
+    targetMealSecName = currMealSec.parent().attr('class');
+    $('.meal-table-section, .totalResults').css('display', 'none');
+    $('.search-add-section').css('display', 'block');
+    $('.search-results').empty();
+    currentFoodSearch = '';
+    combineResultsHtml = '';
+  });
+  addedFoodItemFromList();
+};
+
+const removeFoodItem = () => {
+  $('.meal-table-section').on('click', '.removeFoodItem', function() {
+    targetMealSecName = $(this).closest('.meal-section-info').attr('class').replace(/meal-section-info/, '');
+    currMealSec = $('.meal-names-section').find(`.${targetMealSecName} .addFoodItemBtn`);
+    const selectedFoodItem = $(this).parent();
+    const macroInfo = selectedFoodItem.next('div');
+    calcTotalMacros('-', getMacroInfo(macroInfo));
+    updateTotalMacrosToSec();
+
+    macroInfo.remove();
+    selectedFoodItem.remove();
+  });
+};
+
+const goBackToTable = () => {
+  $('.search-add-section').on('click', '.backToTable', () => {    
+    $('.search-add-section, .totalResults').css('display', 'none');
+    $('.search-results').empty();
+    $('.meal-table-section').css('display', 'block');
+    combineResultsHtml = '';
+  });
+};
+
 const resetMealPlan = () => {
-$('.meal-table-section').on('click', '.resetTableBtn', () => {
+  $('.meal-table-section').on('click', '.resetTableBtn', () => {
     $('.delete-prompt').css('display', 'block');
     $('.delete-prompt').on('click', '.exitBtn', () => $('.delete-prompt').css('display', 'none'));
-    $('.delete-prompt').on('click', '.proceedBtn', () => $('.meal-table-section').html(mealTableHtml));
-});
+    $('.delete-prompt').on('click', '.proceedBtn', () => {$('.delete-prompt').css('display', 'none');
+    runApplication();
+  });
+  });
 };
-//Food Search API sends keyword queries and returns lists of foods which contain one or 
-//more of the keywords in the food description, scientific name, or commerical name fields.
-const handleFoodSearchRequest = (nameOfFood, offset) => {
-    const ndbSearchEndpoint = 'https://api.nal.usda.gov/ndb/search';
-    const requestParam = {
-        api_key: 'Dque88jiOSae3F2qrzzsBSqCYrNxXMn5iydg3NLe',
-        q: nameOfFood,
-        offset: offset,
-        max: 10
-    };
-    $.getJSON(ndbSearchEndpoint, requestParam, (data) => {
-        totalResults = data.list.total;
-        $('.search-add-section').find('.totalResults').html(`Found ${totalResults} results for ${currentFoodSearch}`);
-        const foodSearchResults = data.list.item.map((results) => {
-            handleFoodReportRequest(results.name, results.ndbno);
-        });
-    });
-};
-//Food Report API is a list of nutrients and their values in various portions for a specific food.
-const handleFoodReportRequest = (foodName, ndbno) => {
-    const foodReportEndpoint = 'https://api.nal.usda.gov/ndb/V2/reports';
-    let addP = '';
-    const requestParam = {
-        api_key: 'Dque88jiOSae3F2qrzzsBSqCYrNxXMn5iydg3NLe',
-        ndbno: ndbno,
-    };
-    $.getJSON(foodReportEndpoint, requestParam, (data) => {
-        for(let i = 1; i < 5; i++)
-        {
-            addP += ('<p>' + data.foods[0].food.nutrients[i].name + ': ' + 
-                     data.foods[0].food.nutrients[i].value + ' ' +
-                     data.foods[0].food.nutrients[i].unit + '</p>');
-        }
-        add += renderResult(foodName, addP);
-        $('.search-results').html(add);
-    });
-};
-//holds the html to display food item results
-const renderResult = (foodName, macros) => {
-    return `
-    <div class="dropdown">
-    <a href="#" class="foodName">${foodName}</a>
-        <div class="dropdown-content">
-        <strong><u>Macros</u></strong>
-        ${macros}
-        <button class="addBtn">Add</button>
-        </div>
-    </div>
-    `;
-  };
-//Gets user input from search text field and sends it to food search request
+  
 const handleSearch = () => {
-    $('.search-form').on('submit', function(event) {
-        event.preventDefault();
-        //empties food search results when user submits a new search
-        add = '';
-        totalResults = 0;
-        //start search results list at the beginning
-        offset = 0;
-        const query = $(this).find('.js-query');
-        const foodItem = $(this).find('.js-query').val();
-        //holds current food search item to use within the file
-        currentFoodSearch = foodItem;
-        // clear out the input
-        query.val('');
-        handleFoodSearchRequest(foodItem, offset);
-    });
+  $('.search-form').on('submit', function(event) {
+    event.preventDefault();
+    combineResultsHtml = '';
+    $('.search-results').empty();
+    $('.totalResults').css('display', 'block');
+    totalResults = 0;
+    pageOffset = 0;
+    
+    const query = $(this).find('.js-query');
+    currentFoodSearch = query.val();
+    query.val('');
+
+    handleFoodSearchRequest(currentFoodSearch, pageOffset);
+  });
 };
-//loads more search results when user clicks load button
+
 const loadMoreResults = () => {
-$('.search-add-section').on('click', '.loadBtn', function(event) {
-    if(currentFoodSearch === ''){
-        console.log('no food item searched');
-    }else if(offset > totalResults){
-        console.log('offset is higher than totalResults');
-    }else{
-        offset += 10;
-        handleFoodSearchRequest(currentFoodSearch, offset);
+  $('.search-add-section').on('click', '.loadBtn', function() {
+    if (currentFoodSearch === '') {
+      console.log('no food item searched');
+    } else if (pageOffset > totalResults) {
+      console.log('pageOffset is higher than totalResults');
+    } else {
+      pageOffset += 10;
+      handleFoodSearchRequest(currentFoodSearch, pageOffset);
     }
-});
+  });
 };
-//main run function
+
+const saveAsPdf = () => {
+  const mealTableHtml = $('meal-table-section').html();
+  $('.meal-section-features').on('click', '.pdfBtn', function(event) {
+    let pdfFriendlyHtml = '';
+    const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    $('.meal-section-info').css('display', 'block');
+    const mealPlanReplacement = weekDaysArray =>  {
+      $('.meal-table-section').css('display', 'none');
+      ` 
+      ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').html(`
+        <h2>${weekDaysArray}</h2>
+        ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').html()}
+      `)}
+      ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').wrapAll(`<div class="pdfFriendly" />`).html()}
+      `
+    };
+      $('.meal-section-info').css('width', '100%');
+
+    const showPdfFriendlyHtml = () => {
+      $('main').html($('.pdfFriendly').html()).html();
+    };
+    weekDays.forEach( day => 
+      mealPlanReplacement(day)
+    );
+    showPdfFriendlyHtml();
+    window.print();
+    $('.meal-table-section').css('display', 'block');
+  });
+};
+
 const runApplication = () => {
-    specifyTabAndShowSection();
-    addMealSection();
-    removeMealSection();
-    addFoodItem();
-    removeFoodItem();
-    goBackToTable();
-    resetMealPlan();
-    handleSearch();
-    loadMoreResults();
+  resetMealPlan();
+  createDayInfoTemplate();
+  specifyTabAndShowSection();
+  addMealSection();
+  selectMealSection();
+  removeMealSection();
+  addFoodItemInfoToSection();
+  removeFoodItem();
+  goBackToTable();
+  handleSearch();
+  loadMoreResults();
+  saveAsPdf();
 };
-//invoke run application
-runApplication();
 
-// Search Section Tester
-// $('.search-results').html(renderResult('Burger', 
-//     `<p>Energy: 282 kcal</p>
-//      <p>Protein: 16.83 g</p>
-//      <p>Total lipid (fat): 16.13 g</p>
-//      <p>Carbohydrate, by difference: 17.43 g</p>`));
-
+<<<<<<< HEAD
 createMealPlanOnlyPdf();
 
 
 
 
+=======
+runApplication();
+>>>>>>> styling
 
   
   
