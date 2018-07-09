@@ -272,15 +272,7 @@ const runApplication = () => {
   saveAsPdf();
 };
 
-<<<<<<< HEAD
-createMealPlanOnlyPdf();
-
-
-
-
-=======
 runApplication();
->>>>>>> styling
 
   
   
