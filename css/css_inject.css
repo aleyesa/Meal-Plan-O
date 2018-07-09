@@ -1,23 +1,26 @@
 * {
     box-sizing: border-box;
 }
-body {
-    text-align: center;
-}
 h2 {
     color: blue;
 }
 .delete-prompt, .search-add-section, .meal-section{
     border: 2px solid grey;
 }
+
 fieldset {
     border: none;
 }
+
 .search-results li {
     display: inline;
     list-style-type: none;
     border: 2px solid grey;
     background-color: beige;
+}
+
+section {
+    width: 1000px;
 }
 
 table {
@@ -31,4 +34,7 @@ th, td {
 
 table button {
     float: right;
+}
+.start-section, .header, .search-add-section, .search-results, .delete-prompt, .meal-table-section button {
+    display: none;
 }

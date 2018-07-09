@@ -1,116 +1,57 @@
-//mealTableHtml holds the initial html of meal table section used to reset meal plan
-const mealTableHtml = $('.meal-table-section').html();
-//add variable is used to combine html food item results 
-let add = '';
-//currentFoodSearch variable holds the current food item search
-let currentFoodSearch = '';
-//offset is used to load more food search results
-let offset = 0;
-//totalResults holds the total search results
-let totalResults = 0;
-/*                                 Meal Table Manipulation                                     */
-//Highlights the day tab that user selected and shows the specified meal section
-const specifyTabAndShowSection = () => {
-$('.meal-table-section nav').on('click', 'a', function(event) {
-    const that = $(this);
-    that.addClass('highlight');
-    that.siblings('a').removeClass('highlight');
-    const text = that.text().toLowerCase();
-    const defaultDays = 'Show All(+)';
-    const mapDaysToSelectors = { 
-        sun: '.sunday-section', 
-        mon: '.monday-section',                         
-        tue: '.tuesday-section', 
-        wed: '.wednesday-section', 
-        thu: '.thursday-section', 
-        fri: '.friday-section', 
-        sat: '.saturday-section', 
-        defaultDays: '.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section' 
+
+    // https://api.pdflayer.com/api/convert?access_key=6f976b9baaede103c03c9763adf6e9fd&document_html=<p>Hello</p>>&test=1
+
+const createMealPlanOnlyPdf = () => {
+    // $.getJSON(
+    //     `https://api.pdflayer.com/api/convert?access_key=6f976b9baaede103c03c9763adf6e9fd&document_url=downloadUrl,
+    //     {
+    //         access_key: access_key='6f976b9baaede103c03c9763adf6e9fd',
+    //         test: 1,
+    //         document_url: 'https://github.com/aleyesa/Meal-Plan-O/blob/master/index.html',
+    //     }, (data) => console.log(data)
+    //     );
+
+    //     $('.meal-table-section').on('click', '.pdfBtn', () => {
+        
+
+    // }   
+    // $('.meal-table-section').on('click', '.pdfBtn', () => {
+        $.ajax(
+            {
+            method: 'POST',
+            url: 'https://api.pdflayer.com/api/convert?access_key=6f976b9baaede103c03c9763adf6e9fd&test=1',
+            data: {
+                document_html: '<!DOCTYPE html><html><head><title>Meal Plan</title></head><body><p>Hello</p></body></html>',
+            },
+            success: (data, a ,xhr) => {
+                let downloadLink      = document.createElement('a');
+                downloadLink.target   = '_blank';
+                downloadLink.download = 'name_to_give_saved_file.pdf';
+              
+                // convert downloaded data to a Blob
+                let blob = new Blob([data], { type: 'application/pdf' });
+              
+                // create an object URL from the Blob
+                let URL = window.URL || window.webkitURL;
+                let downloadUrl = URL.createObjectURL(blob);
+                console.log(blob);
+                $('meal-table-section a').attr('href', `https://api.pdflayer.com/api/convert?access_key=6f976b9baaede103c03c9763adf6e9fd&document_url=http://localhost:8080/69d0476a-8b71-4e77-af84-28066a79c5ca`);
+                // set object URL as the anchor's href
+                // downloadLink.href = downloadUrl;
+              
+                // // append the anchor to document body
+                // document.body.append(downloadLink);
+              
+                // // fire a click event on the anchor
+                // downloadLink.click();
+              
+                // // cleanup: remove element and revoke object URL
+                // document.body.removeChild(downloadLink);
+                // URL.revokeObjectURL(downloadUrl);
+
+            }
+        });
     };
-
-    const showCurDay = selector => $(selector).removeClass('hide');
-    const hideOtherDays = selector => $(selector).siblings('section').addClass('hide');
-
-    for (let key in mapDaysToSelectors) {
-        const selector = mapDaysToSelectors[key];
-
-        if (key === text) {
-            showCurDay(selector);
-            hideOtherDays(selector);
-            break;
-        } else {
-            showCurDay(mapDaysToSelectors.defaultDays);
-        }
-    };
-
-
-//     if($(this).text() === 'Sun'){
-//         $('.sunday-section').removeClass('hide');
-//         $('.sunday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Mon'){
-//         $('.monday-section').removeClass('hide');
-//         $('.monday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Tue'){
-//         $('.tuesday-section').removeClass('hide');
-//         $('.tuesday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Wed'){
-//         $('.wednesday-section').removeClass('hide');
-//         $('.wednesday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Thu'){
-//         $('.thursday-section').removeClass('hide');
-//         $('.thursday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Fri'){
-//         $('.friday-section').removeClass('hide');
-//         $('.friday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Sat'){
-//         $('.saturday-section').removeClass('hide');
-//         $('.saturday-section').siblings('section').addClass('hide');
-//     }else if($(this).text() === 'Show All(+)'){
-//         $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').removeClass('hide');
-//         $(this).text('Show All(-)');
-//     }else {
-//         $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').addClass('hide');
-//         $(this).text('Show All(+)');
-//     }
-});
-};
-//The html used to add a meal section, followed by an add meal section button
-const mealSectionTemplate = () =>
- `
-        <div>
-            <h2>Meal<button class="deleteMealSecBtn">x</button></h2>
-            <section>
-                <button class="addFoodBtn">+</button>
-            </section>
-        </div>
-        <div>
-                <button class="addMealSecBtn">+</button>
-        </div>
-`;
-//adds a meal section on specified day                                   
-const addMealSection = () => {              
-$('.meal-table-section').on('click', '.addMealSecBtn', function (event) {
-    // console.log($(this).parent().closest('div').html());
-    $(this).parent().closest('div').replaceWith(mealSectionTemplate());
-});
-};
-//remove a specified meal section on the specified day                              
-const removeMealSection = () => {
-$('.meal-table-section').on('click', '.deleteMealSecBtn', function (event) {
-    $(this).closest('div').remove().html();
-});
-};
-//adds food item on specified meal section
-const addFoodItem = () => {
-$('.meal-table-section').on('click', '.addFoodBtn', function(event) {
-    //holds current clicked button
-    let mealSection = this;
-    //we go to the search- section
-    $('.meal-table-section').css('display', 'none');
-    $('.search-add-section').css('display', 'block');
-    //search for the item
-    $('.search-results').on('click', '.addBtn', function(event) {
-        let foodItemToAdd = $(this).parent().siblings('.foodName').text();
 
             $(mealSection).parent().closest('section').replaceWith(`<p>${foodItemToAdd}<button class="removeFoodItem">x</button> </p>
             <section><button class="addFoodBtn">+</button></section>`);
@@ -247,5 +188,11 @@ runApplication();
 //      <p>Total lipid (fat): 16.13 g</p>
 //      <p>Carbohydrate, by difference: 17.43 g</p>`));
 
-//************************************************create a way to set the name of the meal section
+createMealPlanOnlyPdf();
 
+
+
+
+
+  
+  
