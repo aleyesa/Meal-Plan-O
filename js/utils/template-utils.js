@@ -79,7 +79,6 @@ const mealSectionInfoTemplate = mealSecName =>
     </section>
     <h2>Total Macros</h2>
     <section class="macroSection">
-      
     </section>
   </section>
 `;
@@ -87,7 +86,10 @@ const mealSectionInfoTemplate = mealSecName =>
 const displayResultHtml = (foodName, macros) => 
 `
   <div class="foodItem">
-  <a href="#" class="foodName">${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '')}</a>
+  <h2 class="foodName">
+    <i class="fas fa-utensils"></i>
+    ${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '')}
+  </h2>
     <div class="nutritionInfo">
       <h2>Macros</h2>
       ${macros}
@@ -101,7 +103,7 @@ const displayResultHtml = (foodName, macros) =>
 
 const macroInfoTemplateForResults = (name, value, unit) => (
 `
-<p>${name}: <span class="${name}">${value}</span> ${unit}</p>
+<p><span class="capName">${name}</span>: <span class="${name}">${value}</span> ${unit}</p>
 `
 );
 
