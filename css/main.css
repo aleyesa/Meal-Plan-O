@@ -511,6 +511,7 @@ main .pdfFriendly {
 @media only screen and (max-width: 799px) {
   header {
     padding: 70px 20px;
+    height: auto;
   }
   
   header h1 {
