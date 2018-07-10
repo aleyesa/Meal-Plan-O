@@ -1,7 +1,7 @@
 const createDayInfoTemplate = () => {
   $('.meal-table-section').children('section').html(
   `
-    <section class="meal-section-menu">
+    <aside class="meal-section-menu">
       <form class="meal-name-form">
         <fieldset>
           <legend>Create a new meal section</legend>
@@ -15,7 +15,7 @@ const createDayInfoTemplate = () => {
       </section>
       <section class="meal-names-section">
       </section>
-    </section>
+    </aside>
   `
   )};
 
@@ -23,8 +23,8 @@ const mealSectionNameTemplate = mealSecName =>
 `  
   <div class="meal${mealNameSecIdentifier}">
     <a href="#">${mealSecName}</a>
-    <button class="addFoodItemBtn"><i class="far fa-edit"></i></button>
-    <button class="deleteMealSecBtn"><i class="far fa-trash-alt"></i></button>
+    <button class="addFoodItemBtn" value="add_food_item_button"><i class="far fa-edit"></i></button>
+    <button class="deleteMealSecBtn" value="remove_meal_section_button"><i class="far fa-trash-alt"></i></button>
   </div>
 `;
 
@@ -79,7 +79,7 @@ const mealSectionInfoTemplate = mealSecName =>
     </section>
     <h2>Total Macros</h2>
     <section class="macroSection">
-      <div id="chart_div"></div>
+      
     </section>
   </section>
 `;
@@ -87,12 +87,15 @@ const mealSectionInfoTemplate = mealSecName =>
 const displayResultHtml = (foodName, macros) => 
 `
   <div class="foodItem">
-  <a href="#" class="foodName">${foodName.replace(/\u002C UPC: [0-9]+/g, '')}</a>
+  <a href="#" class="foodName">${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '')}</a>
     <div class="nutritionInfo">
       <h2>Macros</h2>
       ${macros}
     </div>
-  <button class="addBtn">Add</button>
+  <button class="addBtn">Add</button>    
+  <div class="notification">
+  <p>Food item added!</p>
+  </div>
   </div>
 `;
 
@@ -102,3 +105,4 @@ const macroInfoTemplateForResults = (name, value, unit) => (
 `
 );
 
+// <div id="chart_div"></div>

@@ -5,7 +5,7 @@ let totalResults = 0;
 let mealNameSecIdentifier = 0;
 let currMealSec = '';
 let targetMealSecName = ''; 
-
+let firstHtml = $('body').html();
 
 const totalMacros = {
   cals:  0,
@@ -138,16 +138,19 @@ const updateTotalMacrosToSec = () => {
 
 const addedFoodItemFromList = () => {
   $('.search-results').on('click', '.addBtn', function() {
-    let foodItemToAdd = $(this).parent().find('.foodName').html();
+    const addBtn = $(this);
+    let foodItemToAdd = addBtn.parent().find('.foodName').html();
 
-    let macroInfo = $(this).siblings('div');
+    let macroInfo = addBtn.siblings('div');
     getFoodItemToSec(foodItemToAdd, macroInfoTemplateForPlanner(getMacroInfo(macroInfo)));
     calcTotalMacros('+', getMacroInfo(macroInfo));
     updateTotalMacrosToSec();
 
-    $('.search-add-section').css('display', 'none');
-    $('.search-results').empty();
-    $('.meal-table-section').css('display', 'block');
+    addBtn.siblings('.notification').fadeIn().fadeOut(1200);
+
+    // $('.search-add-section').css('display', 'none');
+    // $('.search-results').empty();
+    // $('.meal-table-section').css('display', 'block');
   });    
 };
 
@@ -157,6 +160,7 @@ const addFoodItemInfoToSection = () => {
     targetMealSecName = currMealSec.parent().attr('class');
     $('.meal-table-section, .totalResults').css('display', 'none');
     $('.search-add-section').css('display', 'block');
+    $('.loadBtn').hide();
     $('.search-results').empty();
     currentFoodSearch = '';
     combineResultsHtml = '';
@@ -192,6 +196,7 @@ const resetMealPlan = () => {
     $('.delete-prompt').css('display', 'block');
     $('.delete-prompt').on('click', '.exitBtn', () => $('.delete-prompt').css('display', 'none'));
     $('.delete-prompt').on('click', '.proceedBtn', () => {$('.delete-prompt').css('display', 'none');
+
     runApplication();
   });
   });
@@ -203,6 +208,8 @@ const handleSearch = () => {
     combineResultsHtml = '';
     $('.search-results').empty();
     $('.totalResults').css('display', 'block');
+    $('.loadBtn').show();
+    $('.backToTop').hide();
     totalResults = 0;
     pageOffset = 0;
     
@@ -211,7 +218,7 @@ const handleSearch = () => {
     query.val('');
 
     handleFoodSearchRequest(currentFoodSearch, pageOffset);
-  });
+  });;
 };
 
 const loadMoreResults = () => {
@@ -224,6 +231,8 @@ const loadMoreResults = () => {
       pageOffset += 10;
       handleFoodSearchRequest(currentFoodSearch, pageOffset);
     }
+
+    $('.backToTop').show();
   });
 };
 
@@ -273,6 +282,9 @@ const runApplication = () => {
 };
 
 runApplication();
+<<<<<<< HEAD
 
   
   
+=======
+>>>>>>> responsive

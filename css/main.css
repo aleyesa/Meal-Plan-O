@@ -9,7 +9,7 @@ body {
 }
 
 body {
-  /* background-color: #FFF9F1; */
+  background-color: #FFF9F1;
   font-family: 'Josefin Sans', sans-serif;
   /* background-image: url(../img/food-background.jpg); */
 }
@@ -96,14 +96,13 @@ a,
 
 /* header styling */
 header {
-  height: 25%;
+  /* height: 20%; */
   padding: 10px 0px;
-  background: #FFF9F1;
   text-align: center;
+  padding: 20px;
 }
 
 header h1 {
-  margin: 10px;
   font-size: 40px;
   font-weight: bolder;
 }
@@ -115,21 +114,28 @@ header h2 {
   text-transform: uppercase;
 }
 
+header p {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: italic; 
+}
+
 main {
-  /* height: 75%; */
+  /* height: 78%; */
   /* border: 1px solid blue; */
   /* background: blue; */
 }
 .meal-table-section {
   display: flex;
   flex-direction: column;
-  height: 90%;
+  /* height: 90%; */
   width: 100%;
   /* background: red; */
 }
 .showMealSection {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   height: 100%;
   width: 100%;
 }
@@ -139,20 +145,19 @@ nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 0px 10px;
+  /* padding: 10px; */
   background: #FFE79B;
   border-top: 1px solid rgb(250, 224, 141);
   border-bottom: 1px solid rgb(250, 224, 141);
 }
 
 nav div { 
-  padding: 10px 5px;
+  padding: 10px 0;
 }
 
 .weekDay {
   font-weight: bold;
   text-decoration-line: none;
-  
 }
 
 a,
@@ -173,12 +178,11 @@ nav div:hover,
 .meal-section-menu {
   display: flex;
   flex-direction: column;
-  /* width: 25%; */
-  width: 100%;
+  width: 25%;
+  /* width: 100%; */
   padding: 20px;
   border-right: 1px solid rgb(250, 224, 141);
   text-align: center;
-  background-color: #FFF9F1;
 }
 
 /* meal-name form styling */
@@ -225,10 +229,6 @@ nav div:hover,
   border: none;
   color: white;
   width: 50%;
-}
-
-.centerLoadBtn {
-  text-align: center;
 }
 
 .addMealSecBtn:hover,
@@ -297,8 +297,7 @@ nav div:hover,
 
 .search-add-section h2,
 .search-form,
-.totalResults,
-.foodItem {
+.totalResults {
   text-align: center;
 }
 
@@ -343,11 +342,12 @@ nav div:hover,
 .meal-section-info {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 75%;
+  padding: 20px;
 }
 
 .meal-section-info h2 {
-  padding: 10px;
+  /* padding: 10px; */
   text-transform: uppercase;
 }
 
@@ -358,23 +358,13 @@ nav div:hover,
 
 .foodItemSection {
   display: flex;
-  /* height: 40%; */
   flex-direction: column;
   overflow-x: none;
   overflow-y: auto;
-}
-
-.foodItemSection, 
-.macroSection {
-  background-color: #FFF9F1;
-}
-
-.foodItemSection img {
-  width: 24px;
+  padding-bottom: 20px;
 }
 
 .foodItemSection h2 {
-  position: relative;
   width: 100%;
 }
 
@@ -387,6 +377,7 @@ nav div:hover,
 
 .foodItemSection p {
   display: inline-block;
+
 }
 
 .foodItemSection p::after {
@@ -418,24 +409,27 @@ nav div:hover,
   height: 100%;
 }
 
-.search-add-section .backToTable {
-  position: absolute;
-  top: 0px;
-  left: 0px;
+.backToTable {
+  position: fixed;
+  /* left: -25px; */
+  padding: 0;
+  top: 10px;
+  left: 10px;
+}
+
+
+.search-add-section div {
+  text-align: center;
 }
 
 .search-results {
-  background-color: #FFF9F1;
   margin: 20px 0px;
 }
 
 .foodItem {
+  text-align: left;
   padding: 10px 8px;
   margin: 10px;
-}
-
-.foodItem div {
-  background-color: #FFF9F1;
 }
 
 main .pdfFriendly {
@@ -447,7 +441,6 @@ main .pdfFriendly {
 }
 
 .macroSection h2 {
-  background-color: #FFF9F1;
   font-size: 20px;
   padding: 20px 20px 0px 20px;
 }
@@ -459,7 +452,6 @@ main .pdfFriendly {
   padding: 20px 0px;
   text-align: center;
   width: 100%;
-  height: 100%;
 }
 
 .macroSection div {
@@ -467,12 +459,12 @@ main .pdfFriendly {
   flex-direction: column;
   justify-content: center;
   font-weight: bold;
-  width: 40%;
+  width: 25%;
 }
 
 .addedFoodItem {
   display: flex;
-  padding: 20px 10px;
+  padding: 20px 0;
 }
 
 .addedFoodName {
@@ -495,4 +487,85 @@ main .pdfFriendly {
 
 .legend {
   text-transform: uppercase;
+}
+
+.addBtn {
+  position: relative;
+}
+
+.notification {
+  display: inline-block;
+  position: absolute;
+  font-size: 12px;
+  padding: 7px 0 7px 5px;
+  margin-right: auto;
+}
+
+.backToTop {
+  position: fixed;
+  -ms-transform: rotate(270deg); /* IE 9 */
+  -webkit-transform: rotate(270deg); /* Safari */
+  transform: rotate(270deg); /* Standard syntax */
+  top: 0;
+  right: -313px;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  text-decoration-line: none;
+}
+
+.backToTop i {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */
+  transform: rotate(90deg); /* Standard syntax */
+
+}
+
+@media only screen and (max-width: 799px) {
+  .js-meal-name-input {
+    max-width: 85%;
+  }
+
+  .meal-section-features {
+    display: flex;
+  }
+
+  main {
+  }
+  .showMealSection {
+    flex-direction: column;
+  }
+
+  .meal-section-menu {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    width: 100%;
+  }
+
+  .meal-section-info {
+    width: 100%;
+  }
+
+  .macroSection div {
+    width: 40%;
+  }
+
+  .backToTable {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari */
+    transform: rotate(90deg); /* Standard syntax */
+  }
+  
+  .backToTable i {
+    -ms-transform: rotate(270deg); /* IE 9 */
+    -webkit-transform: rotate(270deg); /* Safari */
+    transform: rotate(270deg); /* Standard syntax */
+  }
+  
+  .backToTable {
+    padding: 0;
+    top: 40px;
+    left: -20px;
+  }
 }
