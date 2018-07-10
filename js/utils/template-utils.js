@@ -64,7 +64,6 @@ const addedFoodItemTemplate = (foodItemToAdd) =>
 `
   <div class="addedFoodItem">
     <h2 class="addedFoodName">
-      <i class="fas fa-utensils"></i>
       ${foodItemToAdd}
     </h2>
     <button class="removeFoodItem"><i class="far fa-trash-alt"></i></button>
