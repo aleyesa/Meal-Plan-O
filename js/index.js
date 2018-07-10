@@ -282,9 +282,3 @@ const runApplication = () => {
 };
 
 runApplication();
-<<<<<<< HEAD
-
-  
-  
-=======
->>>>>>> responsive
