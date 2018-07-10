@@ -35,8 +35,9 @@ a,
 
 .delete-prompt div {
   position: absolute;
-  top: 50%;
+  top: 25%;
   left: 25%;
+  right: 25%;
   transform: translateY(-50%);
   padding: 10px;
   margin: 0 10px;
@@ -112,6 +113,7 @@ header h2 {
   font-size: 16px;
   font-weight: 100;
   text-transform: uppercase;
+  padding: 0 0 10px 0;
 }
 
 header p {
@@ -180,19 +182,20 @@ nav div:hover,
   flex-direction: column;
   width: 25%;
   /* width: 100%; */
-  padding: 20px;
+  padding: 30px 20px 30px 20px;
   border-right: 1px solid rgb(250, 224, 141);
   text-align: center;
 }
 
 /* meal-name form styling */
 .meal-name-form fieldset {
-  padding: 10px 0px 20px 0px;
+  padding: 30px 0px 30px 0px;
 }
 
 .meal-name-form legend {
-  font-weight: 100;
-  padding: 10px 0px;
+  font-weight: bold;
+  /* padding: 10px 0px; */
+  /* margin-bottom: 20px; */
   text-transform: uppercase;
   font-size: 16px;
 }
@@ -250,7 +253,7 @@ nav div:hover,
   /* display: flex;
   flex-direction: column; */
   /* height: 50%; */
-  margin: 10px 0px;
+  margin: 20px 0px 0px 0px;
   overflow-x: none;
   overflow-y: auto;
 }
@@ -259,7 +262,7 @@ nav div:hover,
   display: flex;
   justify-content: flex-end;
   align-items: baseline;
-  margin: 10px 0;
+  margin: 10px 0 0 0;
   padding: 10px;
   background-color: rgba(226, 226, 226, 0.308);;
   border: 1px solid rgb(226, 226, 226);
@@ -286,9 +289,9 @@ nav div:hover,
 }
 
 .backToTable {
-  padding: 10px;
   color: black;
   border: none;
+  text-decoration-line: none;
 }
 
 .backToTable:hover {
@@ -343,11 +346,12 @@ nav div:hover,
   display: flex;
   flex-direction: column;
   width: 75%;
-  padding: 20px;
+  padding: 30px 20px 20px 20px;
 }
 
 .meal-section-info h2 {
   /* padding: 10px; */
+  font-weight: bold;
   text-transform: uppercase;
 }
 
@@ -361,10 +365,12 @@ nav div:hover,
   flex-direction: column;
   overflow-x: none;
   overflow-y: auto;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 30px;
 }
 
 .foodItemSection h2 {
+  color: rgb(133, 82, 133);
   width: 100%;
 }
 
@@ -377,6 +383,8 @@ nav div:hover,
 
 .foodItemSection p {
   display: inline-block;
+  font-style: italic;
+  margin: 10px 0;
 
 }
 
@@ -411,10 +419,8 @@ nav div:hover,
 
 .backToTable {
   position: fixed;
-  /* left: -25px; */
-  padding: 0;
-  top: 10px;
-  left: 10px;
+  left: 10px; 
+  top: 10px;    
 }
 
 
@@ -442,14 +448,14 @@ main .pdfFriendly {
 
 .macroSection h2 {
   font-size: 20px;
-  padding: 20px 20px 0px 20px;
+  padding: 30px 20px 30px 20px;
 }
 
 .macroSection {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 20px 0px;
+  padding: 30px 0px;
   text-align: center;
   width: 100%;
 }
@@ -501,26 +507,6 @@ main .pdfFriendly {
   margin-right: auto;
 }
 
-.backToTop {
-  position: fixed;
-  -ms-transform: rotate(270deg); /* IE 9 */
-  -webkit-transform: rotate(270deg); /* Safari */
-  transform: rotate(270deg); /* Standard syntax */
-  top: 0;
-  right: -313px;
-  bottom: 0;
-  padding: 0;
-  margin: 0;
-  text-decoration-line: none;
-}
-
-.backToTop i {
-  -ms-transform: rotate(90deg); /* IE 9 */
-  -webkit-transform: rotate(90deg); /* Safari */
-  transform: rotate(90deg); /* Standard syntax */
-
-}
-
 @media only screen and (max-width: 799px) {
   .js-meal-name-input {
     max-width: 85%;
@@ -564,7 +550,6 @@ main .pdfFriendly {
   }
   
   .backToTable {
-    padding: 0;
     top: 40px;
     left: -20px;
   }

@@ -209,7 +209,6 @@ const handleSearch = () => {
     $('.search-results').empty();
     $('.totalResults').css('display', 'block');
     $('.loadBtn').show();
-    $('.backToTop').hide();
     totalResults = 0;
     pageOffset = 0;
     
@@ -231,8 +230,6 @@ const loadMoreResults = () => {
       pageOffset += 10;
       handleFoodSearchRequest(currentFoodSearch, pageOffset);
     }
-
-    $('.backToTop').show();
   });
 };
 
