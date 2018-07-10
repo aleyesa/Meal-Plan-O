@@ -5,7 +5,7 @@ let totalResults = 0;
 let mealNameSecIdentifier = 0;
 let currMealSec = '';
 let targetMealSecName = ''; 
-let firstHtml = $('body').html();
+let mainHtml = $('main').html();
 
 const totalMacros = {
   cals:  0,
@@ -197,7 +197,12 @@ const resetMealPlan = () => {
     $('.delete-prompt').on('click', '.exitBtn', () => $('.delete-prompt').css('display', 'none'));
     $('.delete-prompt').on('click', '.proceedBtn', () => {$('.delete-prompt').css('display', 'none');
 
-    runApplication();
+    // $('main').replaceWith(`<main role="main">${mainHtml}</main>`);
+    // resetMealPlan();
+    createDayInfoTemplate();
+    specifyTabAndShowSection();
+    addMealSection();
+    selectMealSection();
   });
   });
 };
