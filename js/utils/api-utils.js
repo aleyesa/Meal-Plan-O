@@ -5,7 +5,7 @@ const handleFoodSearchRequest = (nameOfFood, offset) => {
     api_key: 'Dque88jiOSae3F2qrzzsBSqCYrNxXMn5iydg3NLe',
     q: nameOfFood,
     offset,
-    max: 10
+    max: 12
   };
 
   $.getJSON(ndbSearchEndpoint, requestParam, (data) => {
