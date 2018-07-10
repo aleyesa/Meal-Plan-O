@@ -31,6 +31,7 @@
   <header role="banner">
     <h1>Meal Plan-O</h1>
     <h2>Plan and organize your meals!</h2>
+    <p>Select a day, create a meal section, search for a food item, add food item!</p>
   </header>
   <main role="main">
     <!-- Meal Planner Section -->
@@ -68,7 +69,7 @@
       </section>
     </section>
     <!-- Search section -->
-    <section class="search-add-section hide" role="region">
+    <section class="search-add-section hide" id="goToSearchForm" role="region">
       <a class="backToTable"><i class="fas fa-chevron-left"></i> Planner</a>
       <!-- Search food item form -->
       <h2>Search for a food item</h2>
@@ -83,7 +84,8 @@
       <!-- Search result section -->
       <section class="search-results" role="region"></section>
       <div>
-      <button class="loadBtn">Load More Results</button>
+      <button class="loadBtn hide">Load More Results</button>
+      <a class="backToTop hide" href="#goToSearchForm">Back to top <i class="fas fa-chevron-up"></i></a>
       </div>
     </section>
     <!-- <footer role="contentinfo"></footer> -->

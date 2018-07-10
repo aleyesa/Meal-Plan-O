@@ -43,5 +43,6 @@ const handleFoodReportRequest = (ndbno) => {
       combineResultsHtml += displayResultHtml(foodName, addMacroInfo);
 
       $('.search-results').html(combineResultsHtml);
+      $('.notification').hide();
   });
 };

@@ -1,7 +1,7 @@
 const createDayInfoTemplate = () => {
   $('.meal-table-section').children('section').html(
   `
-    <section class="meal-section-menu">
+    <aside class="meal-section-menu">
       <form class="meal-name-form">
         <fieldset>
           <legend>Create a new meal section</legend>
@@ -15,7 +15,7 @@ const createDayInfoTemplate = () => {
       </section>
       <section class="meal-names-section">
       </section>
-    </section>
+    </aside>
   `
   )};
 
@@ -23,8 +23,8 @@ const mealSectionNameTemplate = mealSecName =>
 `  
   <div class="meal${mealNameSecIdentifier}">
     <a href="#">${mealSecName}</a>
-    <button class="addFoodItemBtn far fa-edit"></button>
-    <button class="deleteMealSecBtn far fa-trash-alt"></button>
+    <button class="addFoodItemBtn" value="add_food_item_button"><i class="far fa-edit"></i></button>
+    <button class="deleteMealSecBtn" value="remove_meal_section_button"><i class="far fa-trash-alt"></i></button>
   </div>
 `;
 
@@ -42,42 +42,44 @@ const macroInfoTemplateForPlanner = (macroInfo) =>
 const macroInfoTotalTemplate = (macroInfo) =>
   `
     <div>
-      <h2 class="calories">${macroInfo.cals}</h2>
       <p>Calories(kcals)</p>
+      <h2 class="calories">${macroInfo.cals}</h2>
     </div>
     <div>
-      <h2 class="proteins">${macroInfo.pros}</h2>
       <p>Proteins(g)</p>
+      <h2 class="proteins">${macroInfo.pros}</h2>
     </div>
     <div>
-      <h2 class="fats">${macroInfo.fats}</h2>
       <p>Fats(g)</p>
+      <h2 class="fats">${macroInfo.fats}</h2>
     </div>
     <div>
-      <h2 class="carbohydrates">${macroInfo.carbs}</h2>
       <p>Carbohydrates(g)</p>
+      <h2 class="carbohydrates">${macroInfo.carbs}</h2>
     </div>
   `
   ;
 
 const addedFoodItemTemplate = (foodItemToAdd) => 
 `
-  <h2 class="addedFoodName">
-  <img src="./img/dish.png"/>
-  ${foodItemToAdd}
-    <button class="removeFoodItem">x</button>
-  </h2>
+  <div class="addedFoodItem">
+    <h2 class="addedFoodName">
+      <i class="fas fa-utensils"></i>
+      ${foodItemToAdd}
+    </h2>
+    <button class="removeFoodItem"><i class="far fa-trash-alt"></i></button>
+  </div>
 `
 
 const mealSectionInfoTemplate = mealSecName =>
 `   
   <section class="meal${mealNameSecIdentifier} meal-section-info">
-  <h2>${mealSecName} consists of...</h2>
+  <h2>${mealSecName}</h2>
     <section class="foodItemSection">
     </section>
-    <h2>${mealSecName} macros are...</h2>
+    <h2>Total Macros</h2>
     <section class="macroSection">
-      <div id="chart_div"></div>
+      
     </section>
   </section>
 `;
@@ -85,12 +87,15 @@ const mealSectionInfoTemplate = mealSecName =>
 const displayResultHtml = (foodName, macros) => 
 `
   <div class="foodItem">
-  <a href="#" class="foodName">${foodName.replace(/\u002C UPC: [0-9]+/g, '')}</a>
+  <a href="#" class="foodName">${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '')}</a>
     <div class="nutritionInfo">
       <h2>Macros</h2>
       ${macros}
     </div>
-  <button class="addBtn">Add</button>
+  <button class="addBtn">Add</button>    
+  <div class="notification">
+  <p>Food item added!</p>
+  </div>
   </div>
 `;
 
@@ -100,3 +105,4 @@ const macroInfoTemplateForResults = (name, value, unit) => (
 `
 );
 
+// <div id="chart_div"></div>
