@@ -197,8 +197,6 @@ const resetMealPlan = () => {
     $('.delete-prompt').on('click', '.exitBtn', () => $('.delete-prompt').css('display', 'none'));
     $('.delete-prompt').on('click', '.proceedBtn', () => {$('.delete-prompt').css('display', 'none');
 
-    // $('main').replaceWith(`<main role="main">${mainHtml}</main>`);
-    // resetMealPlan();
     createDayInfoTemplate();
     specifyTabAndShowSection();
     addMealSection();
@@ -244,6 +242,9 @@ const saveAsPdf = () => {
     let pdfFriendlyHtml = '';
     const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     $('.meal-section-info').css('display', 'block');
+
+    $('.sunday-section .monday-section .tuesday-section .wednesday-section .thursday-section .friday-section .saturday-section').remove();
+
     const mealPlanReplacement = weekDaysArray =>  {
       $('.meal-table-section').css('display', 'none');
       ` 
