@@ -331,7 +331,7 @@ main {
 }
 
 .foodName {
-  color: #b61024;
+  color: rgb(165, 75, 98);
   text-decoration-line: none;
   font-weight: bold;
   padding: 0 0 20px 0;
@@ -377,11 +377,11 @@ main {
   overflow-x: none;
   overflow-y: auto;
   padding-top: 10px;
-  padding-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .foodItemSection h2 {
-  color: rgb(133, 82, 133);
+  color: rgb(165, 75, 98);;
   width: 100%;
 }
 

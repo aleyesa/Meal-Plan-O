@@ -69,8 +69,8 @@ const addMealSection = () => {
     const thisDaysMealNameSec = $(this).siblings('.meal-names-section');
     $('.meal-section-menu').siblings(`.meal-section-info`).css('display', 'none');
     thisDaysMealNameSec.append(mealSectionNameTemplate(mealSecName));
-    $(this).parent().after(mealSectionInfoTemplate(mealSecName));
-
+    // $(this).parent().after(mealSectionInfoTemplate(mealSecName));
+    $(this).closest('.showMealSection').append(mealSectionInfoTemplate(mealSecName));
     $('.js-meal-name-input').val("");
     mealNameSecIdentifier++;
     foodItemToAdd = '';
@@ -236,37 +236,45 @@ const loadMoreResults = () => {
   });
 };
 
+let pdfFriendlyHtml = '';
+
 const saveAsPdf = () => {
   const mealTableHtml = $('meal-table-section').html();
+
   $('.meal-section-features').on('click', '.pdfBtn', function(event) {
-    let pdfFriendlyHtml = '';
+    pdfFriendlyHtml = '';
+  //   $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').removeClass('hide');
+  //   $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').addClass('showMealSection');
+  //   $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').find('.meal-section-info').show();
+    $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').find('.meal-section-menu').hide();
+    $('main').hide();
     const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     $('.meal-section-info').css('display', 'block');
 
     $('.sunday-section .monday-section .tuesday-section .wednesday-section .thursday-section .friday-section .saturday-section').remove();
 
-    const mealPlanReplacement = weekDaysArray =>  {
-      $('.meal-table-section').css('display', 'none');
-      ` 
-      ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').html(`
-        <h2>${weekDaysArray}</h2>
-        ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').html()}
-      `)}
-      ${$(`.${weekDaysArray.toLowerCase()}-section`).find('.meal-section-info').wrapAll(`<div class="pdfFriendly" />`).html()}
-      `
-    };
+
+    const mealPlanReplacement = weekDaysArray => 
+    `
+      <h2>${weekDaysArray}</h2>
+      ${$(`.${weekDaysArray.toLowerCase()}-section`).has('.meal-section-info').html()}
+    `;
       $('.meal-section-info').css('width', '100%');
 
-    const showPdfFriendlyHtml = () => {
-      $('main').html($('.pdfFriendly').html()).html();
-    };
-    weekDays.forEach( day => 
-      mealPlanReplacement(day)
-    );
-    showPdfFriendlyHtml();
-    window.print();
-    $('.meal-table-section').css('display', 'block');
-  });
+    weekDays.forEach( day => {
+      let currentInfo = mealPlanReplacement(day);
+      const string2 = ($(`.${day.toLowerCase()}-section`).find('.foodItemSection div').html());
+      
+      if (string2 !== undefined){
+      pdfFriendlyHtml += currentInfo;
+      console.log(pdfFriendlyHtml);
+      //problem is when adding a meal section, it adds the meal section in the front.
+      } 
+    });
+   
+    $('.pdfFriendly-section').html($(pdfFriendlyHtml));
+    // window.print();
+});
 };
 
 const runApplication = () => {
