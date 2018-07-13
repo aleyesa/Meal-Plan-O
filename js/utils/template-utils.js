@@ -95,7 +95,7 @@ const displayResultHtml = (foodName, macros) =>
     </div>
   <button class="addBtn">Add</button>    
   <div class="notification">
-  <p>Food item added!</p>
+    <p>${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '')} was added to planner.</p>
   </div>
   </div>
 `;

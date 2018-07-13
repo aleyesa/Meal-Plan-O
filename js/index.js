@@ -16,6 +16,8 @@ const totalMacros = {
 
 const specifyTabAndShowSection = () => {
   $('.meal-table-section nav').on('click', '.weekDay', function() {
+    $('.step1').hide();
+    $('.step2').css('display', 'flex');
     const that = $(this);
     const text = that.text().toLowerCase();
 
@@ -25,7 +27,7 @@ const specifyTabAndShowSection = () => {
     const mapDayTabToItsSection = { 
       sun: '.sunday-section', 
       mon: '.monday-section',                         
-      tue: '.tuesday-section', 
+      tue: '.tuesday-section',
       wed: '.wednesday-section', 
       thu: '.thursday-section', 
       fri: '.friday-section', 
@@ -65,6 +67,7 @@ const selectMealSection = () => {
 const addMealSection = () => {              
   $('.meal-name-form').on('submit', function(event) {
     event.preventDefault();
+    $('.step2').hide();
     const mealSecName = $(this).find('.js-meal-name-input').val();
     const thisDaysMealNameSec = $(this).siblings('.meal-names-section');
     $('.meal-section-menu').siblings(`.meal-section-info`).css('display', 'none');
@@ -146,7 +149,7 @@ const addedFoodItemFromList = () => {
     calcTotalMacros('+', getMacroInfo(macroInfo));
     updateTotalMacrosToSec();
 
-    addBtn.siblings('.notification').fadeIn().fadeOut(1200);
+    addBtn.siblings('.notification').show().fadeOut(3000);
 
     // $('.search-add-section').css('display', 'none');
     // $('.search-results').empty();

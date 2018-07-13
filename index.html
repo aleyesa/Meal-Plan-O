@@ -32,10 +32,6 @@
     <div class="cover">
       <h1>Meal Plan-O</h1>
       <h2>Plan and organize your meals!</h2>
-      <p>This application allows you to keep track of what you are eating during the day, simply choose the day
-        and organize the day with different meal sections. Once you have created a meal sectionm you can start adding
-        food item
-      </p>
     </div>
   </header>
   <main role="main">
@@ -43,7 +39,7 @@
     <section class="meal-table-section" role="region">  
       <!-- day tab navigation -->
       <nav role="navigation">
-        <div class="focus"><a class="weekDay" href="#">Sun</a></div>
+        <div><a class="weekDay" href="#">Sun</a></div>
         <div><a class="weekDay" href="#">Mon</a></div>
         <div><a class="weekDay" href="#">Tue</a></div>
         <div><a class="weekDay" href="#">Wed</a></div>
@@ -51,8 +47,16 @@
         <div><a class="weekDay" href="#">Fri</a></div>
         <div><a class="weekDay" href="#">Sat</a></div>
       </nav>
+
+      <div class="step1">
+        <i class="fas fa-arrow-up"></i>
+        <p>Let's get started! Choose a day tab to start planning your meals on that day!</p> 
+      </div>
+      <div class="step2">
+          <p><span><i class="fas fa-arrow-left"></i></span> All you need to do is simply create a meal section <span class="plusIcon">+</span> and get planning by adding a food item with the edit icon <span><i class="far fa-edit"></i></span>!</p> 
+      </div>
       <!-- Sunday -->
-      <section class="sunday-section showMealSection" id="sunday-section" role="region">
+      <section class="sunday-section hide" id="sunday-section" role="region">
       </section>
       <!-- Monday -->
       <section class="monday-section hide" id="monday-section" role="region">
