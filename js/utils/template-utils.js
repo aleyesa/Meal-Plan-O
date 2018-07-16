@@ -31,10 +31,10 @@ const mealSectionNameTemplate = mealSecName =>
 const macroInfoTemplateForPlanner = (macroInfo) => 
   `
   <div>
-    <p>Calories: <span class="calories">${macroInfo.cals}</span> kcals</p>
-    <p>Proteins: <span class="proteins">${macroInfo.pros}</span> g</p>
-    <p>Fats: <span class="fats">${macroInfo.fats}</span> g</p>
-    <p>Carbohydrates: <span class="carbohydrates">${macroInfo.carbs}</span> g</p>
+    <p>Calories: <span class="calories">${macroInfo.cals}</span>kcals</p>
+    <p>Proteins: <span class="proteins">${macroInfo.pros}</span>g</p>
+    <p>Fats: <span class="fats">${macroInfo.fats}</span>g</p>
+    <p>Carbohydrates: <span class="carbohydrates">${macroInfo.carbs}</span>g</p>
   </div>
   `
   ;
@@ -82,6 +82,24 @@ const mealSectionInfoTemplate = mealSecName =>
   </section>
 `;
 
+// const displayResultHtml = (foodName, macros) => 
+// `
+//   <div class="foodItem">
+//   <div class="nutritionInfo">
+//   <h2 class="foodName">
+//     <i class="fas fa-utensils"></i>
+//     ${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '')}
+//   </h2>
+//       <h2>Macros</h2>
+//       ${macros}
+//       <button class="addBtn">Add</button>  
+//     </div>  
+//   <div class="notification">
+//     <p>${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '')} was added to planner.</p>
+//   </div>
+//   </div>
+// `;
+
 const displayResultHtml = (foodName, macros) => 
 `
   <div class="foodItem">
@@ -102,7 +120,7 @@ const displayResultHtml = (foodName, macros) =>
 
 const macroInfoTemplateForResults = (name, value, unit) => (
 `
-<p><span class="capName">${name}</span>: <span class="${name}">${value}</span> ${unit}</p>
+<p><span class="capName">${name}</span>: <span class="${name}">${value}</span>${unit}</p>
 `
 );
 

@@ -17,7 +17,7 @@ const totalMacros = {
 const specifyTabAndShowSection = () => {
   $('.meal-table-section nav').on('click', '.weekDay', function() {
     $('.step1').hide();
-    $('.step2').css('display', 'flex');
+    $('.step2').hide();
     const that = $(this);
     const text = that.text().toLowerCase();
 
@@ -57,6 +57,7 @@ const specifyTabAndShowSection = () => {
 
 const selectMealSection = () => {
   $('.meal-names-section').on('click', 'div', function() {
+    $('.step2').hide();
     const targetMealSecName = $(this).attr('class');
     const selectedDaysMealSecMenu = $(this).closest('.meal-section-menu');
     $('.meal-section-menu').siblings(`.meal-section-info`).css('display', 'none');
@@ -149,7 +150,7 @@ const addedFoodItemFromList = () => {
     calcTotalMacros('+', getMacroInfo(macroInfo));
     updateTotalMacrosToSec();
 
-    addBtn.siblings('.notification').show().fadeOut(3000);
+    addBtn.siblings('.notification').show().fadeOut(4800);
 
     // $('.search-add-section').css('display', 'none');
     // $('.search-results').empty();
@@ -163,6 +164,7 @@ const addFoodItemInfoToSection = () => {
     targetMealSecName = currMealSec.parent().attr('class');
     $('.meal-table-section, .totalResults').css('display', 'none');
     $('.search-add-section').css('display', 'block');
+    $('.backToTable').show();
     $('.loadBtn').hide();
     $('.search-results').empty();
     currentFoodSearch = '';
@@ -186,10 +188,14 @@ const removeFoodItem = () => {
 };
 
 const goBackToTable = () => {
-  $('.search-add-section').on('click', '.backToTable', () => {    
+  $('body').on('click', '.backToTable', () => {    
+    $('.pdfFriendly-section').hide();
     $('.search-add-section, .totalResults').css('display', 'none');
     $('.search-results').empty();
     $('.meal-table-section').css('display', 'block');
+    $('.backToTable').hide();
+    $('main').show();
+    $('.meal-section-menu').show();
     combineResultsHtml = '';
   });
 };
@@ -204,6 +210,7 @@ const resetMealPlan = () => {
     specifyTabAndShowSection();
     addMealSection();
     selectMealSection();
+    saveAsPdf();
   });
   });
 };
@@ -245,6 +252,7 @@ const saveAsPdf = () => {
   const mealTableHtml = $('meal-table-section').html();
 
   $('.meal-section-features').on('click', '.pdfBtn', function(event) {
+    $('.backToTable').show();
     pdfFriendlyHtml = '';
   //   $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').removeClass('hide');
   //   $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').addClass('showMealSection');
@@ -276,7 +284,8 @@ const saveAsPdf = () => {
     });
    
     $('.pdfFriendly-section').html($(pdfFriendlyHtml));
-    // window.print();
+    $('.pdfFriendly-section').show();
+    window.print();
 });
 };
 
