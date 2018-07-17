@@ -150,7 +150,10 @@ const addedFoodItemFromList = () => {
     calcTotalMacros('+', getMacroInfo(macroInfo));
     updateTotalMacrosToSec();
 
-    addBtn.siblings('.notification').show().fadeOut(4800);
+    addBtn.siblings('.notification')
+      .show()
+      .delay(4000)
+      .fadeOut(1000);
 
     // $('.search-add-section').css('display', 'none');
     // $('.search-results').empty();
