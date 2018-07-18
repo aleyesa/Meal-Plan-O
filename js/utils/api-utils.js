@@ -35,7 +35,7 @@ const handleFoodReportRequest = (ndbno) => {
 
       filteredNutrients.forEach(key => {
         const { name, value, unit } = key; 
-        console.log('name: ', name);
+        // console.log('name: ', name);
         addMacroInfo += (macroInfoTemplateForResults(name.replace(/(total|\s|\W|lipid|by|difference)/gi, '').replace(/energy/i, 'calories')
         .replace(/protein/i, 'proteins').replace(/fat/, 'fats').replace(/carbohydrate/i, 'carbohydrates').toLowerCase(), Math.round(value), unit));
       });

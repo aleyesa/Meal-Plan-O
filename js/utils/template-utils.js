@@ -30,7 +30,7 @@ const mealSectionNameTemplate = mealSecName =>
 
 const macroInfoTemplateForPlanner = (macroInfo) => 
   `
-  <div>
+  <div class="macro">
     <p>Calories: <span class="calories">${macroInfo.cals}</span>kcals</p>
     <p>Proteins: <span class="proteins">${macroInfo.pros}</span>g</p>
     <p>Fats: <span class="fats">${macroInfo.fats}</span>g</p>
@@ -71,13 +71,19 @@ const addedFoodItemTemplate = (foodItemToAdd) =>
 `
 
 const mealSectionInfoTemplate = mealSecName =>
-`   
+`     
   <section class="meal${mealNameSecIdentifier} meal-section-info">
   <h2>${mealSecName}</h2>
     <section class="foodItemSection">
+    <div class="noFoodNotification">
+      <p>No food has been added.</p>
+      <br/>
+      <p>Start adding your meals using the edit icon!</p>
+    </div>
     </section>
     <h2>Total Macros</h2>
     <section class="macroSection">
+    ${macroInfoTotalTemplate(totalMacros)}
     </section>
   </section>
 `;

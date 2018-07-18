@@ -75,6 +75,7 @@ const addMealSection = () => {
     thisDaysMealNameSec.append(mealSectionNameTemplate(mealSecName));
     // $(this).parent().after(mealSectionInfoTemplate(mealSecName));
     $(this).closest('.showMealSection').append(mealSectionInfoTemplate(mealSecName));
+
     $('.js-meal-name-input').val("");
     mealNameSecIdentifier++;
     foodItemToAdd = '';
@@ -118,6 +119,9 @@ const getFoodItemToSec = (foodItemToAdd, macroInfo) => {
   const selectedMealFoodItemSec = currMealSec.closest('.meal-section-menu')
   .siblings(`.${targetMealSecName}`)
   .find('.foodItemSection');
+
+  
+  selectedMealFoodItemSec.find('.noFoodNotification').hide();
 
   selectedMealFoodItemSec.append(addedFoodItemTemplate(foodItemToAdd) + macroInfo);
 };
@@ -173,6 +177,11 @@ const addFoodItemInfoToSection = () => {
   addedFoodItemFromList();
 };
 
+const isFoodInfoSecEmpty = (noFood) => {
+  //if foodInfoSection has no class foodName, then we show the notification
+
+}
+
 const removeFoodItem = () => {
   $('.meal-table-section').on('click', '.removeFoodItem', function() {
     targetMealSecName = $(this).closest('.meal-section-info').attr('class').replace(/meal-section-info/, '');
@@ -182,8 +191,15 @@ const removeFoodItem = () => {
     calcTotalMacros('-', getMacroInfo(macroInfo));
     updateTotalMacrosToSec();
 
+
+    const noFood = (selectedFoodItem.siblings('.addedFoodItem').html());
+    if(noFood == undefined) {
+      console.log(true);
+      $(this).closest('.foodItemSection').find('.noFoodNotification').show();
+    }
     macroInfo.remove();
     selectedFoodItem.remove();
+
   });
 };
 
