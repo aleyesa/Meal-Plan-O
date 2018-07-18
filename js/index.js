@@ -60,7 +60,7 @@ const selectMealSection = () => {
     $('.step2').hide();
     const targetMealSecName = $(this).attr('class');
     const selectedDaysMealSecMenu = $(this).closest('.meal-section-menu');
-    $('.meal-section-menu').siblings(`.meal-section-info`).css('display', 'none');
+    selectedDaysMealSecMenu.siblings(`.meal-section-info`).css('display', 'none');
     selectedDaysMealSecMenu.siblings(`.${targetMealSecName}`).css('display', 'flex');
   });
 };
@@ -71,7 +71,7 @@ const addMealSection = () => {
     $('.step2').hide();
     const mealSecName = $(this).find('.js-meal-name-input').val();
     const thisDaysMealNameSec = $(this).siblings('.meal-names-section');
-    $('.meal-section-menu').siblings(`.meal-section-info`).css('display', 'none');
+    $(this).closest('.meal-section-menu').siblings(`.meal-section-info`).css('display', 'none');
     thisDaysMealNameSec.append(mealSectionNameTemplate(mealSecName));
     // $(this).parent().after(mealSectionInfoTemplate(mealSecName));
     $(this).closest('.showMealSection').append(mealSectionInfoTemplate(mealSecName));
@@ -85,9 +85,18 @@ const addMealSection = () => {
 const removeMealSection = () => {
   $('.meal-table-section').on('click', '.deleteMealSecBtn', function() {
     const selectedMealSecName = $(this).closest('div').attr('class');
+    const firstMealNameSec = $(this).parent().siblings('div').attr('class');
+    console.log(firstMealNameSec);
+    // const targetMealSecName = $(this).attr('class');
+    const selectedDaysMealSecMenu = $(this).closest('.meal-section-menu');
+    selectedDaysMealSecMenu.siblings(`.meal-section-info`).css('display', 'none');
+    selectedDaysMealSecMenu.siblings(`.${firstMealNameSec}`).css('display', 'flex');
 
     $(this).closest('.meal-section-menu').siblings(`.${selectedMealSecName}`).remove();
     $(this).closest('div').remove();
+
+
+
   });
 };
 
@@ -180,11 +189,6 @@ const addFoodItemInfoToSection = () => {
   addedFoodItemFromList();
 };
 
-const isFoodInfoSecEmpty = (noFood) => {
-  //if foodInfoSection has no class foodName, then we show the notification
-
-}
-
 const removeFoodItem = () => {
   $('.meal-table-section').on('click', '.removeFoodItem', function() {
     targetMealSecName = $(this).closest('.meal-section-info').attr('class').replace(/meal-section-info/, '');
@@ -196,10 +200,13 @@ const removeFoodItem = () => {
 
 
     const noFood = (selectedFoodItem.siblings('.addedFoodItem').html());
+
+      //if foodInfoSection has no class foodName, then we show the notification
     if(noFood == undefined) {
-      console.log(true);
-      $(this).closest('.foodItemSection').find('.noFoodNotification').show();
-    }
+        // console.log(true);
+        $(this).closest('.foodItemSection').find('.noFoodNotification').show();
+      }
+
     macroInfo.remove();
     selectedFoodItem.remove();
 
