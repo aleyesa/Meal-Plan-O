@@ -339,6 +339,8 @@ main {
   flex-basis: 100%;
   justify-content: flex-end;
   border: none;
+  padding: 0;
+  margin: 0;
 }
 
 .meal-names-section div:focus {

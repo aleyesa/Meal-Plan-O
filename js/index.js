@@ -287,13 +287,13 @@ const saveAsPdf = () => {
   $('.meal-section-features').on('click', '.pdfBtn', function(event) {
     $('.backToTable').show();
     pdfFriendlyHtml = '';
-  //   $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').removeClass('hide');
-  //   $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').addClass('showMealSection');
-  //   $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').find('.meal-section-info').show();
+  //1   $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').removeClass('hide');
+  // 1  $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').addClass('showMealSection');
+  //  1 $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').find('.meal-section-info').show();
     $('.sunday-section, .monday-section, .tuesday-section, .wednesday-section, .thursday-section, .friday-section, .saturday-section').find('.meal-section-menu').hide();
     $('main').hide();
     const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    $('.meal-section-info').css('display', 'block');
+    // $('.meal-section-info').css('display', 'flex');
 
     $('.sunday-section .monday-section .tuesday-section .wednesday-section .thursday-section .friday-section .saturday-section').remove();
 
@@ -317,6 +317,8 @@ const saveAsPdf = () => {
     });
    
     $('.pdfFriendly-section').html($(pdfFriendlyHtml));
+    $('.pdfFriendly-section').find('.meal-section-info').css('display', 'flex');
+
     $('.pdfFriendly-section').show();
     window.print();
 });
