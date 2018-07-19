@@ -8,7 +8,7 @@
   <title>Meal Plan-O</title>
   <link rel="stylesheet" type="text/css" href="./css/reset.css"/>
   <link rel="stylesheet" type="text/css" href="./css/main.css"/>
-  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300|Open+Sans:300" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" 
         integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" 
         crossorigin="anonymous"/>
@@ -34,8 +34,8 @@
       <h2>Plan and organize your meals!</h2>
     </div>
   </header>
-  <a class="backToTable" href="#"><i class="fas fa-chevron-left"></i> Planner</a>
-  <main role="main">
+  <a class="backToTable" href="#"><i class="fas fa-chevron-left"></i> <span>Planner</span></a>
+  <main role="main" class="content">
     <!-- Meal Planner Section -->
     <section class="meal-table-section" role="region">  
       <!-- day tab navigation -->
@@ -94,7 +94,7 @@
         <fieldset>
           <legend>Search for a food item</legend>
               <input type="text" name="search-text-field" class="js-query" 
-              placeholder="i.e. Pizza" autofocus required/><input type="submit" class="js-search" value="Search">
+              placeholder="i.e. pizza" autofocus required/><input type="submit" class="js-search" value="Search">
         </fieldset>
       </form>
       <!-- Area that shows total food item results -->
@@ -103,13 +103,13 @@
       <section class="search-results" role="region"></section>
       <div>
       <button class="loadBtn hide">Load More Results</button>
-      <!-- <a class="backToTop" href="#goToSearchForm"><i class="fas fa-chevron-up"></i></a> -->
       </div>
+      <a class="backToTop" href="#goToSearchForm"><i class="fas fa-chevron-up"></i></a>
     </section>
-    <footer role="contentinfo"> &copy; 2018 Aaron Leyesa</footer>
     </main>
-    <section class="pdfFriendly-section"></section>
 
+    <section class="pdfFriendly-section"></section>
+    <footer role="contentinfo"> &copy; 2018 Aaron Leyesa</footer>
     <!-- <a href='https://www.freepik.com/free-photo/pile-of-fresh-vegetables_1437678.htm'>Background image created by Freepik</a> -->
     <!-- <script src="./js/api/nutrientChart.js"></script> -->
   <script src="./js/utils/food-utils.js"></script>

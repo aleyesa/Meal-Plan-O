@@ -6,7 +6,7 @@ const createDayInfoTemplate = () => {
         <fieldset>
           <legend>Create a new meal section</legend>
           <input type="text" name="meal-name" class="js-meal-name-input" 
-            placeholder="i.e. Lunch" autofocus required/><input type="submit" class="addMealSecBtn" value="+"/>
+            placeholder="i.e. lunch" autofocus required/><input type="submit" class="addMealSecBtn" value="+"/>
         </fieldset>
       </form>
       <section class="meal-section-features">
@@ -23,8 +23,10 @@ const mealSectionNameTemplate = mealSecName =>
 `  
   <div class="meal${mealNameSecIdentifier}">
     <a href="#">${mealSecName}</a>
+    <div>
     <button class="addFoodItemBtn" value="add_food_item_button"><i class="far fa-edit"></i></button>
     <button class="deleteMealSecBtn" value="remove_meal_section_button"><i class="far fa-trash-alt"></i></button>
+    </div>
   </div>
 `;
 
@@ -119,7 +121,8 @@ const displayResultHtml = (foodName, macros) =>
     </div>
   <button class="addBtn">Add</button>    
   <div class="notification">
-    <p>${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '')} was added to planner.</p>
+    <p>${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '').toLowerCase()}</p>
+    <p>added to planner.</p>
   </div>
   </div>
 `;

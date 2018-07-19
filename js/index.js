@@ -69,6 +69,10 @@ const addMealSection = () => {
   $('.meal-name-form').on('submit', function(event) {
     event.preventDefault();
     $('.step2').hide();
+    totalMacros.cals = 0;
+    totalMacros.pros = 0;
+    totalMacros.fats = 0;
+    totalMacros.carbs = 0;
     const mealSecName = $(this).find('.js-meal-name-input').val();
     const thisDaysMealNameSec = $(this).siblings('.meal-names-section');
     $(this).closest('.meal-section-menu').siblings(`.meal-section-info`).css('display', 'none');
@@ -84,7 +88,7 @@ const addMealSection = () => {
                           
 const removeMealSection = () => {
   $('.meal-table-section').on('click', '.deleteMealSecBtn', function() {
-    const selectedMealSecName = $(this).closest('div').attr('class');
+    const selectedMealSecName = $(this).parent().parent().attr('class');
     const firstMealNameSec = $(this).parent().siblings('div').attr('class');
     console.log(firstMealNameSec);
     // const targetMealSecName = $(this).attr('class');
@@ -92,8 +96,11 @@ const removeMealSection = () => {
     selectedDaysMealSecMenu.siblings(`.meal-section-info`).css('display', 'none');
     selectedDaysMealSecMenu.siblings(`.${firstMealNameSec}`).css('display', 'flex');
 
+    // console.log($(this).closest('.meal-section-menu').html());
+
+    // console.log((selectedMealSecName));
     $(this).closest('.meal-section-menu').siblings(`.${selectedMealSecName}`).remove();
-    $(this).closest('div').remove();
+    $(this).closest(`.${selectedMealSecName}`).remove();
 
 
 
@@ -166,7 +173,7 @@ const addedFoodItemFromList = () => {
     addBtn.siblings('.notification')
       .show()
       .delay(4000)
-      .fadeOut(1000);
+      .fadeOut();
 
     // $('.search-add-section').css('display', 'none');
     // $('.search-results').empty();
@@ -177,7 +184,7 @@ const addedFoodItemFromList = () => {
 const addFoodItemInfoToSection = () => {
   $('.meal-table-section').on('click', '.addFoodItemBtn', function() {
     currMealSec = $(this);
-    targetMealSecName = currMealSec.parent().attr('class');
+    targetMealSecName = currMealSec.parent().parent().attr('class');
     $('.meal-table-section, .totalResults').css('display', 'none');
     $('.search-add-section').css('display', 'block');
     $('.backToTable').show();
@@ -218,7 +225,7 @@ const goBackToTable = () => {
     $('.pdfFriendly-section').hide();
     $('.search-add-section, .totalResults').css('display', 'none');
     $('.search-results').empty();
-    $('.meal-table-section').css('display', 'block');
+    $('.meal-table-section').css('display', 'flex');
     $('.backToTable').hide();
     $('main').show();
     $('.meal-section-menu').show();
@@ -300,7 +307,7 @@ const saveAsPdf = () => {
 
     weekDays.forEach( day => {
       let currentInfo = mealPlanReplacement(day);
-      const string2 = ($(`.${day.toLowerCase()}-section`).find('.foodItemSection div').html());
+      const string2 = ($(`.${day.toLowerCase()}-section`).find('.foodItemSection .addedFoodItem').html());
       
       if (string2 !== undefined){
       pdfFriendlyHtml += currentInfo;
