@@ -624,13 +624,18 @@ main .pdfFriendly {
   position: fixed;
   color: white;
   background-color: rgb(105, 185, 118);
-  border: 3px solid rgb(62, 151, 77);
+  border: 1px solid rgb(62, 151, 77);
   border-radius: 5px;
   top: 0;
   right: 0;
   padding: 10px;
   margin: 20px;
   /* margin-right: auto; */
+}
+.notification p:last-child {
+  margin-top: 15px;
+  font-size: 12px;
+  text-transform: uppercase;
 }
 
 .notification p:first-child::first-letter {
