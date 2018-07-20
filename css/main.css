@@ -231,7 +231,7 @@ nav .weekDay:focus,
 }
 
 main {
-  /* height: 84%; */
+
 }
 
 /* meal section menu */
@@ -680,7 +680,7 @@ main .pdfFriendly {
 
 footer {
   text-align: center;
-  background-color: rgb(126, 126, 126);
+  background-color: rgb(190, 150, 88);
   color: white;
   padding: 20px;
   /* position: relative; */

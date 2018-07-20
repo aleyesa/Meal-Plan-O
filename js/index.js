@@ -89,7 +89,7 @@ const addMealSection = () => {
 const removeMealSection = () => {
   $('.meal-table-section').on('click', '.deleteMealSecBtn', function() {
     const selectedMealSecName = $(this).parent().parent().attr('class');
-    const firstMealNameSec = $(this).parent().siblings('div').attr('class');
+    const firstMealNameSec = $(this).parent().parent().siblings('div').attr('class');
     console.log(firstMealNameSec);
     // const targetMealSecName = $(this).attr('class');
     const selectedDaysMealSecMenu = $(this).closest('.meal-section-menu');
@@ -101,9 +101,6 @@ const removeMealSection = () => {
     // console.log((selectedMealSecName));
     $(this).closest('.meal-section-menu').siblings(`.${selectedMealSecName}`).remove();
     $(this).closest(`.${selectedMealSecName}`).remove();
-
-
-
   });
 };
 
@@ -124,7 +121,7 @@ const calcTotalMacros = (operation, macroValues) => {
   let prevTotalPros  = Number(getToTotalMacroSec.find('.macroSection .proteins').text());
   let prevTotalFats  = Number(getToTotalMacroSec.find('.macroSection .fats').text());
   let prevTotalCarbs = Number(getToTotalMacroSec.find('.macroSection .carbohydrates').text());
-
+  console.log(prevTotalCals);
   totalMacros.cals  = eval(prevTotalCals  + operation + macroValues.cals);
   totalMacros.pros  = eval(prevTotalPros  + operation + macroValues.pros);
   totalMacros.fats  = eval(prevTotalFats  + operation + macroValues.fats);
@@ -199,7 +196,8 @@ const addFoodItemInfoToSection = () => {
 const removeFoodItem = () => {
   $('.meal-table-section').on('click', '.removeFoodItem', function() {
     targetMealSecName = $(this).closest('.meal-section-info').attr('class').replace(/meal-section-info/, '');
-    currMealSec = $('.meal-names-section').find(`.${targetMealSecName} .addFoodItemBtn`);
+    // currMealSec = $('.meal-names-section').find(`.${targetMealSecName} .addFoodItemBtn`);
+    currMealSec = $('main').find(`.meal-names-section .${targetMealSecName} .addFoodItemBtn`);
     const selectedFoodItem = $(this).parent();
     const macroInfo = selectedFoodItem.next('div');
     calcTotalMacros('-', getMacroInfo(macroInfo));
