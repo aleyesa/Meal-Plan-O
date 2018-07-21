@@ -8,6 +8,11 @@ body {
   max-height: 100%;
 }
 
+html {
+  /*helps with scroll-bar adding to width*/
+  overflow-y: overlay;
+}
+
 body {
   background-color: #FFF9F1; 
   font-family: 'Josefin Sans', sans-serif;
@@ -316,10 +321,11 @@ main {
 
 .meal-names-section {
   margin: 20px 0px 0px 0px;
-  overflow-x: none;
-  overflow-y: auto;
+  /* overflow-x: none;
+  overflow-y: auto; */
   display: flex;
   flex-direction: column;
+  /* height: 50%; */
 }
 
 .meal-names-section a {
@@ -328,6 +334,7 @@ main {
 
 .meal-names-section div {
   display: flex;
+
   align-items: baseline;
   margin: 10px 0 0 0;
   padding: 10px;
@@ -444,26 +451,26 @@ main {
 .foodItemSection {
   display: flex;
   flex-direction: column;
-  overflow-x: none;
-  overflow-y: auto;
-  max-height: 60%;
+  /* overflow-x: none;
+  overflow-y: auto; */
+  /* max-height: 60%; */
   padding-top: 10px;
   margin: 10px 0 30px;
   border-top: 2px solid black;
 }
 
 .foodItemSection h2 {
-  color: rgb(179, 29, 42);
   width: 100%;
 }
 
 .foodItemSection p {
   font-size: 16px;
   display: inline-block;
-  font-style: italic;
+  /* font-style: italic; */
   /* margin: 10px 0; */
 
 }
+
 
 .foodItemSection .macro p::after,
 .nutritionInfo p::after {
@@ -532,6 +539,10 @@ main {
 
 }
 
+.noFoodNotification {
+  padding-top: 20px;
+}
+
 
 .nutritionInfo {
   /* display: flex;
@@ -543,14 +554,14 @@ main {
 }
 
 .nutritionInfo h2 {
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   font-weight: bold;
 }
 
 .nutritionInfo p {
   display: inline;
   line-height: 18px;
-  font-style: italic;
+  /* font-style: italic; */
 }
 
 main .pdfFriendly {
@@ -597,6 +608,7 @@ main .pdfFriendly {
 }
 
 .addedFoodName {
+  color: rgb(139, 7, 18);
   font-size: 14px;
   font-weight: bold;
   text-align: left; 
@@ -658,17 +670,12 @@ main .pdfFriendly {
 
 .step2 {
   display: none;
-  position: absolute;
-  align-self: center;
-  /* margin-top: 30px; */
-  width: 500px;
-  margin: 20px;
-  padding: 20px;
-  font-size: 20px;
+  width: 70%; 
+  padding: 30px;
 }
 
 .step2 p {
-  padding: 30px;
+  font-size: 20px;
 }
 
 .pdfFriendly-section {
@@ -685,12 +692,13 @@ main .pdfFriendly {
 
 footer {
   text-align: center;
-  background-color: rgb(190, 150, 88);
-  color: white;
+  background-color: rgb(241, 213, 121);
+  color: black;
+  font-weight: bold;
   padding: 20px;
   /* position: relative; */
   width: 100%;
-  border-top: rgb(77, 77, 77);
+  border-top: 1px solid rgb(216, 191, 110);
   flex-shrink: 0;
 }
 
@@ -699,16 +707,21 @@ footer {
 }
 
 .search-add-section .backToTop {
+  display: none;
   position: fixed;
   top: 25%;
-  right: 0;
+  right: 42px;
   font-size: 18px;
   border: 1px solid rgb(250, 224, 141);
   padding: 10px;
   border-radius: 5px;
-  margin-right: 20px;
-  background-color: #FFF9F1;
+  /* margin-right: 20px; */
+  background-color: rgb(250, 224, 141);
 
+}
+
+.backToTop i {
+  color: #9e7819;
 }
 
 .resetTableBtn,
@@ -764,6 +777,7 @@ footer {
     border: none;
     width: 100%;
     margin-top: 30px;
+    border-bottom: 1px solid rgb(250, 224, 141);
   }
 
   .meal-section-info {
@@ -806,14 +820,7 @@ footer {
   }
 
   .step2 {
-    display: none;
-    position: absolute;
-    align-self: center;
-    width: 500px;
-    margin: 20px;
-    padding: 20px;
-    font-size: 20px;
-    top: 37%;
+    width: 100%;
   }
 
 
@@ -826,5 +833,9 @@ footer {
     margin: 0 auto;
     left: 0;
     right: 0;
+  }
+
+  .search-add-section .backToTop {
+    right: 20px;
   }
 }

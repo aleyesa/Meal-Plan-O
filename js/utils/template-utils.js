@@ -16,13 +16,17 @@ const createDayInfoTemplate = () => {
       <section class="meal-names-section">
       </section>
     </aside>
+    <div class="step2">
+    <p>No meal sections created.</p>
+    <p>Start organizing your meals!</p>
+    </div>
   `
   )};
 
 const mealSectionNameTemplate = mealSecName =>
 `  
   <div class="meal${mealNameSecIdentifier}">
-    <a href="#">${mealSecName}</a>
+    <a href="#mealInfo">${mealSecName}</a>
     <div>
     <button class="addFoodItemBtn" value="add_food_item_button"><i class="far fa-edit"></i></button>
     <button class="deleteMealSecBtn" value="remove_meal_section_button"><i class="far fa-trash-alt"></i></button>
@@ -74,14 +78,10 @@ const addedFoodItemTemplate = (foodItemToAdd) =>
 
 const mealSectionInfoTemplate = mealSecName =>
 `     
-  <section class="meal${mealNameSecIdentifier} meal-section-info">
+  <section class="meal${mealNameSecIdentifier} meal-section-info" id="mealInfo">
   <h2>${mealSecName}</h2>
     <section class="foodItemSection">
-    <div class="noFoodNotification">
-      <p>No food has been added.</p>
-      <br/>
-      <p>Start adding your meals using the edit icon!</p>
-    </div>
+      <p class="noFoodNotification">No food has been added to planner.</p>
     </section>
     <h2>Total Macros</h2>
     <section class="macroSection">

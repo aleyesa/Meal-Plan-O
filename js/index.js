@@ -17,7 +17,6 @@ const totalMacros = {
 const specifyTabAndShowSection = () => {
   $('.meal-table-section nav').on('click', '.weekDay', function() {
     $('.step1').hide();
-    $('.step2').hide();
     const that = $(this);
     const text = that.text().toLowerCase();
 
@@ -37,11 +36,14 @@ const specifyTabAndShowSection = () => {
     const showCurDay = selector => {
       $(selector).removeClass('hide');
       $(selector).addClass('showMealSection');
+      // console.log($(selector).children('.step2').html());
+      // $(selector).children('.step2').show();
     };
 
     const hideOtherDays = selector => {
       $(selector).siblings('section').addClass('hide');
       $(selector).siblings('section').removeClass('showMealSection');
+      // $(selector).children('.step2').hide();
     };
 
     for (let key in mapDayTabToItsSection) {
@@ -50,6 +52,12 @@ const specifyTabAndShowSection = () => {
       if (key === text) {
         showCurDay(selector);
         hideOtherDays(selector);
+
+        if($(selector).find('.meal-names-section').find('div').attr('class') == undefined) {
+          $(selector).children('.step2').show();
+        } else {
+          $(selector).children('.step2').hide();
+        }
       }
     }
   });
@@ -57,7 +65,7 @@ const specifyTabAndShowSection = () => {
 
 const selectMealSection = () => {
   $('.meal-names-section').on('click', 'div', function() {
-    $('.step2').hide();
+    $(this).closest('.showMealSection').find('.step2').hide();
     const targetMealSecName = $(this).attr('class');
     const selectedDaysMealSecMenu = $(this).closest('.meal-section-menu');
     selectedDaysMealSecMenu.siblings(`.meal-section-info`).css('display', 'none');
@@ -95,7 +103,11 @@ const removeMealSection = () => {
     const selectedDaysMealSecMenu = $(this).closest('.meal-section-menu');
     selectedDaysMealSecMenu.siblings(`.meal-section-info`).css('display', 'none');
     selectedDaysMealSecMenu.siblings(`.${firstMealNameSec}`).css('display', 'flex');
-
+    if(firstMealNameSec == undefined) {
+      $(this).closest('.showMealSection').find('.step2').show();
+    } else {
+      $(this).closest('.showMealSection').find('.step2').hide();
+    }
     // console.log($(this).closest('.meal-section-menu').html());
 
     // console.log((selectedMealSecName));
@@ -220,7 +232,7 @@ const removeFoodItem = () => {
 
 const goBackToTable = () => {
   $('body').on('click', '.backToTable', () => {    
-    $('.pdfFriendly-section').hide();
+    $('.pdfFriendly-section, .backToTop').hide();
     $('.search-add-section, .totalResults').css('display', 'none');
     $('.search-results').empty();
     $('.meal-table-section').css('display', 'flex');
@@ -250,6 +262,7 @@ const handleSearch = () => {
   $('.search-form').on('submit', function(event) {
     event.preventDefault();
     combineResultsHtml = '';
+    $('.backToTop').show();
     $('.search-results').empty();
     $('.totalResults').css('display', 'block');
     $('.loadBtn').show();
