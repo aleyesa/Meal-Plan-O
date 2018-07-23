@@ -9,7 +9,7 @@ Screenshot(s) of your app. This makes your app description much easier to unders
 1) Into/Main page:
   shows a brief intro of application
   and first step
-  ![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+  ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/mainPage.png)
 2) Meal Planner page
   -ability to create meal sections for any day of the week, and it will be unique for that specific day
   -remove existing meal sections
