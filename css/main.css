@@ -17,7 +17,6 @@ body {
 }
 
 html {
-  /*helps fix scroll-bar adding to width*/
   overflow-y: overlay;
 }
 
@@ -120,7 +119,7 @@ footer {
 
 .delete-prompt div,
 .step1 {
-  max-width: 500px;
+  max-width: 550px;
 }
 
 .delete-prompt div {
@@ -159,6 +158,9 @@ header h2 {
 .delete-prompt span,
 header h2,
 .weekDay,
+.step1,
+.step2,
+.noFoodNotification,
 .meal-name-form legend,
 .search-form legend,
 .foodName,
@@ -229,6 +231,7 @@ footer {
 
 .addFoodItemBtn,
 .deleteMealSecBtn {
+  padding: 7px;
   background-color: rgba(255, 255, 255, 0);
 }
 
@@ -302,10 +305,10 @@ header p,
 }
 
 .removeFoodItem {
+  height: 25px;
   background-color: rgba(255, 249, 241, 0);
 }
 
-/* header styling */
 header {
   background-image: url(https://pune365.com/wp-content/uploads/2017/02/30287438_l.jpg);
   background-size: cover; 
@@ -361,6 +364,13 @@ nav,
 
 nav {
   background-color: #FFE79B;
+}
+
+nav,
+.addedFoodItem,
+.meal-names-section div,
+footer {
+  flex-shrink: 0;
 }
 
 nav div,
@@ -427,12 +437,14 @@ footer {
 
 .js-meal-name-input,
 .js-query,
-.backToTable  {
+.backToTable {
   border-top-left-radius: 5px;
 }
 
 .js-meal-name-input,
-.js-query  {
+.js-query {
+  width: 85%;
+  border-right: none;
   border-bottom-left-radius: 5px; 
 }
 
@@ -440,12 +452,6 @@ footer {
 .js-query,
 .search-form fieldset .js-query {
   outline: none;
-}
-
-.js-meal-name-input,
-.js-query {
-  width: 85%;
-  border-right: none;
 }
 
 .addMealSecBtn,
@@ -496,6 +502,8 @@ footer {
 }
 
 .meal-names-section {
+  overflow: auto;
+  max-height: 500px;
   margin-top: 20px;
 }
 
@@ -511,8 +519,10 @@ footer {
 }
 
 .meal-names-section div div {
+
   flex-basis: 100%;
   justify-content: flex-end;
+  flex-shrink: 1;
   padding: 0;
   margin: 0;
 }
@@ -527,11 +537,6 @@ footer {
   text-transform: capitalize;
 }
 
-.addFoodItemBtn, .deleteMealSecBtn {
-  padding: 7px;
-}
-
-/* search-add-section  */
 .backToTable:hover,
 .backToTop:hover {
   color: #4589FA;
@@ -550,7 +555,10 @@ footer {
 }
 
 .foodName,
-.addedFoodName {
+.addedFoodName,
+.step1,
+.step2,
+.noFoodNotification {
   color: rgb(139, 7, 18);
 }
 
@@ -568,6 +576,8 @@ footer {
 }
 
 .foodName {
+  flex-basis: 25%;
+  flex-grow: 2;
   padding-bottom: 10px;
 }
 
@@ -600,11 +610,16 @@ footer {
 }
 
 .foodItemSection,
-.macroSection  {
+.macroSection {
   border-top: 2px solid black;
 }
 
 .foodItemSection {
+  overflow-y: auto;
+}
+
+.foodItemSection {
+  max-height: 750px;
   padding-top: 10px;
   margin: 10px 0 30px;
 }
@@ -650,11 +665,6 @@ footer {
   border-radius: 3px;
 }
 
-.foodName {
-  flex-basis: 25%;
-  flex-grow: 2;
-}
-
 .noFoodNotification {
   padding-top: 20px;
 }
@@ -683,10 +693,6 @@ main .pdfFriendly {
 
 .addedFoodItem {
   padding: 20px 0 5px;
-}
-
-.removeFoodItem {
-  height: 25px;
 }
 
 .legend 
@@ -719,6 +725,7 @@ main .pdfFriendly {
 .step1 {
   align-self: center;
   padding: 40px 20px;
+  line-height: 24PX;
 }
 
 .pdfFriendly-section {
@@ -727,11 +734,11 @@ main .pdfFriendly {
 
 footer {
   border-top: 1px solid rgb(216, 191, 110);
-  flex-shrink: 0;
 }
 
 .content {
   flex: 1 0 auto;
+  flex-basis: 62%;
 }
 
 .search-add-section .backToTop {
@@ -781,14 +788,14 @@ footer {
     width: 100%;
   }
 
-  .meal-section-menu {
-    margin-top: 30px;
-    border-bottom: 1px solid rgb(250, 224, 141);
-  }
-
   .meal-section-menu,
   .meal-section-info {
     border: none;
+  }
+
+  .meal-section-menu {
+    margin-top: 30px;
+    border-bottom: 1px solid rgb(250, 224, 141);
   }
 
   .showMealSection {
@@ -804,10 +811,6 @@ footer {
     text-align:  left;
   }
 
-  .step1 {
-    font-size: 18px;
-  }
-
   .js-search {
     width: 75px;
   }
@@ -821,6 +824,10 @@ footer {
 
   .search-add-section .backToTop {
     right: 20px;
+  }
+
+  .meal-section-features button {
+    margin-bottom: 0;
   }
 }
 

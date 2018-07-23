@@ -1,3 +1,4 @@
+//meal table html for each day
 const createDayInfoTemplate = () => {
   $('.meal-table-section').children('section').html(
   `
@@ -6,34 +7,35 @@ const createDayInfoTemplate = () => {
         <fieldset>
           <legend>Create a new meal section</legend>
           <input type="text" name="meal-name" class="js-meal-name-input" 
-            placeholder="i.e. lunch" autofocus required/><input type="submit" class="addMealSecBtn" value="+"/>
+            placeholder="i.e. lunch" autofocus required/><input type="submit" class="addMealSecBtn" value="+" aria-label="create meal name section"/>
         </fieldset>
       </form>
       <section class="meal-section-features">
-          <button class="resetTableBtn">Reset Planner</button>
-          <button class='pdfBtn'>Save as PDF</button>   
+          <button class="resetTableBtn" role="button">Reset Planner</button>
+          <button class="pdfBtn" role="button">Save as PDF</button>   
       </section>
       <section class="meal-names-section">
       </section>
     </aside>
     <div class="step2">
-    <p>No meal sections created.</p>
-    <p>Start organizing your meals!</p>
+    <p>No meal sections created, create a meal section now!</p>
     </div>
-  `
-  )};
+  `);
+};
 
+//html for meal section name
 const mealSectionNameTemplate = mealSecName =>
 `  
   <div class="meal${mealNameSecIdentifier}">
-    <a href="#mealInfo">${mealSecName}</a>
+    <a href="#" aria-label="show ${mealSecName} meal section">${mealSecName}</a>
     <div>
-    <button class="addFoodItemBtn" value="add_food_item_button"><i class="far fa-edit"></i></button>
-    <button class="deleteMealSecBtn" value="remove_meal_section_button"><i class="far fa-trash-alt"></i></button>
+    <button class="addFoodItemBtn" aria-label="search for food for ${mealSecName}" role="button"><i class="far fa-edit"></i></button>
+    <button class="deleteMealSecBtn" aria-label="remove meal section for ${mealSecName}" role="button"><i class="far fa-trash-alt"></i></button>
     </div>
   </div>
 `;
 
+//html for macro info
 const macroInfoTemplateForPlanner = (macroInfo) => 
   `
   <div class="macro">
@@ -45,6 +47,7 @@ const macroInfoTemplateForPlanner = (macroInfo) =>
   `
   ;
 
+//html for macro section total
 const macroInfoTotalTemplate = (macroInfo) =>
   `
     <div>
@@ -63,25 +66,26 @@ const macroInfoTotalTemplate = (macroInfo) =>
       <p>Carbohydrates(g)</p>
       <h2 class="carbohydrates">${macroInfo.carbs}</h2>
     </div>
-  `
-  ;
+  `;
 
+//html for food name with remove button for food item section
 const addedFoodItemTemplate = (foodItemToAdd) => 
 `
   <div class="addedFoodItem">
     <h2 class="addedFoodName">
       ${foodItemToAdd}
     </h2>
-    <button class="removeFoodItem"><i class="far fa-trash-alt"></i></button>
+    <button class="removeFoodItem" role="button"><i class="far fa-trash-alt"></i></button>
   </div>
-`
+`;
 
+//html for meal section info
 const mealSectionInfoTemplate = mealSecName =>
 `     
   <section class="meal${mealNameSecIdentifier} meal-section-info" id="mealInfo">
   <h2>${mealSecName}</h2>
     <section class="foodItemSection">
-      <p class="noFoodNotification">No food has been added to planner.</p>
+      <p class="noFoodNotification">No food has been added to planner, start adding food items!</p>
     </section>
     <h2>Total Macros</h2>
     <section class="macroSection">
@@ -90,24 +94,7 @@ const mealSectionInfoTemplate = mealSecName =>
   </section>
 `;
 
-// const displayResultHtml = (foodName, macros) => 
-// `
-//   <div class="foodItem">
-//   <div class="nutritionInfo">
-//   <h2 class="foodName">
-//     <i class="fas fa-utensils"></i>
-//     ${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '')}
-//   </h2>
-//       <h2>Macros</h2>
-//       ${macros}
-//       <button class="addBtn">Add</button>  
-//     </div>  
-//   <div class="notification">
-//     <p>${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '')} was added to planner.</p>
-//   </div>
-//   </div>
-// `;
-
+//html for search results
 const displayResultHtml = (foodName, macros) => 
 `
   <div class="foodItem">
@@ -119,7 +106,7 @@ const displayResultHtml = (foodName, macros) =>
       <h2>Macros</h2>
       ${macros}
     </div>
-  <button class="addBtn">Add</button>    
+  <button class="addBtn" role="button" aria-label="${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '')} add food">Add</button>    
   <div class="notification">
     <p>${foodName.replace(/\u002C [UPC:]* [0-9]*/g, '').replace(/\u002C [GTIN:]* [0-9]*/g, '').toLowerCase()}</p>
     <p>Added to planner</p>
@@ -127,10 +114,9 @@ const displayResultHtml = (foodName, macros) =>
   </div>
 `;
 
+//html for macro info in results
 const macroInfoTemplateForResults = (name, value, unit) => (
 `
 <p><span class="capName">${name}</span>: <span class="${name}">${value}</span>${unit}</p>
 `
 );
-
-// <div id="chart_div"></div>
