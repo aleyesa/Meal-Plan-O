@@ -5,18 +5,23 @@ https://aleyesa.github.io/Meal-Plan-O/
 
 ## Into/Main page:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/mainPage.png)
-..
+
 ## Meal Planner for specific day:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/plannerPage.png)
+
 ## Created a meal section:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/addedBreakfastMealSection.png)
+
 ## Food search page:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/foodSearchPage.png)
+
 ## Search results of a food search:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/pizzaSearch.png)
+
 ## Adding a food item:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/addedFoodItem.png)
-## Save as Pdf
+
+## Save as Pdf:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/pdfFriendly.png)
 
 ## How does Meal Plan-O work:
