@@ -2,12 +2,12 @@
 const createDayInfoTemplate = () => {
   $('.meal-table-section').children('section').html(
   `
-    <aside class="meal-section-menu">
-      <form class="meal-name-form">
+    <aside class="meal-section-menu" role="complementary">
+      <form class="meal-name-form" role="form">
         <fieldset>
           <legend>Create a new meal section</legend>
           <input type="text" name="meal-name" class="js-meal-name-input" 
-            placeholder="i.e. lunch" autofocus required/><input type="submit" class="addMealSecBtn" value="+" aria-label="create meal name section"/>
+            placeholder="i.e. lunch" aria-label="meal section name" autofocus required/><input type="submit" class="addMealSecBtn" value="+" aria-label="create meal name section"/>
         </fieldset>
       </form>
       <section class="meal-section-features">

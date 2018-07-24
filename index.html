@@ -17,13 +17,12 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"/>
   </script>
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
   <!-- notification to reset planner -->
   <section class="delete-prompt" role="region">
     <div>
-      <p>You are about to reset your meal planner, this will clear out all your created meals!</p>
+      <h2>You are about to reset your meal planner, this will clear out all your created meals!</h2>
       <p>Do you still want to reset?</p>
       <button class="proceedBtn" role="button">Yes</button>
       <button class="exitBtn" role="button" >No</button>
@@ -35,27 +34,32 @@
       <h2>Plan and organize your meals!</h2>
     </div>
   </header>
-  <a class="backToTable" href="#" aria-label="back to planner"><i class="fas fa-chevron-left"></i> <span>Planner</span></a>
+  <a class="backToTable" href="#" role="navigation" aria-label="back to planner"><i class="fas fa-chevron-left"></i> <span>Planner</span></a>
   <main class="content" role="main" aria-live="assertive">
     <!-- Meal Planner Section -->
     <section class="meal-table-section" role="region">  
       <!-- day tab navigation -->
       <nav role="navigation">
-        <div><a class="weekDay" aria-label="sunday tab" href="#">Sun</a></div>
-        <div><a class="weekDay" aria-label="monday tab" href="#">Mon</a></div>
-        <div><a class="weekDay" aria-label="tuesday tab" href="#">Tue</a></div>
-        <div><a class="weekDay" aria-label="wednesday tab" href="#">Wed</a></div>
-        <div><a class="weekDay" aria-label="thursday tab" href="#">Thu</a></div>
-        <div><a class="weekDay" aria-label="friday tab" href="#">Fri</a></div>
-        <div><a class="weekDay" aria-label="saturday tab" href="#">Sat</a></div>
+        <ul>
+          <li><a class="weekDay" aria-label="sunday tab" href="#">Sun</a></li>
+          <li><a class="weekDay" aria-label="monday tab" href="#">Mon</a></li>
+          <li><a class="weekDay" aria-label="tuesday tab" href="#">Tue</a></li>
+          <li><a class="weekDay" aria-label="wednesday tab" href="#">Wed</a></li>
+          <li><a class="weekDay" aria-label="thursday tab" href="#">Thu</a></li>
+          <li><a class="weekDay" aria-label="friday tab" href="#">Fri</a></li>
+          <li><a class="weekDay" aria-label="saturday tab" href="#">Sat</a></li>
+        </ul>
       </nav>
       <!-- notification about the app and first instructions to get started -->
       <div class="step1">
         <h2>Welcome to Meal-Plan-O!</h2>
         <br/>
-        <p>We provide: <br/>
-        <p>A simple planner for organization, a food search feature to help you add the foods you want and also see important nutrient information! </p>
-        <br>
+        <p>We provide: </p>
+        <ul>
+          <li>A simple planner for organization.</li>
+          <li>A food search feature to help you add the foods you want.</li>
+          <li>And the basic macro-nutrient information.</li>
+        </ul>
         <p>Let's start planning! Choose a day tab up top!</p>
       </div>
       <!-- Sunday -->
@@ -83,11 +87,11 @@
     <!-- Search section -->
     <section class="search-add-section hide" id="goToSearchForm" role="region">
       <!-- Search food item form -->
-      <form class="search-form">
+      <form class="search-form" role="search">
         <fieldset>
           <legend>Search for a food item</legend>
               <input type="text" name="search-text-field" class="js-query" 
-              placeholder="i.e. pizza" autofocus required/><input type="submit" class="js-search" value="Search">
+              placeholder="i.e. pizza" aria-label="food item search" autofocus required/><input type="submit" class="js-search" value="Search">
         </fieldset>
       </form>
       <!-- Area that shows total food item results -->
@@ -97,11 +101,11 @@
       <div>
       <button class="loadBtn hide" role="button">Load More Results</button>
       </div>
-      <a class="backToTop" href="#goToSearchForm" aria-label="back to top"><i class="fas fa-chevron-up"></i></a>
+      <a class="backToTop" href="#goToSearchForm" role="navigation" aria-label="back to top"><i class="fas fa-chevron-up"></i></a>
     </section>
     </main>
     <section class="pdfFriendly-section" role="region"></section>
-    <footer role="contentinfo"> &copy; 2018 Aaron Leyesa</footer>
+    <footer role="contentinfo">&copy; 2018 Aaron Leyesa</footer>
   <script src="./js/utils/api-utils.js"></script>
   <script src="./js/utils/template-utils.js"></script>
   <script src="./js/index.js"></script>

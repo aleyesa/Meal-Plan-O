@@ -24,7 +24,7 @@ const specifyTabAndShowSection = () => {
 
     //change back-ground color to show specified day tab has been clicked, and hides other days
     that.parent().addClass('focus');
-    that.parent().siblings('div').removeClass('focus');
+    that.parent().siblings('li').removeClass('focus');
 
     //object holding each days section
     const mapDayTabToItsSection = { 
@@ -274,15 +274,25 @@ const goBackToTable = () => {
 //resets everything to initial load.
 const resetMealPlan = () => {
   $('.meal-table-section').on('click', '.resetTableBtn', () => {
+    $('main').hide();
     $('.delete-prompt').css('display', 'block');
-    $('.delete-prompt').on('click', '.exitBtn', () => $('.delete-prompt').css('display', 'none'));
-    $('.delete-prompt').on('click', '.proceedBtn', () => {$('.delete-prompt').css('display', 'none');
+    $('.delete-prompt').on('click', '.exitBtn', () => {
+    $('.delete-prompt').css('display', 'none');
+    $('main').show();
+  });
+    $('.delete-prompt').on('click', '.proceedBtn', () => {
+      $('.delete-prompt').css('display', 'none');
 
-    createDayInfoTemplate();
-    specifyTabAndShowSection();
-    addMealSection();
-    selectMealSection();
-    saveAsPdf();
+      $('section').find('.showMealSection').addClass('hide');
+      $('section').removeClass('showMealSection');
+      $('nav li').removeClass('focus');
+      $('.step1, main').show();
+
+      createDayInfoTemplate();
+      specifyTabAndShowSection();
+      addMealSection();
+      selectMealSection();
+      saveAsPdf();
   });
   });
 };

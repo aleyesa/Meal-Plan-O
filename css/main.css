@@ -33,18 +33,12 @@ body,
 body,
 .meal-table-section,
 .showMealSection,
-nav,
-.meal-section-menu,
 .meal-section-features,
-.meal-names-section,
 .meal-names-section div,
-.meal-section-info,
-.foodItemSection,
 .search-results,
 .foodItem,
 .foodName,
 .macroSection,
-.macroSection div,
 .addedFoodItem,
 .step1 {
   display: flex;
@@ -52,10 +46,7 @@ nav,
 
 body,
 .meal-table-section,
-.meal-section-menu,
-.meal-names-section,
 .meal-section-info,
-.foodItemSection,
 .foodItem,
 .macroSection div,
 .step1 {
@@ -76,7 +67,8 @@ a,
 .backToTable,
 .step2,
 .pdfFriendly-section .removeFoodItem,
-.search-add-section .backToTop {
+.search-add-section .backToTop,
+.pdfFriendly-section {
   display: none;
 }
 
@@ -117,8 +109,7 @@ footer {
   padding: 20px;
 }
 
-.delete-prompt div,
-.step1 {
+.delete-prompt div {
   max-width: 550px;
 }
 
@@ -184,8 +175,7 @@ footer {
 
 .proceedBtn, 
 .addBtn,
-.exitBtn,
-.weekDay {
+.exitBtn {
   padding: 10px 20px;
 }
 
@@ -205,7 +195,7 @@ footer {
 .proceedBtn, 
 .addBtn,
 .notification {
-  background-color: rgb(105, 185, 118);
+  background-color:rgb(0, 126, 20);
 }
 
 .proceedBtn, 
@@ -249,16 +239,16 @@ footer {
 }
 
 .addFoodItemBtn i {
-  color: rgb(105, 185, 118);
+  color: rgb(0, 126, 20);
 }
 
 .addFoodItemBtn i:hover {
-  color: rgb(62, 151, 77);
+  color: rgb(1, 94, 16);
 }
 
 .proceedBtn:hover,
 .addBtn:hover {
-  background-color: rgb(62, 151, 77);
+  background-color: rgb(1, 94, 16);
 }
 
 .foodItem .addBtn,
@@ -287,12 +277,12 @@ header p,
 }
 
 .exitBtn {
-  background-color: rgb(248, 66, 66);
+  background-color: rgb(231, 4, 4);
 }
 
 .deleteMealSecBtn i,
 .removeFoodItem i {
-  color: rgb(248, 66, 66);
+  color: rgb(231, 4, 4);
 }
 
 .deleteMealSecBtn i:hover,
@@ -346,12 +336,10 @@ header p,
   color: #FFF9F1;
 }
 
-nav,
 .search-results {
   justify-content: center;
 }
 
-nav,
 .search-results,
 .macroSection {
   flex-wrap: wrap;
@@ -364,16 +352,15 @@ nav,
 
 nav {
   background-color: #FFE79B;
+  flex-wrap: wrap;
 }
 
-nav,
 .addedFoodItem,
 .meal-names-section div,
 footer {
   flex-shrink: 0;
 }
 
-nav div,
 .macroSection h2 { 
   padding: 10px 0;
 }
@@ -390,11 +377,27 @@ footer {
   color: black;
 }
 
-nav div:hover,
-nav .weekDay:focus,
+nav li:hover,
+nav li:focus,
 .focus,
 footer {
   background-color: rgb(241, 213, 121);
+}
+
+nav ul {
+  display: flex;
+  font-size: 0;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  list-style-type: none;
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+nav li {
+  width: 10%;
 }
 
 .meal-section-menu,
@@ -469,7 +472,7 @@ footer {
 .meal-section-features button,
 .loadBtn,
 .js-search {
-  background-color: #4589FA;
+  background-color: #1d5fcd;
 }
 
 .addMealSecBtn {
@@ -489,7 +492,7 @@ footer {
 .pdfBtn:hover,
 .js-search:hover,
 .loadBtn:hover {
-  background-color: rgb(62, 117, 206);
+  background-color: #1449a3;
 }
 
 .resetTableBtn,
@@ -539,7 +542,7 @@ footer {
 
 .backToTable:hover,
 .backToTop:hover {
-  color: #4589FA;
+  color: #1d5fcd;
 }
 
 .search-form fieldset 
@@ -559,7 +562,7 @@ footer {
 .step1,
 .step2,
 .noFoodNotification {
-  color: rgb(139, 7, 18);
+  color: #4d1d02;
 }
 
 .foodName,
@@ -603,9 +606,12 @@ footer {
 }
 
 .weekDay,
-.macroSection h2,
 .step1,
 .step2 {
+  font-size: 24px;
+}
+
+.macroSection h2 {
   font-size: 20px;
 }
 
@@ -615,19 +621,23 @@ footer {
 }
 
 .foodItemSection {
+  max-height: 750px;
+  padding: 10px 30px 0 0;
+  margin: 10px 0 30px;
   overflow-y: auto;
 }
 
-.foodItemSection {
-  max-height: 750px;
-  padding-top: 10px;
-  margin: 10px 0 30px;
-}
-
 .foodItemSection p,
-.nutritionType p {
+.nutritionType p,
+.weekDay {
   display: inline-block;
 }
+
+.weekDay {
+  padding: 15px 20px;
+}
+
+
 
 .foodItemSection .macro p::after,
 .nutritionInfo p::after {
@@ -683,10 +693,6 @@ footer {
   display: inline;
 }
 
-main .pdfFriendly {
-  text-align: right;
-}
-
 .macroSection {
   justify-content: space-between;
 }
@@ -711,7 +717,7 @@ main .pdfFriendly {
 .notification {
   max-height: 250px;
   max-width: 250px;
-  border: 1px solid rgb(62, 151, 77);
+  border: 1px solid rgb(1, 94, 16);
   top: 0;
   right: 0;
   margin: 20px;
@@ -725,10 +731,21 @@ main .pdfFriendly {
 .step1 {
   align-self: center;
   padding: 40px 20px;
-  line-height: 24PX;
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.step1 ul{
+  margin: 20px;
+  list-style-type: circle;
+}
+
+.step1 li {
+  padding: 10px;
 }
 
 .pdfFriendly-section {
+  flex-basis: 100%;
   margin: 0 20px;
 }
 
@@ -742,18 +759,22 @@ footer {
 }
 
 .search-add-section .backToTop {
-  top: 35%;
+  top: 130px;
   right: 42px;
   background-color: rgb(250, 224, 141);
 }
 
 .backToTop i {
-  color: #9e7819;
+  color: #4d1d02
 }
 
 @media only screen and (max-width: 999px) {
-  .search-results .foodItem{
-    width: 40%;
+  .foodItem {
+    flex-basis: 40%;
+  }
+
+  .search-add-section .backToTop {
+    right: 32px;
   }
 }
 
@@ -768,14 +789,17 @@ footer {
     font-size: 40px;
   }
   
-  header h2 {
+  header h2,
+  .foodName {
     font-size: 16px;
   }
   
-  header p,
-  .foodName,
   .nutritionInfo {
-    font-size: 12px;
+    font-size: 14px;
+  }
+
+  .step1 {
+    font-size: 24px;
   }
   
   .js-meal-name-input {
@@ -802,7 +826,7 @@ footer {
     flex-direction: column;
   }
 
-.foodItem {
+  .foodItem {
     flex-basis: 100%;
     margin: 30px 0 10px 0;
   }
@@ -823,11 +847,15 @@ footer {
   }
 
   .search-add-section .backToTop {
-    right: 20px;
+    right: 34px;
   }
 
   .meal-section-features button {
     margin-bottom: 0;
+  }
+
+  nav li {
+    width: auto;
   }
 }
 
