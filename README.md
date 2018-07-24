@@ -1,34 +1,28 @@
-# H1
-Meal Plan-O
+# Meal Plan-O
 
-#H2
-live app:
+#H2 live app:
 https://aleyesa.github.io/Meal-Plan-O/
 
-#H2
-Into/Main page:
+#H2 Into/Main page:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/mainPage.png)
-#H2
-Meal Planner for specific day:
+#H2 Meal Planner for specific day:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/plannerPage.png)
-#H2
-Created a meal section:
+..
+#H2 Created a meal section:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/addedBreakfastMealSection.png)
-#H2
-Food search page:
+#H2 Food search page:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/foodSearchPage.png)
-#H2
-Search results of a food search:
+..
+#H2 Search results of a food search:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/pizzaSearch.png)
-#H2
-Adding a food item:
+..
+#H2 Adding a food item:
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/addedFoodItem.png)
-#H2
-Save as Pdf
+..
+#H2 Save as Pdf
   ![alt text](https://github.com/aleyesa/Meal-Plan-O/blob/master/readMeImg/pdfFriendly.png)
-
-#H2
-How does Meal Plan-O work:
+..
+#H2 How does Meal Plan-O work:
 
 -as soon as the meal plan-O application loads, the user is introduced to the name of the application,
 followed by an introduction of what the application is about
@@ -45,9 +39,10 @@ and the ability to start finding foods or remove a specfic meal section in that 
 -Once user has inputted a food item to search they will be shown the results of similar named food items.
 
 -If user wants to go back to planner to see the foods added to a specific day, they can simply click on back to planner link on top right of screen in search page.
+..
 
-#H2
-Technology used:
+#H2 Technology used:
+git add .
 
 HTML/CSS/Javascript/JQuery
 
